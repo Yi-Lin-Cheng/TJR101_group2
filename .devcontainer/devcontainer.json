@@ -1,0 +1,52 @@
+{
+  "build": {
+    "dockerfile": "../Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bierner.markdown-mermaid",
+        "charliermarsh.ruff",
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+        "shardulm94.trailing-spaces",
+        "shinichi-takii.sql-bigquery",
+        "streetsidesoftware.code-spell-checker",
+        "vivaxy.vscode-conventional-commits",
+        "ms-python.python",
+        "ms-python.black-formatter",
+        "ms-python.pylint",
+        "ms-python.isort",
+        "ms-toolsai.jupyter"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.tabSize": 4,
+        "editor.rulers": [
+          100
+        ],
+        "[python]": {
+          "python.formatting.provider": "black",
+          "editor.codeActionsOnSave": {
+            "editor.formatOnSave": "always",
+            "source.unusedImports": "never",
+            "source.organizeImports": "always"
+          }
+        }
+      }
+    }
+  },
+  "remoteEnv": {
+    "PYTHONPATH": "${LOCAL_WORKSPACE_FOLDER}"
+  },
+  "postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh",
+  "runArgs": [
+    "--name",
+    "TJR101_group2",
+    "--network",
+    "host"
+  ]
+}
