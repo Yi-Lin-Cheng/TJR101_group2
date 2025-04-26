@@ -59,15 +59,22 @@ def accupass_crawler_list(driver):
     driver.get(url)
 
     # 等待活動卡片載入
-    WebDriverWait(driver, 20).until(EC.presence_of_element_located(
-        (By.CSS_SELECTOR, "#content > div > div.SearchPage-d3ff7972-container > main > section > div.Grid-e7cd5bad-container > div:nth-child(2) > div")))
+    WebDriverWait(driver, 20).until(
+        EC.presence_of_element_located(
+            (
+                By.CSS_SELECTOR,
+                "#content > div > div.SearchPage-d3ff7972-container > main > section > div.Grid-e7cd5bad-container > div:nth-child(2) > div",
+            )
+        )
+    )
 
     # 滾到底部直到不再載入新資料
     scroll_to_bottom(driver)
 
     # 抓取所有活動卡片
     accupass_cards = driver.find_elements(
-        By.XPATH, "//div[contains(@class, \"EventCard-e27ded2d-home-event-card\")]")
+        By.XPATH, '//div[contains(@class, "EventCard-e27ded2d-home-event-card")]'
+    )
 
     accupass_data = []
 
@@ -76,7 +83,9 @@ def accupass_crawler_list(driver):
 
             # 取得活動名稱
             name_elem = card.find_element(
-                By.XPATH, ".//div[contains(@class, \"EventCard-f0d917f9-event-content\")]//p[contains(@class, \"EventCard-de38a23c-event-name\")]")
+                By.XPATH,
+                './/div[contains(@class, "EventCard-f0d917f9-event-content")]//p[contains(@class, "EventCard-de38a23c-event-name")]',
+            )
             event_name = name_elem.text
 
             if not event_name:
@@ -84,47 +93,61 @@ def accupass_crawler_list(driver):
 
             # 取得活動時間（日期）
             time_elem = card.find_element(
-                By.XPATH, ".//div[contains(@class, \"EventCard-f0d917f9-event-content\")]//p[contains(@class, \"EventCard-c051398a-event-time\")]")
+                By.XPATH,
+                './/div[contains(@class, "EventCard-f0d917f9-event-content")]//p[contains(@class, "EventCard-c051398a-event-time")]',
+            )
             event_time = time_elem.text
 
             # 取得活動縣市
             region_elem = card.find_element(
-                By.XPATH, ".//div[contains(@class, \"EventCard-a800ada2-sub-info-container\")]//span")
+                By.XPATH,
+                './/div[contains(@class, "EventCard-a800ada2-sub-info-container")]//span',
+            )
             event_region = region_elem.text
 
             # 取得活動標籤
             tag_elem = card.find_element(
-                By.XPATH, ".//div[contains(@class, \"TagStatsBottom-c31d7527-tags-container\")]//a")
+                By.XPATH,
+                './/div[contains(@class, "TagStatsBottom-c31d7527-tags-container")]//a',
+            )
             event_tag = tag_elem.text
 
             # 取得活動圖片連結
             img_elem = card.find_element(
-                By.XPATH, ".//div[contains(@class, \"EventCard-c48c2d9c-event-photo\")]//img")
+                By.XPATH,
+                './/div[contains(@class, "EventCard-c48c2d9c-event-photo")]//img',
+            )
             event_img = img_elem.get_attribute("src")
 
             # 取得活動連結
             link_elem = card.find_element(
-                By.XPATH, ".//a[starts-with(@href, \"/event/\")]")
+                By.XPATH, './/a[starts-with(@href, "/event/")]'
+            )
             event_href = link_elem.get_attribute("href")
 
-            accupass_data.append({
-                "Acivity_name": event_name,
-                "Acivity_time": event_time,
-                "Region": event_region,
-                "Tag": event_tag,
-                "Picture_url": event_img,
-                "Url": event_href,
-            })
+            accupass_data.append(
+                {
+                    "Acivity_name": event_name,
+                    "Acivity_time": event_time,
+                    "Region": event_region,
+                    "Tag": event_tag,
+                    "Picture_url": event_img,
+                    "Url": event_href,
+                }
+            )
 
         except Exception as e:
-            accupass_data.append({
-                "Acivity_name": None,
-                "Acivity_time": None,
-                "Region": None,
-                "Tag": None,
-                "Picture_url": None,
-                "Url": None,
-            })
+            print(f"沒有活動：{e}")
+            accupass_data.append(
+                {
+                    "Acivity_name": None,
+                    "Acivity_time": None,
+                    "Region": None,
+                    "Tag": None,
+                    "Picture_url": None,
+                    "Url": None,
+                }
+            )
 
     data_mkdir(data_folder)
     df = pd.DataFrame(accupass_data)
@@ -135,7 +158,7 @@ def accupass_crawler_list(driver):
 def accupass_crawler_address(driver):
     """爬取accupass第2層的資料，每個活動網頁點擊進去"""
 
-    df = pd.read_csv(data_file_path,encoding="utf-8")
+    df = pd.read_csv(data_file_path, encoding="utf-8")
     df = df[df["Acivity_name"].notna() & (df["Acivity_name"].str.strip() != "")]
     df = df.reset_index(drop=True)
     print(df["Url"])
@@ -149,13 +172,19 @@ def accupass_crawler_address(driver):
 
         try:
             # 等待直到地址載入完成
-            WebDriverWait(driver, 20).until(EC.presence_of_element_located(
-                (By.XPATH, "//div[contains(@class, \"EventDetail-module-f47e87db-event-subtitle-content\")]")))
+            WebDriverWait(driver, 20).until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        '//div[contains(@class, "EventDetail-module-f47e87db-event-subtitle-content")]',
+                    )
+                )
+            )
 
             # 取得地址
             map_elem = driver.find_element(
                 By.XPATH,
-                "//div[contains(@class, \"EventDetail-module-f47e87db-event-subtitle-content\")]//a[contains(@href, \"https://www.google.com/maps/search/\")]"
+                '//div[contains(@class, "EventDetail-module-f47e87db-event-subtitle-content")]//a[contains(@href, "https://www.google.com/maps/search/")]',
             )
 
             href = map_elem.get_attribute("href")
@@ -167,18 +196,20 @@ def accupass_crawler_address(driver):
             address_text = address
 
         except Exception as e:
+            print(f"第{num + 1}筆沒有地址：{e}")
             google_maps_url = None
             address_text = None
 
         google_maps_url_list.append(google_maps_url)
         address_list.append(address_text)
-        print(f"查詢第{num}/{len(df)}筆資料：{url}")
+        print(f"查詢第{num + 1}/{len(df)}筆資料：{url}")
 
     region_index = df.columns.get_loc("Region")
     df.insert(loc=region_index + 1, column="Address", value=address_list)
     address_index = df.columns.get_loc("Address")
-    df.insert(loc=address_index + 1, column="Google_Maps_url",
-              value=google_maps_url_list)
+    df.insert(
+        loc=address_index + 1, column="Google_Maps_url", value=google_maps_url_list
+    )
 
     data_mkdir(data_folder)
     df.to_csv(data_file_path, index=False, encoding="utf-8")
@@ -189,16 +220,14 @@ def main():
     """啟動程式"""
     try:
         driver = web_open(headless=False)
-        
         accupass_crawler_list(driver)
         driver.quit()
         accupass_crawler_address(driver)
         driver.quit()
         google_latlon()
         driver.quit()
-        
     except Exception as e:
-        print("執行主流程時發生錯誤：", e)
+        print(f"執行主流程時發生錯誤：{e}")
 
 
 if __name__ == "__main__":

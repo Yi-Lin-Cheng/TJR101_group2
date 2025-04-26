@@ -77,7 +77,7 @@ def google_latlon():
             else:
                 latlon = None
                 print(f"第 {i + 1} 筆資料無法獲得經緯度，URL: {maps_url}")
-        except:
+        except Exception as e:
             latlon = None
             # lat = None
             # lon = None
