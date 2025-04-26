@@ -1,14 +1,14 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from util.web_open import web_open
-from util.get_data_path import get_data_path
+from src.utils.web_open import web_open
+from src.utils.get_data_path import get_data_path
 import pandas as pd
 import time
 import random
 
 # 設定檔案名稱與資料夾
-data_folder = "./data"
+data_folder = "./data/accupass"
 data_file_name = "e_accupass_data.csv"
 data_file_path = get_data_path(data_file_name, data_folder)
 
@@ -17,8 +17,8 @@ def google_latlon():
     df = pd.read_csv(data_file_path,encoding="utf-8")
 
     temporary_maps_url_list = []
-    driver = web_open(headless=False)    
-    
+    driver = web_open(headless=False)
+
     for num in range(len(df)):
         try:
             url = "https://www.google.com.tw/maps/"
@@ -59,7 +59,6 @@ def google_latlon():
 
     df["Temporary_map_url"] = temporary_maps_url_list
     df.to_csv(data_file_path, index=False, encoding="utf-8")
-    
     driver.quit()
 
     #解析經緯度
@@ -96,5 +95,4 @@ def google_latlon():
 
     # df = df.drop(columns=["Temporary_map_url"])
     df.to_csv(data_file_path, index=False, encoding="utf-8")
-    
     print("經緯度，爬蟲完成!")

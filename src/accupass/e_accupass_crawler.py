@@ -1,16 +1,16 @@
+from urllib.parse import urlparse, parse_qs
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from urllib.parse import urlparse, parse_qs
-from tasks.google_latlon import google_latlon
-from util.web_open import web_open
-from util.get_data_path import get_data_path, data_mkdir
+from src.tasks.accupass_google_latlon import google_latlon
+from src.utils.web_open import web_open
+from src.utils.get_data_path import get_data_path, data_mkdir
 
 import pandas as pd
 import time
 
 # 設定檔案名稱與資料夾
-data_folder = "./data"
+data_folder = "./data/accupass"
 data_file_name = "e_accupass_data.csv"
 data_file_path = get_data_path(data_file_name, data_folder)
 
