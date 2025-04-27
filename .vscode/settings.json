@@ -1,0 +1,8 @@
+{
+  "python.defaultInterpreterPath": "/workspaces/TJR101_group2/.venv/bin/python",
+  "python.analysis.extraPaths": [
+    "/workspaces/TJR101_group2/src"
+  ],
+  "python.languageServer": "Pylance",
+  "editor.formatOnSave": true
+}

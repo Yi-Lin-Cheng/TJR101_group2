@@ -9,5 +9,7 @@ RUN apt-get update && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
     echo "Y" | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-RUN pip install --upgrade pip
-RUN pip install poetry
+RUN pip install --upgrade pip && \
+    pip install poetry
+
+ENV PYTHONPATH=/workspaces/TJR101_group2/src

@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x
 
+export PYTHONPATH=$(pwd)/src
 poetry config virtualenvs.in-project true --local
 poetry install
 
