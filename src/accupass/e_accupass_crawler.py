@@ -1,19 +1,27 @@
-from urllib.parse import urlparse, parse_qs
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from src.tasks.accupass_google_latlon import google_latlon
-from src.utils.web_open import web_open
-from src.utils.get_data_path import get_data_path, data_mkdir
+import time
+from urllib.parse import parse_qs, urlparse
 
 import pandas as pd
-import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
-# 設定檔案名稱與資料夾
-data_folder = "./data/accupass"
-data_file_name = "e_accupass_data.csv"
-data_file_path = get_data_path(data_file_name, data_folder)
+data_name = {
+    "list": "./data/accupass/e_01_accupass_crawler_list.csv",
+    "address": "./data/accupass/e_02_accupass_crawler_address.csv",
+    "latlon_url": "./data/accupass/e_03_accupass_latlon_url.csv",
+    "latlon": "./data/accupass/e_04_accupass_latlon.csv"
+}
 
+def save_to_csv(data, key):
+    filename = data_name.get(key)
+    data.to_csv(filename, index=False, encoding="utf-8")
+
+
+def read_from_csv(key):
+    filename = data_name.get(key)
+    df = pd.read_csv(filename, encoding="utf-8")
+    return df
 
 def scroll_to_bottom(driver, pause_time=5, max_wait_time=300):
     """持續滾動頁面直到活動卡片數量不再增加，或超過最大等待時間。"""
@@ -61,12 +69,8 @@ def accupass_crawler_list(driver):
     # 等待活動卡片載入
     WebDriverWait(driver, 20).until(
         EC.presence_of_element_located(
-            (
-                By.CSS_SELECTOR,
-                "#content > div > div.SearchPage-d3ff7972-container > main > section > div.Grid-e7cd5bad-container > div:nth-child(2) > div",
-            )
-        )
-    )
+            (By.CSS_SELECTOR, "#content > div > div.SearchPage-d3ff7972-container > main > section > div.Grid-e7cd5bad-container > div:nth-child(2) > div"
+             )))
 
     # 滾到底部直到不再載入新資料
     scroll_to_bottom(driver)
@@ -83,8 +87,7 @@ def accupass_crawler_list(driver):
 
             # 取得活動名稱
             name_elem = card.find_element(
-                By.XPATH,
-                './/div[contains(@class, "EventCard-f0d917f9-event-content")]//p[contains(@class, "EventCard-de38a23c-event-name")]',
+                By.XPATH, './/div[contains(@class, "EventCard-f0d917f9-event-content")]//p[contains(@class, "EventCard-de38a23c-event-name")]',
             )
             event_name = name_elem.text
 
@@ -93,29 +96,25 @@ def accupass_crawler_list(driver):
 
             # 取得活動時間（日期）
             time_elem = card.find_element(
-                By.XPATH,
-                './/div[contains(@class, "EventCard-f0d917f9-event-content")]//p[contains(@class, "EventCard-c051398a-event-time")]',
+                By.XPATH, './/div[contains(@class, "EventCard-f0d917f9-event-content")]//p[contains(@class, "EventCard-c051398a-event-time")]',
             )
             event_time = time_elem.text
 
             # 取得活動縣市
             region_elem = card.find_element(
-                By.XPATH,
-                './/div[contains(@class, "EventCard-a800ada2-sub-info-container")]//span',
+                By.XPATH, './/div[contains(@class, "EventCard-a800ada2-sub-info-container")]//span',
             )
             event_region = region_elem.text
 
             # 取得活動標籤
             tag_elem = card.find_element(
-                By.XPATH,
-                './/div[contains(@class, "TagStatsBottom-c31d7527-tags-container")]//a',
+                By.XPATH, './/div[contains(@class, "TagStatsBottom-c31d7527-tags-container")]//a',
             )
             event_tag = tag_elem.text
 
             # 取得活動圖片連結
             img_elem = card.find_element(
-                By.XPATH,
-                './/div[contains(@class, "EventCard-c48c2d9c-event-photo")]//img',
+                By.XPATH, './/div[contains(@class, "EventCard-c48c2d9c-event-photo")]//img',
             )
             event_img = img_elem.get_attribute("src")
 
@@ -133,8 +132,7 @@ def accupass_crawler_list(driver):
                     "Tag": event_tag,
                     "Picture_url": event_img,
                     "Url": event_href,
-                }
-            )
+                })
 
         except Exception as e:
             print(f"沒有活動：{e}")
@@ -146,19 +144,17 @@ def accupass_crawler_list(driver):
                     "Tag": None,
                     "Picture_url": None,
                     "Url": None,
-                }
-            )
+                })
 
-    data_mkdir(data_folder)
     df = pd.DataFrame(accupass_data)
-    df.to_csv(data_file_path, index=False, encoding="utf-8")
+    save_to_csv(df, "list")
     print("Accupass第1層列表，爬蟲完成!")
 
 
 def accupass_crawler_address(driver):
     """爬取accupass第2層的資料，每個活動網頁點擊進去"""
 
-    df = pd.read_csv(data_file_path, encoding="utf-8")
+    df = read_from_csv("list")
     df = df[df["Acivity_name"].notna() & (df["Acivity_name"].str.strip() != "")]
     df = df.reset_index(drop=True)
     print(df["Url"])
@@ -211,24 +207,5 @@ def accupass_crawler_address(driver):
         loc=address_index + 1, column="Google_Maps_url", value=google_maps_url_list
     )
 
-    data_mkdir(data_folder)
-    df.to_csv(data_file_path, index=False, encoding="utf-8")
+    save_to_csv(df, "address")
     print("Accupass第2層地址，爬蟲完成!")
-
-
-def main():
-    """啟動程式"""
-    try:
-        driver = web_open(headless=False)
-        accupass_crawler_list(driver)
-        driver.quit()
-        accupass_crawler_address(driver)
-        driver.quit()
-        google_latlon()
-        driver.quit()
-    except Exception as e:
-        print(f"執行主流程時發生錯誤：{e}")
-
-
-if __name__ == "__main__":
-    main()

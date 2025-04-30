@@ -1,20 +1,30 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from src.utils.web_open import web_open
-from src.utils.get_data_path import get_data_path
-import pandas as pd
-import time
 import random
+import time
 
-# 設定檔案名稱與資料夾
-data_folder = "./data/accupass"
-data_file_name = "e_accupass_data.csv"
-data_file_path = get_data_path(data_file_name, data_folder)
+import pandas as pd
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+data_name = {
+    "address": "./data/accupass/02_accupass_crawler_address.csv",
+    "latlon_url": "./data/accupass/03_accupass_latlon_url.csv",
+    "latlon": "./data/accupass/04_accupass_latlon.csv"
+}
+
+def save_to_csv(data, key):
+    filename = data_name.get(key)
+    data.to_csv(filename, index=False, encoding="utf-8")
+
+
+def read_from_csv(key):
+    filename = data_name.get(key)
+    df = pd.read_csv(filename, encoding="utf-8")
+    return df
 
 
 def google_latlon():
-    df = pd.read_csv(data_file_path,encoding="utf-8")
+    df = read_from_csv("address")
 
     temporary_maps_url_list = []
     driver = web_open(headless=False)
@@ -58,7 +68,7 @@ def google_latlon():
             temporary_maps_url_list.append(None)
 
     df["Temporary_map_url"] = temporary_maps_url_list
-    df.to_csv(data_file_path, index=False, encoding="utf-8")
+    save_to_csv(df, "latlon_url")
     driver.quit()
 
     #解析經緯度
@@ -93,6 +103,6 @@ def google_latlon():
     address_index = df.columns.get_loc("Address")
     df.insert(loc=address_index + 1, column="Latlon",value=latlon_list)
 
-    # df = df.drop(columns=["Temporary_map_url"])
-    df.to_csv(data_file_path, index=False, encoding="utf-8")
-    print("經緯度，爬蟲完成!")
+    df = df.drop(columns=["Temporary_map_url"])
+    save_to_csv(df, "latlon")
+    print("經緯度執行完畢")
