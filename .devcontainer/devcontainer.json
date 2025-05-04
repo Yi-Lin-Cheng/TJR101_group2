@@ -5,6 +5,7 @@
   "customizations": {
     "vscode": {
       "extensions": [
+        "mechatroner.rainbow-csv",
         "bierner.markdown-mermaid",
         "charliermarsh.ruff",
         "donjayamanne.githistory",

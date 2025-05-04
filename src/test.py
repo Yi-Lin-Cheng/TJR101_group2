@@ -1,4 +1,4 @@
-from utils.mysql_connect import get_connection,close_connection
+from utils import get_connection,close_connection
 
 
 # 開啟連線
