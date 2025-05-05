@@ -1,16 +1,16 @@
-import pandas as pd
 import random
+import re
+import shutil
 import time
-from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 from pathlib import Path
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+
+import pandas as pd
+from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
+
+from utils import web_open
 
 
 def spot05_extract_goolge_info():
@@ -71,39 +71,22 @@ def spot05_extract_goolge_info():
         start_idx = 0
     data.loc[data["create_time"].isna(), "create_time"] = datetime.now()
     gmaps_url_list = data["gmaps_url"].tolist()
-    err_log = ""
 
     for i in range(start_idx, len(gmaps_url_list)):
-        if i % 200 == 0:
+        if i % 50 == 0:
+            driver, wait, profile = web_open()
+            if not driver:
+                break
             b_hours_list = []
             rate_list = []
             pic_url_list = []
             comm_list = []
             update_time_list = []
-            # service = Service(ChromeDriverManager().install())
-            # options = webdriver.ChromeOptions()
-            # driver = webdriver.Chrome(service=service,options=options)
-            try:
-                options = Options()
-                options.add_argument("--headless")  # 無頭模式
-                options.add_argument("--window-size=1920,1080")
-                options.add_argument("--no-sandbox")  # 取消沙箱模式（容器內需加）
-                options.add_argument("--disable-dev-shm-usage")  # 共享記憶體空間問題
-                options.add_argument("--disable-gpu")  # 關閉 GPU（無 GUI 時可略過）
-                options.add_argument("--lang=zh-TW")  # 設定語言為繁體中文
-                # options.add_argument("--start-maximized") # 非 headless 模式才有效
-
-                driver = webdriver.Chrome(
-                    service=Service(ChromeDriverManager().install()), options=options
-                )
-                print("瀏覽器啟動!")
-            except Exception as e:
-                print(f"瀏覽器啟動失敗：{e}")
-            wait = WebDriverWait(driver, 15)
+            err_log = ""
         try:
             url = gmaps_url_list[i]
             driver.get(url)
-            time.sleep(random.uniform(1, 2))
+            time.sleep(random.uniform(2, 4))
             wait.until(
                 EC.presence_of_element_located(
                     (By.CSS_SELECTOR, "img[decoding='async']")
@@ -111,20 +94,24 @@ def spot05_extract_goolge_info():
             )
             page_source = driver.page_source
             soup = BeautifulSoup(page_source, "html.parser")
-            rate_comm_tag = soup.select_one(".F7nice")
             b_hours_tag = soup.select_one(".eK4R0e.fontBodyMedium")
             b_hours = b_hours_tag.text if b_hours_tag else ""
-            rate = rate_comm_tag.select_one("span[aria-hidden]").text
             pic_url = soup.select_one("img[decoding='async']")["src"]
-            comm = rate_comm_tag.select("span[aria-label]")[1].text
+            rate_comm_tag = soup.select_one(".F7nice")
+            if rate_comm_tag and rate_comm_tag.text != "":
+                rate = rate_comm_tag.select_one("span[aria-hidden]").text
+                comm = re.sub(
+                    r"\(|,|\)", "", rate_comm_tag.select("span[aria-label]")[1].text
+                )
             update_time = datetime.now()
             b_hours_list.append(b_hours)
             rate_list.append(rate)
             pic_url_list.append(pic_url)
             comm_list.append(comm)
             update_time_list.append(update_time)
+            print(f"第{i+1}筆完成")
         except Exception as err:
-            err_msg = f"第{i+1}筆資料{url}出現錯誤"
+            err_msg = f"第{i+1}筆資料 {url} 出現錯誤"
             err_log += err_msg + "\n"
             b_hours_list.append("")
             rate_list.append(None)
@@ -132,8 +119,9 @@ def spot05_extract_goolge_info():
             comm_list.append(None)
             update_time_list.append(pd.NaT)
             time.sleep(random.uniform(5, 10))
+            print(err_msg, "\n", err)
 
-        if ((i + 1) % 200 == 0) or i + 1 == len(gmaps_url_list):
+        if ((i + 1) % 50 == 0) or i + 1 == len(gmaps_url_list):
             end_idx = i + 1
             start_idx = end_idx - len(b_hours_list)
             data.loc[start_idx : end_idx - 1, "b_hours"] = b_hours_list
@@ -160,8 +148,9 @@ def spot05_extract_goolge_info():
             ) as f:
                 f.write(err_log)
             print(f"第{i+1}筆儲存完成")
-            time.sleep(random.uniform(2, 5))
+            time.sleep(random.uniform(4, 6))
             driver.quit()
+            shutil.rmtree(profile)
 
     if (file_path / "spot05_extract_googlemap_progress.csv").exists():
         (file_path / "spot05_extract_googlemap_progress.csv").unlink()
