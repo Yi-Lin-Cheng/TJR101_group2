@@ -14,8 +14,9 @@ def get_connection():
     db = os.getenv("MySQL_db")
     charset = "utf8mb4"
 
-    conn = pymysql.connect(host=host, port=port, user=user,
-                           passwd=passwd, db=db, charset=charset)
+    conn = pymysql.connect(
+        host=host, port=port, user=user, passwd=passwd, db=db, charset=charset
+    )
     print("Successfully connected!")
     cursor = conn.cursor()
     return conn, cursor
@@ -27,5 +28,3 @@ def close_connection(conn, cursor=None):
     if conn:
         conn.close()
     print("Connection closed.")
-
-

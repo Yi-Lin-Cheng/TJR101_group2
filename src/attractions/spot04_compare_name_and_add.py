@@ -1,8 +1,9 @@
 import re
 from pathlib import Path
+
 import pandas as pd
-from tasks import fuzzy_match
-from tasks import normalize_address
+
+from tasks import fuzzy_match, normalize_address
 
 
 def spot04_compare_name_and_add(data):
@@ -123,5 +124,6 @@ def main():
         header=True,
         index=False,
     )
+
 
 main()
