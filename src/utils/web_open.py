@@ -1,24 +1,49 @@
+import tempfile
+import time
+import shutil
+from pathlib import Path
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import WebDriverWait
 
 
-def web_open():
+def web_open(headless=True, window_size=(1920, 1080), timeout=15):
     """開啟瀏覽器"""
     try:
-        options = Options()
-        options.add_argument("--headless")  # 無頭模式
-        options.add_argument("--window-size=1920,1080")
+        options = webdriver.ChromeOptions()
+        if headless:
+            options.add_argument("--headless")  # 無頭模式
+            options.add_argument("--disable-gpu")  # 關閉 GPU（無 GUI 時可略過）
+        options.add_argument(f"--window-size={window_size[0]},{window_size[1]}")
         options.add_argument("--no-sandbox")  # 取消沙箱模式（容器內需加）
         options.add_argument("--disable-dev-shm-usage")  # 共享記憶體空間問題
-        options.add_argument("--disable-gpu")  # 關閉 GPU（無 GUI 時可略過）
-        options.add_argument("--lang=zh-TW") # 設定語言為繁體中文
+        options.add_argument("--lang=zh-TW")  # 設定語言為繁體中文
         # options.add_argument("--start-maximized") # 非 headless 模式才有效
-
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        user_agent = (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/120.0.0.0 Safari/537.36"
+        )
+        options.add_argument(f"--user-agent={user_agent}")
+        # 利用時間戳記產生暫存資料夾，避免chrome出錯
+        user_data_dir = tempfile.mkdtemp(prefix=f"chrome-profile-{int(time.time())}-")
+        options.add_argument(f"--user-data-dir={user_data_dir}")
+        service = Service("/usr/local/bin/chromedriver")
+        driver = webdriver.Chrome(service=service, options=options)
+        driver.execute_cdp_cmd(
+            "Page.addScriptToEvaluateOnNewDocument",
+            {
+                "source": """
+                        Object.defineProperty(navigator, 'webdriver', {
+                            get: () => undefined
+                        })
+                    """
+            },
+        )
+        wait = WebDriverWait(driver, timeout)
         print("瀏覽器啟動!")
+        return driver, wait, user_data_dir
     except Exception as e:
         print(f"瀏覽器啟動失敗：{e}")
-
-    return driver
+        return None, None, None
