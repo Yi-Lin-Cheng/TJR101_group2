@@ -5,8 +5,10 @@ import pandas as pd
 
 from tasks import fuzzy_match, normalize_address
 
+file_path = Path("data", "spot")
 
-def spot04_compare_name_and_add(data):
+
+def filter_types_and_town(data):
     data = data[
         (data["business_status"] != "CLOSED_PERMANENTLY")
         & (data["types"].str.contains("point_of_interest"))
@@ -23,7 +25,10 @@ def spot04_compare_name_and_add(data):
             lambda row: row["address"] and row["town_open"] in row["address"], axis=1
         )
     ]
+    return data
 
+
+def compare_name_and_add(data):
     data["comm"] = data["comm"].fillna(0).astype(int)
     data["add_open"] = data["add_open"].astype(str).apply(normalize_address)
     data["address"] = data["address"].astype(str).apply(normalize_address)
@@ -78,7 +83,10 @@ def spot04_compare_name_and_add(data):
     # 刪除重複名稱
     matched_data = matched_data.drop_duplicates(subset="place_id")
     print(f"過濾同ID最後留下的筆數{len(matched_data)}")
+    return matched_data
 
+
+def isindoor(matched_data):
     indoor = r"館|中心|廳|共和國|廠|店|合作社"
     s_name_list = matched_data["s_name"].to_list()
     types_list = matched_data["types"].to_list()
@@ -91,10 +99,18 @@ def spot04_compare_name_and_add(data):
             type_list.append("室內")
         else:
             type_list.append("戶外")
-
     matched_data["type"] = type_list
+    return matched_data
 
-    data = pd.DataFrame(
+
+def main():
+    data = pd.read_csv(
+        file_path / "spot03_googleapi_newdata.csv", encoding="utf-8", engine="python"
+    )
+    data = filter_types_and_town(data)
+    matched_data = compare_name_and_add(data)
+    matched_data = isindoor(matched_data)
+    final_data = pd.DataFrame(
         {
             "s_name": matched_data["s_name"],
             "county": matched_data["region_open"],
@@ -109,16 +125,7 @@ def spot04_compare_name_and_add(data):
             "area": matched_data["town_open"],
         }
     )
-    return data
-
-
-def main():
-    file_path = Path("data", "spot")
-    data = pd.read_csv(
-        file_path / "spot03_googleapi_newdata.csv", encoding="utf-8", engine="python"
-    )
-    matched_data = spot04_compare_name_and_add(data)
-    matched_data.to_csv(
+    final_data.to_csv(
         file_path / "spot04_compare_name_and_add_new.csv",
         encoding="utf-8",
         header=True,
@@ -126,4 +133,5 @@ def main():
     )
 
 
-main()
+if __name__ == "__main__":
+    main()
