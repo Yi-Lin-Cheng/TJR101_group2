@@ -4,8 +4,10 @@ from charset_normalizer import from_path
 def encoding_transform(file_path):
     """
     Guess file encoding and convert to UTF-8 if needed.
+
     Args:
         file_path (str): Path to the input file.
+
     Rewrites the file with UTF-8 encoding if the original is different.
     """
     # 自動偵測並讀取檔案

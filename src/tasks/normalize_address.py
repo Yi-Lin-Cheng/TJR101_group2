@@ -2,6 +2,17 @@ import re
 
 
 def normalize_address(text: str) -> str:
+    """
+    清理 Google 與政府開放資料中的地址字串，並轉換為標準格式：
+
+        (縣市)(鄉鎮市區)(路街)(巷)(弄)(號)(樓)
+
+    Args:
+        text (str): 原始地址字串。
+
+    Returns:
+        str: 正規化後的地址字串。
+    """
     text = re.sub(
         r"\s+", "", text.replace("-", "之").replace(",", "").replace("臺", "台")
     )

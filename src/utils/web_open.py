@@ -1,7 +1,5 @@
 import tempfile
 import time
-import shutil
-from pathlib import Path
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -9,7 +7,20 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 def web_open(headless=True, window_size=(1920, 1080), timeout=15):
-    """開啟瀏覽器"""
+    """
+    Create and return a configured Selenium WebDriver instance.
+
+    Args:
+        headless (bool): Whether to run the browser in headless mode. Default is True.
+        window_size (tuple): The size of the browser window as (width, height). Default is (1920, 1080).
+        timeout (int): The maximum wait time (in seconds) for WebDriverWait. Default is 15.
+
+    Returns:
+        tuple:
+            driver (webdriver.Chrome): The Selenium WebDriver instance.
+            wait (WebDriverWait): The WebDriverWait instance for explicit waits.
+            user_data_dir (str): The path to the Chrome user data directory used.
+    """
     try:
         options = webdriver.ChromeOptions()
         if headless:

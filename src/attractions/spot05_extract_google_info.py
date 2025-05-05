@@ -12,8 +12,26 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from utils import web_open
 
+file_path = Path("data", "spot")
 
-def spot05_extract_google_info(url, driver, wait):
+
+def get_google_info(url: str, driver, wait):
+    """
+    Crawl business info from a Google Maps place page.
+
+    Args:
+        url (str): The URL of the Google Maps place.
+        driver (webdriver.Chrome): Selenium WebDriver instance.
+        wait (WebDriverWait): WebDriverWait instance for explicit wait.
+
+    Returns:
+        dict: A dictionary containing:
+            - b_hours (str): Business hours text, if available.
+            - rate (str or None): Star rating, if available.
+            - pic_url (str): The URL of the main photo.
+            - comm (str or None): Number of comments/reviews, cleaned.
+            - error (bool or Exception): False if success, or the exception object if failed.
+    """
     try:
         driver.get(url)
         time.sleep(random.uniform(2, 4))
@@ -26,6 +44,8 @@ def spot05_extract_google_info(url, driver, wait):
         b_hours = b_hours_tag.text if b_hours_tag else ""
         pic_url = soup.select_one("img[decoding='async']")["src"]
         rate_comm_tag = soup.select_one(".F7nice")
+        rate = None
+        comm = None
         if rate_comm_tag and rate_comm_tag.text != "":
             rate = rate_comm_tag.select_one("span[aria-hidden]").text
             comm = re.sub(
@@ -43,7 +63,17 @@ def spot05_extract_google_info(url, driver, wait):
         return {"b_hours": "", "rate": None, "pic_url": "", "comm": None, "error": err}
 
 
-def load_data(file_path):
+def read_data():
+    """
+    Load and prepare data for processing.
+
+    If a progress file exists, resume from it (note: it will be deleted after a complete run).
+    If not, load the new data, add required columns, then load the old data,
+    merge them into a single DataFrame, and return it.
+
+    Returns:
+        pd.DataFrame: A combined DataFrame ready for processing.
+    """
     if (file_path / "spot05_extract_googlemap_progress.csv").exists():
         print("發現進度檔案，從中斷處繼續")
         data = pd.read_csv(
@@ -92,7 +122,7 @@ def load_data(file_path):
         return data
 
 
-def save_data(file_path, data, err_log):
+def save_data(data, err_log):
     data.to_csv(
         file_path / "spot05_extract_googlemap.csv",
         encoding="utf-8",
@@ -114,8 +144,7 @@ def save_data(file_path, data, err_log):
 
 
 def main():
-    file_path = Path("data", "spot")
-    data = load_data(file_path)
+    data = read_data()
     if data["update_time"].notna().any():
         condition = data["update_time"] <= datetime.today() - timedelta(hours=20)
         start_idx = data[condition].index.min()
@@ -140,7 +169,7 @@ def main():
             update_time_list = []
             err_log = ""
         url = gmaps_url_list[i]
-        result = spot05_extract_google_info(url, driver, wait)
+        result = get_google_info(url, driver, wait)
         if not result["error"]:
             print(f"第{i+1}筆完成")
             update_time = now
@@ -164,7 +193,7 @@ def main():
             data.loc[start_idx : end_idx - 1, "pic_url"] = pic_url_list
             data.loc[start_idx : end_idx - 1, "comm"] = comm_list
             data.loc[start_idx : end_idx - 1, "update_time"] = update_time_list
-            save_data(file_path, data, err_log)
+            save_data(data, err_log)
             print(f"第{i+1}筆儲存完成")
             time.sleep(random.uniform(4, 6))
             driver.quit()
@@ -173,6 +202,7 @@ def main():
     if (file_path / "spot05_extract_googlemap_progress.csv").exists():
         (file_path / "spot05_extract_googlemap_progress.csv").unlink()
     print("已完成全部資料，進度檔案已刪除")
+
 
 if __name__ == "__main__":
     main()
