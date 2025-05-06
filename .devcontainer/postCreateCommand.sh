@@ -3,7 +3,7 @@ set -x
 
 export PYTHONPATH=$(pwd)/src
 poetry config virtualenvs.in-project true --local
-poetry lock --no-update
+poetry lock
 poetry install
 
 sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="xiong-chiamiov-plus"/' /root/.zshrc \
