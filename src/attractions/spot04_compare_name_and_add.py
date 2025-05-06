@@ -43,9 +43,7 @@ def compare_name_and_add(data):
 
     # 留下的資料裡面同一個地點可能有多筆資料，留下評論數高的
     matched_data1 = matched_data1.loc[matched_data1.groupby("id_open")["comm"].idxmax()]
-    matched_data1 = matched_data1.drop(
-        matched_data1[matched_data1.duplicated(subset=["place_id"])].index
-    )
+    matched_data1 = matched_data1.drop_duplicates(subset=["place_id"])
     print(f"依據相同名稱或地址留下的筆數{len(matched_data1)}")
 
     matched_ids = set(matched_data1["id_open"])
@@ -71,9 +69,7 @@ def compare_name_and_add(data):
 
     # 留下的資料裡面同一個地點可能有多筆資料，留下評論數高的
     matched_data2 = matched_data2.loc[matched_data2.groupby("id_open")["comm"].idxmax()]
-    matched_data2 = matched_data2.drop(
-        matched_data2[matched_data2.duplicated(subset=["place_id"])].index
-    )
+    matched_data2 = matched_data2.drop_duplicates(subset=["place_id"])
 
     print(f"依據相近的名稱留下的筆數{len(matched_data2)}")
     # 合併要留下的資料
@@ -117,7 +113,7 @@ def main():
             "address": matched_data["address"],
             "geo_loc": matched_data.apply(
                 lambda row: f"{round(row['lng'], 5):.5f},{round(row['lat'], 5):.5f}",
-                axis=1,
+                axis=1
             ),
             "gmaps_url": "https://www.google.com/maps/place/?q=place_id:"
             + matched_data["place_id"],
