@@ -4,6 +4,7 @@ from pathlib import Path
 import pandas as pd
 
 from tasks import fuzzy_match, normalize_address
+from utils import to_half_width
 
 file_path = Path("data", "spot")
 
@@ -81,10 +82,11 @@ def compare_name_and_add(data):
     print(f"過濾同ID最後留下的筆數{len(matched_data)}")
     # 清理名稱
     matched_data["s_name"] = matched_data["s_name"].apply(
-        lambda name: (
-            re.split(r"\||│|丨|｜|\-|－|/|／", name)[0] if len(name) > 20 else name
+            lambda name: (
+                re.split(r"\||│|丨|｜|\-|－|/|／", name)[0] if len(name) > 20 else name
+            )
         )
-    )
+    matched_data["s_name"] = matched_data["s_name"].apply(to_half_width)
     return matched_data
 
 
@@ -101,7 +103,7 @@ def isindoor(matched_data):
             type_list.append("室內")
         else:
             type_list.append("戶外")
-    matched_data["type"] = type_list
+    matched_data["s_type"] = type_list
     return matched_data
 
 
@@ -123,7 +125,7 @@ def main():
             ),
             "gmaps_url": "https://www.google.com/maps/place/?q=place_id:"
             + matched_data["place_id"],
-            "type": matched_data["type"],
+            "s_type": matched_data["s_type"],
             "area": matched_data["town_open"],
         }
     )

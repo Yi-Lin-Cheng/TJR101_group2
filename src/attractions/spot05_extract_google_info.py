@@ -113,7 +113,7 @@ def read_data():
                 "geo_loc",
                 "pic_url",
                 "gmaps_url",
-                "type",
+                "s_type",
                 "comm",
                 "area",
                 "create_time",
