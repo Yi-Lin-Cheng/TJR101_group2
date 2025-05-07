@@ -79,6 +79,12 @@ def compare_name_and_add(data):
     # 刪除重複名稱
     matched_data = matched_data.drop_duplicates(subset="place_id")
     print(f"過濾同ID最後留下的筆數{len(matched_data)}")
+    # 清理名稱
+    matched_data["s_name"] = matched_data["s_name"].apply(
+        lambda name: (
+            re.split(r"\||│|｜|\-|－|/|／", name)[0] if len(name) > 20 else name
+        )
+    )
     return matched_data
 
 
@@ -112,8 +118,8 @@ def main():
             "county": matched_data["region_open"],
             "address": matched_data["address"],
             "geo_loc": matched_data.apply(
-                lambda row: f"{round(row['lng'], 5):.5f},{round(row['lat'], 5):.5f}",
-                axis=1
+                lambda row: f"POINT({round(row['lng'], 5):.5f} {round(row['lat'], 5):.5f})",
+                axis=1,
             ),
             "gmaps_url": "https://www.google.com/maps/place/?q=place_id:"
             + matched_data["place_id"],
