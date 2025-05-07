@@ -128,7 +128,7 @@ def read_data():
                 engine="python",
             )
             data = pd.concat([data1, data], ignore_index=True)
-        return data
+    return data
 
 
 def save_data(data, err_log):
@@ -154,9 +154,11 @@ def save_data(data, err_log):
 
 def main():
     data = read_data()
+    data["update_time"] = pd.to_datetime(data["update_time"], errors="coerce")
     if data["update_time"].notna().any():
-        condition = data["update_time"] <= datetime.today() - timedelta(hours=20)
-        start_idx = data[condition].index.min()
+        condition1 = data["update_time"] <= datetime.now() - timedelta(hours=20)
+        condition2 = data["update_time"].isna()
+        start_idx = data[condition1 | condition2].index.min()
         if pd.isna(start_idx):
             print("此階段已完成")
             return
@@ -165,7 +167,6 @@ def main():
     now = datetime.now().replace(microsecond=0)
     data.loc[data["create_time"].isna(), "create_time"] = now
     gmaps_url_list = data["gmaps_url"].tolist()
-
     for i in range(start_idx, len(gmaps_url_list)):
         if i % 50 == 0:
             driver, wait, profile = web_open()
@@ -187,13 +188,15 @@ def main():
             print(err_msg)
             err_log += err_msg + "\n"
             update_time = (
-                data.at[i, "update_time"] if data.at[i, "update_time"] else pd.NaT
+                data.at[i, "update_time"] if data.at[i, "update_time"] else now
             )
         b_hours_list.append(result["b_hours"])
         rate_list.append(result["rate"])
         pic_url_list.append(result["pic_url"])
         comm_list.append(result["comm"])
         update_time_list.append(update_time)
+        rate_list = [float(r) if r not in [None, ""] else None for r in rate_list]
+        comm_list = [int(c) if str(c).isdigit() else None for c in comm_list]
         if ((i + 1) % 50 == 0) or i + 1 == len(gmaps_url_list):
             end_idx = i + 1
             start_idx = end_idx - len(b_hours_list)
