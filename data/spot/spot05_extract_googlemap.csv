@@ -1,4 +1,4 @@
-s_name,b_hours,county,address,rate,geo_loc,pic_url,gmaps_url,type,comm,area,create_time,update_time
+s_name,b_hours,county,address,rate,geo_loc,pic_url,gmaps_url,s_type,comm,area,create_time,update_time
 蘇澳冷泉公園,"
 星期三 10:00–21:00
 星期四 10:00–21:00
@@ -746,7 +746,7 @@ RobertY廢墟暴龍館,,宜蘭縣,宜蘭縣蘇澳鎮新城一路30號,4.8,POINT(
 星期日 08:00–17:00
 星期一 休息
 星期二 08:00–17:00",桃園市,桃園市大溪區員林路一段29巷101號,4.1,POINT(121.28212 24.89615),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nryfYa1C9-8BYO6kF2tKpmqJpTJUyGBbaz_YveMA0kE-YSaDedHQKRj2EmrnnrUrtHdoZb6PvS_gYuJW5uCa4qyF0W8M1Djt2ycPm-pCCw52YVjvPQEU3f-MlhElKRf5FQ5WBoy=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ0bcpLxQYaDQRm0TakXa1I7A,室內,838.0,大溪區,2025-05-07 03:50:30,2025-05-07 03:50:30
-觀音濱海休憩區（原觀音海水浴場）,"
+觀音濱海休憩區(原觀音海水浴場),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -794,7 +794,7 @@ RobertY廢墟暴龍館,,宜蘭縣,宜蘭縣蘇澳鎮新城一路30號,4.8,POINT(
 星期日 休息
 星期一 09:00–16:00
 星期二 09:00–16:00",桃園市,桃園市中壢區月眉路二段248巷85號,4.1,POINT(121.18478 25.00648),https://lh3.googleusercontent.com/p/AF1QipOZkKx2ojmlLcGGmSAwSG1mWvnqw63eeWTDAKsP=w408-h273-k-no,https://www.google.com/maps/place/?q=place_id:ChIJRyHQrUchaDQRCJ2J9jqQ9F4,室內,80.0,中壢區,2025-05-07 03:50:30,2025-05-07 03:50:30
-太平洋自行車博物館（平日預約參觀）,"
+太平洋自行車博物館(平日預約參觀),"
 星期三 08:30–16:30
 星期四 08:30–16:30
 星期五 08:30–16:30
@@ -874,7 +874,7 @@ RobertY廢墟暴龍館,,宜蘭縣,宜蘭縣蘇澳鎮新城一路30號,4.8,POINT(
 星期日 09:00–17:00
 星期一 休息
 星期二 休息",桃園市,桃園市桃園區桃鶯路461號,4.3,POINT(121.32385 24.97528),https://lh3.googleusercontent.com/gps-cs-s/AC9h4no19FtDEjA2qEdqAjDzbkIpD9GivwWR2j_I6Mo-qLlcNyW1mFTOdJkqt0AUSp3uZBahWUAK79aMRF9S32TTkiiFs-N78A87iGjbrHfR8uZb5P5X5O1wmHYbY9OYtsPurL6pwhTM5Q=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJQXpsNsIeaDQRlczNBf4hxkY,室內,2608.0,桃園區,2025-05-07 03:50:30,2025-05-07 03:50:30
-金格觀光工廠｜卡司·蒂菈樂園,"
+金格觀光工廠|卡司·蒂菈樂園,"
 星期三 09:00–17:00
 星期四 09:00–17:00
 星期五 09:00–17:00
@@ -1182,7 +1182,7 @@ CAFE!N 硬咖啡 桃園總廠門市 ( DICKIES 聯名咖啡觀光工廠 ),"
 星期日 09:30–17:00
 星期一 09:30–17:00
 星期二 09:30–17:00",桃園市,桃園市復興區中正路,4.1,POINT(121.35127 24.81611),https://lh3.googleusercontent.com/p/AF1QipNjwnzD1ZOXWfQvvsOsu7lv-GZs1PDB24Szxtjg=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ__rq8yoXaDQRdl_eKz-pxuQ,戶外,2671.0,復興區,2025-05-07 03:50:30,2025-05-07 03:50:30
-桃園地景公園（彩韻廣場）,"
+桃園地景公園(彩韻廣場),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -1827,7 +1827,7 @@ ReWood studio 木酢達人創始店,,新竹縣,新竹縣湖口鄉中正路三段
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",新竹縣,新竹縣芎林鄉文山路322巷27號,4.2,POINT(121.08144 24.77654),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr5l5Hq5FpvGMTYsRPaZJ6lLIevw23GLsPiA9TnvRXpkcPEHICfm2URxM1HV2pjot7R8HgR_0P_3khb5HGSKPpiZWg7Q4-DIH4KVS6NM4QthFCGNm9kete8206Ba6k7InIokSk=w408-h544-k-no,https://www.google.com/maps/place/?q=place_id:ChIJA1Iwmx84aDQRQxC9AlumDxQ,戶外,288.0,芎林鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-竹東森林公園 （山歌綠廊）,"
+竹東森林公園 (山歌綠廊),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -1956,7 +1956,7 @@ ReWood studio 木酢達人創始店,,新竹縣,新竹縣湖口鄉中正路三段
 星期日 08:30–18:00
 星期一 休息
 星期二 08:30–17:30",新竹縣,新竹縣新埔鎮九芎湖15之1號,4.0,POINT(121.10557 24.85444),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nooaWLkMUxv9u8hVhDD8z_i9amqESuBtjy5Kfhz2NLUmOItgTiSgnkp5foHlPZWQ3mtIrT4HCgWcouLvOWhnGkcVPa7Oyou2QBDVzqzfykwdKAOdiS5PDU8hzv4BqHuBH7UB7xs=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJdd5Fl0M6aDQRoK8-r-FZYmA,戶外,767.0,新埔鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
-陳家休閒農場(照咖雅品）,"
+陳家休閒農場(照咖雅品),"
 星期三 09:00–17:00
 星期四 09:00–17:00
 星期五 09:00–17:00
@@ -2018,7 +2018,7 @@ ReWood studio 木酢達人創始店,,新竹縣,新竹縣湖口鄉中正路三段
 星期日 08:00–18:00
 星期一 08:00–18:00
 星期二 08:00–18:00",新竹縣,新竹縣芎林鄉華龍村5鄰187號,4.5,POINT(121.14034 24.74718),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npyg5bMYCSju1vwx6BSD4l_tznPiofVH6kylQWkermePena4Pm9WPO09t9fdkDtAObnTfHux2Fz_evBVpvCEA63r6VS49b3e0xUaztZ150zqgBrhYALcgYNlExJU4mtJQ9fYt7x3A=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJF_4v7N83aDQRMAd1iLCGdK8,戶外,130.0,芎林鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-順翌休閒馬場 曾師父（彭彩雲）,"
+順翌休閒馬場 曾師父(彭彩雲),"
 星期三 09:00–20:00
 星期四 09:00–20:00
 星期五 09:00–20:00
@@ -2043,7 +2043,7 @@ ReWood studio 木酢達人創始店,,新竹縣,新竹縣湖口鄉中正路三段
 星期一 05:30–17:00
 星期二 05:30–17:00",新竹縣,新竹縣竹東鎮軟橋21之2號,4.6,POINT(121.10165 24.69636),https://lh3.googleusercontent.com/gps-cs-s/AC9h4noM0jMi5WGMhui3IA82oCffh9GiPImOnHCZW_XBcxG84Ayrtzr_L8Nzgna8fg8ywDBoET-45_UejznrJbPcFVa6x3ROzSgm86Jtwm3qA3x13GXRx1da1py-JjUkQpL0cDV5Z14=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ957TcThGaDQRszaLttk6_xA,戶外,55.0,竹東鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
 新竹縣五峰鄉竹林養生村合作社,,新竹縣,新竹縣五峰鄉後湖村10鄰196號,5.0,POINT(121.12048 24.62573),https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=HcevAM0GnIIUJ4YphPmoLQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=118.32864&pitch=0&thumbfov=100,https://www.google.com/maps/place/?q=place_id:ChIJ_____3NFaDQR6-NUvc1ZSCw,室內,1.0,五峰鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-青葉甜柿園（預約制）,,新竹縣,新竹縣五峰鄉和平部落5鄰166之4號,4.9,POINT(121.11369 24.62112),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npgpD_rrT-I8w_DulK7j2Sp0ztfetCKXeOyIax6YWUB0YU2yOQBwprRaTtOAoM4i266FO39GDc6dboIZNMLBGiBWcQR2K8dXQ2wVj5Pz3KOQ_WbgAagwScyKw5Qi6du97_wx2jrzA=w408-h544-k-no,https://www.google.com/maps/place/?q=place_id:ChIJq0Ds_adFaDQRh2COa6I0l9o,戶外,15.0,五峰鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
+青葉甜柿園(預約制),,新竹縣,新竹縣五峰鄉和平部落5鄰166之4號,4.9,POINT(121.11369 24.62112),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npgpD_rrT-I8w_DulK7j2Sp0ztfetCKXeOyIax6YWUB0YU2yOQBwprRaTtOAoM4i266FO39GDc6dboIZNMLBGiBWcQR2K8dXQ2wVj5Pz3KOQ_WbgAagwScyKw5Qi6du97_wx2jrzA=w408-h544-k-no,https://www.google.com/maps/place/?q=place_id:ChIJq0Ds_adFaDQRh2COa6I0l9o,戶外,15.0,五峰鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
 大山背休閒農場,,新竹縣,新竹縣橫山鄉豐鄉村大山背5鄰52號,4.1,POINT(121.13429 24.69564),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrcVxAHNRx_UinkrjKKoQIwH6zYDhXMQbhsExKNUw7IbYGGncp9WO6V-IHTVhlqsh26q9LHduwphRMRscyKSZI0ifFHyPKuGzIOqtERkMdDcUpgcZAJH5LK29ey9narNP7eVHHl=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ-coDfPtGaDQRLfLm5geP4r0,戶外,157.0,橫山鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
 大嬸婆的家手工窯烤麵包,"
 星期三 休息
@@ -2496,7 +2496,7 @@ Go Bear 溝貝親子休閒農莊,"
 星期日 08:30–17:30
 星期一 08:30–17:30
 星期二 08:30–17:30",苗栗縣,苗栗縣銅鑼鄉樟樹村竹圍2號,4.0,POINT(120.78094 24.45386),https://lh3.googleusercontent.com/p/AF1QipOkp8Qr6FON_EDH-h3xUT6Y8K2_spRDotagnz62=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJL2IRKhYHaTQRlqVdCMVDcHU,室內,624.0,銅鑼鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-九湖農場（東方美人茶/杭菊）,"
+九湖農場(東方美人茶/杭菊),"
 星期三 09:00–17:00
 星期四 09:00–17:00
 星期五 09:00–17:00
@@ -2855,7 +2855,7 @@ POUYUENJI HILLS (寶元紀三義),"
 星期日 10:00–18:00
 星期一 休息
 星期二 10:00–17:00",彰化縣,彰化縣鹿港鎮埔頭街72號,4.2,POINT(120.43171 24.05757),https://lh3.googleusercontent.com/p/AF1QipPE5RSyfUAsu5_V0RXh2fuuxUY-Btb4IxZgL4mt=w408-h305-k-no,https://www.google.com/maps/place/?q=place_id:ChIJX3JDM-NFaTQRrndn00zmRDc,戶外,1550.0,鹿港鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
-縣定古蹟-彰化懷忠祠（十八義民祠）,"
+縣定古蹟-彰化懷忠祠(十八義民祠),"
 星期三 08:00–16:00
 星期四 08:00–16:00
 星期五 08:00–16:00
@@ -2873,7 +2873,7 @@ POUYUENJI HILLS (寶元紀三義),"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",彰化縣,彰化縣鹿港鎮後車巷,4.1,POINT(120.43301 24.05671),https://lh3.googleusercontent.com/p/AF1QipP74GgWKwY8GAg4RhkYJ9mUpvKWJbOzH1heXP3-=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJN6apKf1FaTQRgBEhNigWbNM,戶外,114.0,鹿港鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
-劍道彰化市武德殿（武德劍道會館）,,彰化縣,彰化縣彰化市公園路一段45號,4.8,POINT(120.54610 24.07706),https://lh3.googleusercontent.com/p/AF1QipM9qy0Q3DKSki2fS_pGi33HVT60JF_gl98vbEHz=w408-h271-k-no,https://www.google.com/maps/place/?q=place_id:ChIJzevBOQA5aTQRv9icD0OhD9Y,室內,8.0,彰化市,2025-05-07 03:50:30,2025-05-07 03:50:30
+劍道彰化市武德殿(武德劍道會館),,彰化縣,彰化縣彰化市公園路一段45號,4.8,POINT(120.54610 24.07706),https://lh3.googleusercontent.com/p/AF1QipM9qy0Q3DKSki2fS_pGi33HVT60JF_gl98vbEHz=w408-h271-k-no,https://www.google.com/maps/place/?q=place_id:ChIJzevBOQA5aTQRv9icD0OhD9Y,室內,8.0,彰化市,2025-05-07 03:50:30,2025-05-07 03:50:30
 羅厝耶穌聖名堂,"
 星期三 08:00–16:00
 星期四 08:00–16:00
@@ -3180,7 +3180,7 @@ C119軍機公園,"
 星期日 07:00–20:00
 星期一 09:00–17:00
 星期二 09:00–17:00",彰化縣,彰化縣彰化市水月台路218號,4.1,POINT(120.58700 24.05620),https://lh3.googleusercontent.com/p/AF1QipMuRlcW1mu0Xk5Xv_6mhRtw9xZgPO4q_R9DWXjL=w408-h270-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ6y3iPAg5aTQRnEMQNCLw8Ys,戶外,3350.0,彰化市,2025-05-07 03:50:30,2025-05-07 03:50:30
-大山休閒牧場（餐廳最晚點餐時間平日6：00、假日6：30）,"
+大山休閒牧場(餐廳最晚點餐時間平日6:00、假日6:30),"
 星期三 08:00–19:00
 星期四 08:00–19:00
 星期五 08:00–19:00
@@ -3188,7 +3188,7 @@ C119軍機公園,"
 星期日 08:00–20:00
 星期一 08:00–19:00
 星期二 08:00–19:00",彰化縣,彰化縣花壇鄉灣福路60巷13弄13號,4.1,POINT(120.58791 24.03768),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npiicNSInK7jpM2_dyHTsd_F4juhgK1_zlmpamt7jCqEWCRuesqTSRBGD89D-eAx8_xD8nQKkt7dhWJjA7CBCTY2rGR91X88Y25uaIu3DTNppxaDCgwJY9zZvJxE3BcYBLL4Qtx=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ6SkA8so5aTQRYdABUD8TkRQ,室內,2552.0,花壇鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-楊桃腳土雞城（平日建議前一天預約）,"
+楊桃腳土雞城(平日建議前一天預約),"
 星期三 11:00–14:00 17:00–20:00
 星期四 11:00–14:00 17:00–20:00
 星期五 11:00–14:00 17:00–20:00
@@ -3270,7 +3270,7 @@ C119軍機公園,"
 星期日 05:30–18:00
 星期一 05:30–18:00
 星期二 05:30–18:00",彰化縣,彰化縣溪州鄉中央路三段138號,4.2,POINT(120.49626 23.84183),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npiLCsU-ATILOIQoCtlhgT48Y83v20EsfFkFsUkQZxXMpdJNw_kO8vPHNR8-qQlt-CpZK3kfkdcZ9nBmMzCT3IHkLudqt62AHBZMYqXU5Bcnp9THmGFHPiDMY_AGPfKCoJSgdd8=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJL_7tqj21bjQREhfRYlUnLHc,戶外,12595.0,溪州鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-順達窯業（僅團體預約制）,"
+順達窯業(僅團體預約制),"
 星期三 09:00–17:00
 星期四 09:00–17:00
 星期五 09:00–17:00
@@ -3400,7 +3400,7 @@ C119軍機公園,"
 星期日 09:00–17:00
 星期一 09:00–17:00
 星期二 09:00–17:00",彰化縣,彰化縣和美鎮孝義路391巷5號,4.0,POINT(120.51854 24.12195),https://lh3.googleusercontent.com/p/AF1QipNSHeEJBV8RMt74o0T6XFoA8RlhCvtsEnzz4h-h=w408-h408-k-no,https://www.google.com/maps/place/?q=place_id:ChIJNYrUsa9AaTQRS_Ut9Mqw1lU,室內,2300.0,和美鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
-社頭樂活襪之鄉博物館 社頭樂活織襪工廠樂活採芭樂行程 社頭襪子觀光工廠專業生產除臭襪工廠（極抗臭襪工廠直營）彰化景點,"
+社頭樂活襪之鄉博物館 社頭樂活織襪工廠樂活採芭樂行程 社頭襪子觀光工廠專業生產除臭襪工廠(極抗臭襪工廠直營)彰化景點,"
 星期三 09:00–17:30
 星期四 09:00–17:30
 星期五 09:00–17:30
@@ -3635,7 +3635,7 @@ C119軍機公園,"
 星期日 09:00–17:00
 星期一 08:00–17:00
 星期二 15:00–17:00",彰化縣,彰化縣二林鎮光復路61巷40號,4.4,POINT(120.44293 23.95069),https://lh3.googleusercontent.com/p/AF1QipMTqkLU6e0g38fUjm3lRHH_a2RDm4Gg7RYaGWF-=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJf-5i5e9LaTQRfzzQPbqTpOc,戶外,108.0,二林鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
-田中九重葛花牆(草日金道）,,彰化縣,彰化縣田中鎮梅州街,4.5,POINT(120.57967 23.86018),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npTTrfjHhsmHutVTTCRNVw4AjNL4FB7r43s3hJ0_Es-hobCH0AryYfnoOdOCVTNW4wFeHVa3noj1AHyqIFYliuFKdMjZqjsOvXPiRcK-p7vuuP7-AYmPVuMrmsjbA1NBPUFJFKKgQ=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJnaVeEbk1aTQRqxcLhj8B-E4,戶外,445.0,田中鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
+田中九重葛花牆(草日金道),,彰化縣,彰化縣田中鎮梅州街,4.5,POINT(120.57967 23.86018),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npTTrfjHhsmHutVTTCRNVw4AjNL4FB7r43s3hJ0_Es-hobCH0AryYfnoOdOCVTNW4wFeHVa3noj1AHyqIFYliuFKdMjZqjsOvXPiRcK-p7vuuP7-AYmPVuMrmsjbA1NBPUFJFKKgQ=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJnaVeEbk1aTQRqxcLhj8B-E4,戶外,445.0,田中鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
 台灣欒樹綠色隧道,"
 星期三 24 小時營業
 星期四 24 小時營業
@@ -3770,7 +3770,7 @@ C119軍機公園,"
 星期一 09:00–17:00
 星期二 09:00–17:00",南投縣,南投縣埔里鎮鐵山路310號,4.4,POINT(120.93871 23.97618),https://lh3.googleusercontent.com/p/AF1QipMrIcu4VXVbY-nQ9eIin-Q0RAIv2JTDYV14-Zlx=w408-h274-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ-8arr1XYaDQRjZy2MPtt518,戶外,6077.0,埔里鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
 蟬說雅築,,南投縣,南投縣信義鄉開高巷30號,4.2,POINT(120.92273 23.55753),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqGLSp2uDHNPgoGE7QHhZRYv8FwFmvEq4JF_OFmllzrsQBFL_dv_pyj9YR_bM3JHo2aoHkCvAjzOdCFC8ko0bJG_2kv16ihy9SwhaWTDaBjQEPn67OVRYveLmAUVNNuALwGXljw=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJS-zaFaEnbzQRoQL-05WT-AE,戶外,2067.0,信義鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-竹山社寮敬聖亭（縣定古蹟）,"
+竹山社寮敬聖亭(縣定古蹟),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -4725,7 +4725,7 @@ SYM鑫速二輪(原AEON 宏佳騰機車_發鑫),"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",雲林縣,雲林縣北港鎮,4.1,POINT(120.30140 23.56865),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq5K7_QqyN8B2nsqXSfMvD5wz4f-QR95TeL5x2cdon_lRdgqqMJKioTTZqqUXgQVHWe4Y3zIQWPWPskWaEViMaYO-6a2VVXdb24fD_G8x2oCcLGr3vY0JMcU98p65YJwo1DB1yp=w408-h544-k-no,https://www.google.com/maps/place/?q=place_id:ChIJbYe1XoaibjQR_TA-YnF4skk,戶外,75.0,北港鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
-月光下友善農場總部（請先來電預約）,"
+月光下友善農場總部(請先來電預約),"
 星期三 09:00–18:00
 星期四 09:30–18:00
 星期五 09:00–18:00
@@ -4869,7 +4869,7 @@ SYM鑫速二輪(原AEON 宏佳騰機車_發鑫),"
 星期日 09:00–12:00 13:30–17:30
 星期一 休息
 星期二 09:00–12:00 13:30–17:30",屏東縣,屏東縣屏東市仁愛路謙仁巷號,4.3,POINT(120.49157 22.66718),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npCW3Lzu7xhbJlU67-5tW3ye76jv_otENzGvfxFuCHUvnPZlq4R7J0a5ng1hANwRZ1xx_dCxmOc7YfFXPgaiyhCzyBSKXB1RlaWS54REvMhXoMo28rdoHErB2WLUkMPGxfMlzb3XQ=w408-h408-k-no,https://www.google.com/maps/place/?q=place_id:ChIJAQAAANAZbjQR6fCnrvlgYJ4,戶外,104.0,屏東市,2025-05-07 03:50:30,2025-05-07 03:50:30
-屏東孔廟（書院園區）,"
+屏東孔廟(書院園區),"
 星期三 08:00–17:30
 星期四 08:00–17:30
 星期五 08:00–17:30
@@ -6752,7 +6752,7 @@ KANO園區,"
 星期日 11:00–21:00
 星期一 休息
 星期二 11:00–20:00",台北市,台北市萬華區成都路10號,4.2,POINT(121.50686 25.04201),https://lh3.googleusercontent.com/p/AF1QipORjUwRr2vvp-8TUTQhHibKc860Q-LQuG1v6FwT=w408-h255-k-no,https://www.google.com/maps/place/?q=place_id:ChIJi-yspAmpQjQRxcHc_lwnNHw,戶外,18143.0,萬華區,2025-05-07 03:50:30,2025-05-07 03:50:30
-MAISON ACME｜圓山別邸,"
+MAISON ACME|圓山別邸,"
 星期三 11:00–17:00
 星期四 11:00–17:00
 星期五 11:00–17:00
@@ -8070,7 +8070,7 @@ CITYLINK南港店,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",新北市,新北市金山區三界壇路,3.8,POINT(121.62114 25.22987),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrfbXHZEPR-zS9HEqG7x9PhqT69aKl1uz-pW4zEJwYvo6BzOquWclGjXZ3KljLaC1EJ_r3B8QNOhQsyA8wqewNOZ1xQop3W9HAXGjYS4dMZ1UpolBk7wkMmgUC-lb5KQIIAxq0Y=w408-h280-k-no,https://www.google.com/maps/place/?q=place_id:ChIJhU-6Nam0QjQRnJ4L7jXnWc8,戶外,72.0,金山區,2025-05-07 03:50:30,2025-05-07 03:50:30
-金包里大路｜魚路古道,"
+金包里大路|魚路古道,"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -8989,7 +8989,7 @@ Jing Tong Railway Story House,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",新北市,新北市平溪區,3.5,POINT(121.74880 25.03090),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npcBbCoWmBD90IFpUk0tAjI12rmQMLKUtvL-KjzR5AmIafzi0bFDuQPxFvihIZZ7zzhdjgTQwKLWFwChYN6-T9grkmZKPIWJ-dZSJ_8JjPnJ1tAj_1zknGQo2kW3baGH5aH-gf7=w408-h272-k-no,https://www.google.com/maps/place/?q=place_id:ChIJET4TWDFRXTQRpOLGEAyTh4E,戶外,157.0,平溪區,2025-05-07 03:50:30,2025-05-07 03:50:30
-菁桐煤礦紀念公園（石底大斜坑）,"
+菁桐煤礦紀念公園(石底大斜坑),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -10394,7 +10394,7 @@ HA SOCK襪子娃娃專賣店,,新北市,新北市石碇區碇坪路一段136之1
 星期日 09:00–16:00
 星期一 休息
 星期二 休息",台中市,台中市西區向上路一段18號,4.5,POINT(120.66783 24.14695),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr3eyNWBq1jkEwwHPnnNFBXnwAw1nGa1F0kignqH9nl2fXjRpavE4K_CQ6J9HMAXlJGZLbePTMm4BsBdZBZP9Ke89iqosOgCluzfp8alniFouMSoFry_amdGQK2rz8bmqVxix8-GA=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJh59-BXU9aTQRoEF_1Bqd7mc,室內,404.0,西區,2025-05-07 03:50:30,2025-05-07 03:50:30
-文化部文化資產園區（原臺中酒廠）,"
+文化部文化資產園區(原臺中酒廠),"
 星期三 09:00–17:00
 星期四 09:00–17:00
 星期五 09:00–17:00
@@ -10912,7 +10912,7 @@ IKEA宜家家居 台中店,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",台中市,台中市沙鹿區南昌路128號,4.0,POINT(120.55824 24.21390),https://lh3.googleusercontent.com/p/AF1QipPxiSeTUxsRKeG96wMOYUI7bOl9VABiLyUuixCI=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJcUXhDBMVaTQR-TDIikYe8iQ,戶外,497.0,沙鹿區,2025-05-07 03:50:30,2025-05-07 03:50:30
-［DIY彩繪雨傘］大振豐洋傘文創館 l 雨傘專賣店,"
+[DIY彩繪雨傘]大振豐洋傘文創館 l 雨傘專賣店,"
 星期三 09:00–18:00
 星期四 09:00–18:00
 星期五 09:00–18:00
@@ -10920,7 +10920,7 @@ IKEA宜家家居 台中店,"
 星期日 09:00–18:00
 星期一 09:00–18:00
 星期二 09:00–18:00",台中市,台中市北屯區太原路三段1160號,4.8,POINT(120.72316 24.16182),https://lh3.googleusercontent.com/p/AF1QipP-3QlYafaNftEUOor_zAhikY9pIZjE9LscIUwf=w452-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJMVZ5ZOYXaTQRn94i_ySeky8,室內,2277.0,北屯區,2025-05-07 03:50:30,2025-05-07 03:50:30
-太平買菸場（陳庭詩紀念美術館）,"
+太平買菸場(陳庭詩紀念美術館),"
 星期三 09:00–12:00 13:00–17:00
 星期四 09:00–12:00 13:00–17:00
 星期五 09:00–12:00 13:00–17:00
@@ -11181,7 +11181,7 @@ MITSUI OUTLET PARK 台中港,"
 星期日 休息
 星期一 08:00–17:00
 星期二 08:00–17:00",台中市,台中市大里區東興路506號,4.4,POINT(120.66562 24.10448),https://lh3.googleusercontent.com/p/AF1QipNxdHC1jmXbdAx5KIIfBp4TpgJsbCaUmwS7ZAv4=w408-h305-k-no,https://www.google.com/maps/place/?q=place_id:ChIJB4HehV88aTQRq1cNFRNB__I,室內,586.0,大里區,2025-05-07 03:50:30,2025-05-07 03:50:30
-丸文魚鬆魚丸觀光工廠－台中｜參觀需先預約,"
+丸文魚鬆魚丸觀光工廠-台中|參觀需先預約,"
 星期三 10:00–16:00
 星期四 10:00–16:00
 星期五 10:00–16:00
@@ -11304,7 +11304,7 @@ MITSUI OUTLET PARK 台中港,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",高雄市,高雄市前鎮區中山三路807號,4.2,POINT(120.31528 22.59523),https://lh3.googleusercontent.com/p/AF1QipNVimQ5Jn7SoujNmyxVP44-v_27cbIteerWRW8V=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJf13gpT4DbjQRDg_An1NVPu4,戶外,1049.0,前鎮區,2025-05-07 03:50:30,2025-05-07 03:50:30
-珍芳烏魚子見學工廠｜參觀採預約制,"
+珍芳烏魚子見學工廠|參觀採預約制,"
 星期三 09:00–12:00 13:30–17:00
 星期四 09:00–12:00 13:30–17:00
 星期五 09:00–12:00 13:30–17:00
@@ -12974,7 +12974,7 @@ Cijin Sunset Bar 旗津沙灘吧,,高雄市,高雄市旗津區旗津三路1050�
 星期日 07:00–18:00
 星期一 07:00–18:00
 星期二 07:00–18:00",南投縣,南投縣南投市彰南路三段1929號,4.5,POINT(120.64648 23.96191),https://lh3.googleusercontent.com/p/AF1QipMkSASL4yK7K_Gqo2syCKV3tuM27-TsIklKznZ1=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJlwzZLeEwaTQR0zIKVbfXOnI,戶外,555.0,南投市,2025-05-07 03:50:30,2025-05-07 03:50:30
-荔枝王（四百年荔枝樹）,,南投縣,南投縣南投市八卦路686巷63弄59號,4.3,POINT(120.63929 23.91723),https://lh3.googleusercontent.com/p/AF1QipPJBwH9oeL3yAkTxb698RqadY58DyMsezksqJhG=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJoWOLReszaTQRuo9faiqwNV8,戶外,56.0,南投市,2025-05-07 03:50:30,2025-05-07 03:50:30
+荔枝王(四百年荔枝樹),,南投縣,南投縣南投市八卦路686巷63弄59號,4.3,POINT(120.63929 23.91723),https://lh3.googleusercontent.com/p/AF1QipPJBwH9oeL3yAkTxb698RqadY58DyMsezksqJhG=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJoWOLReszaTQRuo9faiqwNV8,戶外,56.0,南投市,2025-05-07 03:50:30,2025-05-07 03:50:30
 清水岩森林遊憩區,"
 星期三 24 小時營業
 星期四 24 小時營業
@@ -13302,7 +13302,7 @@ Cijin Sunset Bar 旗津沙灘吧,,高雄市,高雄市旗津區旗津三路1050�
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",嘉義縣,嘉義縣阿里山鄉,4.5,POINT(120.71982 23.49787),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nq0o-dv3JmFwAgJ3wIWYyo16mLVPf9owItaxMaZXukTGC5tzia38N4tUUYE8xCt3wadCsDsjJXFBefC5yojCvMA1xp3RQoSQyTt8LXbzTfcrSiQmu4oE4I4yGUGYQdnmQK5fYY=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJxUxnOzHdbjQRPUKJMNGPfnQ,戶外,1340.0,阿里山鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-土石流紀念公園（磐石公園）,"
+土石流紀念公園(磐石公園),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -14208,7 +14208,7 @@ Fenqihu Logging Track 奮起湖木馬棧道,"
 星期日 休息
 星期一 09:30–12:30 14:00–17:30
 星期二 09:30–12:30 14:00–17:30",桃園市,桃園市八德區建國路386號,4.0,POINT(121.28820 24.94011),https://lh3.googleusercontent.com/p/AF1QipOhYwBgiy6qgVfqL3v9wyk04u0FonLEC0FJMTWQ=w478-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ96H7-OoYaDQRfp4Gv9WY3cQ,室內,417.0,八德區,2025-05-07 03:50:30,2025-05-07 03:50:30
-南澳農場（目前暫停露營）,,宜蘭縣,宜蘭縣蘇澳鎮海岸路92號,4.2,POINT(121.79044 24.45342),https://lh3.googleusercontent.com/gps-cs-s/AC9h4no4GYX-rXYSIUsYMS53S4PvdaAO4qoz73AO2AYzxkBHRG1VLpd5IbbUaZnEX1yn1X3Ea-rBzX-iE8KnjQ_rhsBAeTVYdsZkQoAAf_9vT3nvFn04jD_RQnaXIpULZq7CkHJ-Dagelg=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJucTI28LaZzQR89z3vyumaZk,戶外,757.0,蘇澳鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
+南澳農場(目前暫停露營),,宜蘭縣,宜蘭縣蘇澳鎮海岸路92號,4.2,POINT(121.79044 24.45342),https://lh3.googleusercontent.com/gps-cs-s/AC9h4no4GYX-rXYSIUsYMS53S4PvdaAO4qoz73AO2AYzxkBHRG1VLpd5IbbUaZnEX1yn1X3Ea-rBzX-iE8KnjQ_rhsBAeTVYdsZkQoAAf_9vT3nvFn04jD_RQnaXIpULZq7CkHJ-Dagelg=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJucTI28LaZzQR89z3vyumaZk,戶外,757.0,蘇澳鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
 蘇澳獅子園,"
 星期三 24 小時營業
 星期四 24 小時營業
@@ -14250,7 +14250,7 @@ Fenqihu Logging Track 奮起湖木馬棧道,"
 星期日 08:30–17:30
 星期一 09:00–17:00
 星期二 09:00–17:00",宜蘭縣,宜蘭縣蘇澳鎮永春路178號,3.8,POINT(121.84586 24.58141),https://lh3.googleusercontent.com/p/AF1QipNQy3wgN0j6PmxpVLkY1TpG1w6Z4ATYjN0bTOSk=w408-h280-k-no,https://www.google.com/maps/place/?q=place_id:ChIJbUZhoijoZzQRSTWdc5VIMdk,室內,1484.0,蘇澳鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
-後山公路文物館（預約制，5人以上）,"
+"後山公路文物館(預約制,5人以上)","
 星期三 09:00–12:00 13:30–16:00
 星期四 09:00–12:00 13:30–16:00
 星期五 09:00–12:00 13:30–16:00
@@ -14284,7 +14284,7 @@ Fenqihu Logging Track 奮起湖木馬棧道,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",宜蘭縣,宜蘭縣礁溪鄉溫泉路,3.7,POINT(121.77488 24.82662),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npx-T_DkSsui4xKXLufBeA6xsXW5-EnZALIZDWojYU-G22imaPRgIbJu0lRSJB4kJVJqz1J7etJuvveWy-R0dz0lK5H0QwiOTQcLWgHH1vRf8cOY5sqalK1KQngltfYdSsSJakHwQ=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJw7xgWjT7ZzQRm5NT090R8qU,戶外,32.0,礁溪鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-櫻花陵園（宜蘭縣立殯葬管理所）,"
+櫻花陵園(宜蘭縣立殯葬管理所),"
 星期三 08:00–16:00
 星期四 08:00–16:00
 星期五 08:00–16:00
@@ -14332,7 +14332,7 @@ Fenqihu Logging Track 奮起湖木馬棧道,"
 星期日 15:00–00:00
 星期一 15:00–00:00
 星期二 15:00–00:00",宜蘭縣,宜蘭縣羅東鎮興東路與民權路口,4.1,POINT(121.76822 24.67732),https://lh3.googleusercontent.com/gps-cs-s/AC9h4noZbxjQ4lNszXrRe_X5d1uFBztnCp3ZOLXSGnjk6dlICOHayA2t7LGxrEfcRIlePFPpVOeF2cGSY1LTa_TxUs-ZciP03eEjYNfGhEZMQHCxnc_R8Y63khmiiGDvQAA6EjoR6AnS=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJrw3A9X3mZzQRa6_ZjGQS3Sk,戶外,22458.0,羅東鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
-天送埤林鐵文創園區（太平山林鐵）,"
+天送埤林鐵文創園區(太平山林鐵),"
 星期三 10:00–18:00
 星期四 10:00–18:00
 星期五 10:00–18:00
@@ -14447,7 +14447,7 @@ Fenqihu Logging Track 奮起湖木馬棧道,"
 星期一 09:00–17:00
 星期二 09:00–17:00",桃園市,桃園市新屋區五谷路205號,4.8,POINT(121.12896 24.96073),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqx0xC2KUXqZmBax5JtuCllOh7lm1Gk7VFTVY-XS6PUqf0LVYRoJiZY-AS41jr33LznCt2bQv89DJD0m7nas39bdLNxK0mMpfyUYlGVPuKl6wbVqOhcW1mn0oPBfQ8nsyUsOvs=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ_a1WSlQkaDQRoR1MBU0fbAI,戶外,12046.0,新屋區,2025-05-07 03:50:30,2025-05-07 03:50:30
 青塘園遊客中心-已外包非政府單位,永久歇業,桃園市,桃園市中壢區文德路300號,4.2,POINT(121.20445 25.00528),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqQ_H2dv_s-8etdSxs1w9QcX0idjhMX8MgJimtnSbdpQPbMG6phmDHkmwSKlaJTRNZRbzCLUlCQ1uKeIbX7J-p5EorUlvbwBlNzGASOVuIcLu_EAcoTJjyFV6KPnUR8nP4tVF0qRQ=w408-h307-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ3xQBZg0haDQR8im4KSQs7T0,室內,6040.0,中壢區,2025-05-07 03:50:30,2025-05-07 03:50:30
-霄裡大池（霄裡池）,"
+霄裡大池(霄裡池),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -14498,7 +14498,7 @@ Fenqihu Logging Track 奮起湖木馬棧道,"
 星期二 休息",桃園市,桃園市復興區義盛里,4.4,POINT(121.37442 24.78976),https://lh3.googleusercontent.com/p/AF1QipMfC1PiBq1lC1lMmI5l6QR8qAcV8FNxp_66Cv2a=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJcdJTfkERaDQRPpCTms-vrM8,戶外,236.0,復興區,2025-05-07 03:50:30,2025-05-07 03:50:30
 爺亨梯田農莊,,桃園市,桃園市復興區9號,4.1,POINT(121.37352 24.67000),https://lh3.googleusercontent.com/p/AF1QipNBUJcm9n81czLJj8MDEZpAVq1dHVyRd1rvtuME=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJNXPm-b5saDQR0I-dSMB2oCU,戶外,121.0,復興區,2025-05-07 03:50:30,2025-05-07 03:50:30
 薑母島,,桃園市,桃園市大溪區桃園市石門水庫,4.6,POINT(121.31138 24.80897),https://lh3.googleusercontent.com/p/AF1QipP5x17GCCgMWzoEylAaDwLwrpdXyQdNlksYRRVU=w408-h544-k-no,https://www.google.com/maps/place/?q=place_id:ChIJKSC8aOsXaDQR-Gt0o6kDrRg,戶外,23.0,大溪區,2025-05-07 03:50:30,2025-05-07 03:50:30
-南崁溪水岸自行車道（南崁段）,"
+南崁溪水岸自行車道(南崁段),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -14514,7 +14514,7 @@ Fenqihu Logging Track 奮起湖木馬棧道,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",桃園市,桃園市大溪區中山路26號,4.2,POINT(121.28656 24.88174),https://lh3.googleusercontent.com/p/AF1QipOqHED86wPCtBzDOipje2O8Q9Rft1jLmjc_1B8D=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJV4-NsSEYaDQRehE3Job7Jmg,戶外,590.0,大溪區,2025-05-07 03:50:30,2025-05-07 03:50:30
-茄苳溪自行車道（茄苳霄裡陽光鐵馬道）,"
+茄苳溪自行車道(茄苳霄裡陽光鐵馬道),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -14794,7 +14794,7 @@ Hi Look,"
 和平休閒農業區,,新竹縣,新竹縣五峰鄉,5.0,POINT(121.11423 24.61923),https://lh3.googleusercontent.com/p/AF1QipNb1Lpc7gQkNqjwVGSL5837ifMwwXsmmBr8i_Ky=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJa8_Bq25FaDQR7ujmBmh_wRs,戶外,4.0,五峰鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
 新竹五峰鄉天岳農場,,新竹縣,新竹縣五峰鄉23鄰464號,4.4,POINT(121.09389 24.60375),https://lh3.googleusercontent.com/p/AF1QipOWkjuogcKANGX47jM3eg2QCX4RItHz9PvhAgFH=w427-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJI8Z-e0JFaDQRBfO021nkN58,室內,17.0,五峰鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
 梅花天湖農園,,新竹縣,新竹縣尖石鄉8鄰227號,3.9,POINT(121.17609 24.66042),https://lh3.googleusercontent.com/p/AF1QipNWS-t295ZXNPI4SELb20Ts5Fnq4_39zJ58BvQ=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ_____3tBaDQRAYwy4POukuU,戶外,541.0,尖石鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-松芸軒咖啡莊（蔬食）,"
+松芸軒咖啡莊(蔬食),"
 星期三 10:00–17:00
 星期四 10:00–17:00
 星期五 10:00–17:00
@@ -15000,7 +15000,7 @@ Hi Look,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",苗栗縣,苗栗縣大湖鄉大窩21號,3.8,POINT(120.87471 24.40637),https://lh3.googleusercontent.com/p/AF1QipM2x1zN8Pz72PXCRyBwCEfnx7DPI2YLWpxCi01-=w408-h544-k-no,https://www.google.com/maps/place/?q=place_id:ChIJq6qqquoBaTQRVw76ND7v-HA,戶外,156.0,大湖鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-老家生活藝文空間（不定期開放）,,苗栗縣,苗栗縣苗栗市建台街1巷13號,4.6,POINT(120.82161 24.55776),https://lh3.googleusercontent.com/p/AF1QipOUxrWSBhFn7HEdmcluCCZGhI6atITOjnwNDJVx=w408-h305-k-no,https://www.google.com/maps/place/?q=place_id:ChIJeSm7c_araTQRfc_AwW-jjN4,戶外,609.0,苗栗市,2025-05-07 03:50:30,2025-05-07 03:50:30
+老家生活藝文空間(不定期開放),,苗栗縣,苗栗縣苗栗市建台街1巷13號,4.6,POINT(120.82161 24.55776),https://lh3.googleusercontent.com/p/AF1QipOUxrWSBhFn7HEdmcluCCZGhI6atITOjnwNDJVx=w408-h305-k-no,https://www.google.com/maps/place/?q=place_id:ChIJeSm7c_araTQRfc_AwW-jjN4,戶外,609.0,苗栗市,2025-05-07 03:50:30,2025-05-07 03:50:30
 二本松解說站(丸田砲台文史紀念館),"
 星期三 09:00–16:30
 星期四 09:00–16:30
@@ -15367,7 +15367,7 @@ Hi Look,"
 星期日 08:00–17:00
 星期一 08:00–17:00
 星期二 08:00–17:00",彰化縣,彰化縣彰化市自立街與交會辭修路128巷彰化彰縣TW,4.2,POINT(120.53693 24.08618),https://lh3.googleusercontent.com/p/AF1QipNqHnMY5N_WUab7FgvAim-nA1pWV0jr87euypc7=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ805XX5g4aTQRDAWzhAprURo,戶外,1278.0,彰化市,2025-05-07 03:50:30,2025-05-07 03:50:30
-永安製鼓工藝社『欲訂購商品者，無需預約，歡迎隨時來電,"
+"永安製鼓工藝社『欲訂購商品者,無需預約,歡迎隨時來電","
 星期三 09:00–18:00
 星期四 09:00–18:00
 星期五 09:00–18:00
@@ -15391,7 +15391,7 @@ Hi Look,"
 星期日 08:00–17:00
 星期一 08:00–17:00
 星期二 08:00–17:00",南投縣,南投縣國姓鄉,4.2,POINT(120.81377 24.00975),https://lh3.googleusercontent.com/p/AF1QipOdKaavOv-4gR2lmrCWcuWwtha06fvpd7YkcAm9=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJjf67jpEnaTQRiyK_VjLhDjA,戶外,987.0,國姓鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-楓香巨木群（楓香公園）,"
+楓香巨木群(楓香公園),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -15614,7 +15614,7 @@ Hugosum和菓森林,"
 星期日 09:00–17:00
 星期一 休息
 星期二 09:00–17:00",南投縣,南投縣南投市光明一路254號,4.3,POINT(120.70016 23.93586),https://lh3.googleusercontent.com/p/AF1QipOWD-Y_xhMbcj4DoZxHjkEyDFARqArb2Xl5sIwj=w408-h285-k-no,https://www.google.com/maps/place/?q=place_id:ChIJY7nn1NExaTQRjcdf_Tc8TJk,室內,1039.0,南投市,2025-05-07 03:50:30,2025-05-07 03:50:30
-桃源客棧（桃米社區工坊、桃米生態村）,"
+桃源客棧(桃米社區工坊、桃米生態村),"
 星期三 10:00–17:00
 星期四 10:00–17:00
 星期五 10:00–17:00
@@ -15786,7 +15786,7 @@ Hugosum和菓森林,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",雲林縣,雲林縣古坑鄉松林路,4.3,POINT(120.59921 23.59374),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nohvVGpXwdn6oxwe6cSb_pQOx_WrDq-q82vUSuBd2Yo84t3_TU2tUnqAXF0iC3zbnncyVstnRkn1uqycOxGkUk06N9Ih29w_8bXngD6HUswAz__lhUuUfshI00AO6RsLLK2z40=w408-h307-k-no,https://www.google.com/maps/place/?q=place_id:ChIJY3ZsN7jGbjQRa7HA6Uc2Ek0,戶外,85.0,古坑鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-斗南車站（舊）,,雲林縣,雲林縣斗南鎮中山路2號,,POINT(120.48103 23.67318),//maps.gstatic.com/tactile/pane/default_geocode-1x.png,https://www.google.com/maps/place/?q=place_id:ChIJS88jucq5bjQRD0Q0pdeTJKg,戶外,,斗南鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
+斗南車站(舊),,雲林縣,雲林縣斗南鎮中山路2號,,POINT(120.48103 23.67318),//maps.gstatic.com/tactile/pane/default_geocode-1x.png,https://www.google.com/maps/place/?q=place_id:ChIJS88jucq5bjQRD0Q0pdeTJKg,戶外,,斗南鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
 斗六火車站,"
 星期三 04:30–23:50
 星期四 04:30–23:50
@@ -15820,7 +15820,7 @@ Hugosum和菓森林,"
 星期日 13:30–16:00
 星期一 10:00–18:00
 星期二 10:00–18:00",雲林縣,雲林縣斗六市九如街51號,4.9,POINT(120.53826 23.70443),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqJEYEja_R7d6iDjl4G2CwnUKkC57XWHfkut4jI-0SBKefi5tn-dUCucKdSA2FYFemjmF0vm4zmZWLVpjMdaSuqelKf9vduBfo9FXIogGhDNzQwZezBTtceejwfW5eJdC3HlQTL=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJuSqINUTJbjQRor_v0wN7FCQ,室內,65.0,斗六市,2025-05-07 03:50:30,2025-05-07 03:50:30
-Mr. Lobby Coffee Roaster（大堂咖啡企業社）,"
+Mr. Lobby Coffee Roaster(大堂咖啡企業社),"
 星期三 13:00–18:00
 星期四 13:00–18:00
 星期五 13:00–18:00
@@ -15836,7 +15836,7 @@ Mr. Lobby Coffee Roaster（大堂咖啡企業社）,"
 星期日 08:00–18:00
 星期一 08:00–18:00
 星期二 08:00–18:00",雲林縣,雲林縣虎尾鎮北溪里北溪路10之2號,4.0,POINT(120.40038 23.70961),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrnTTAngyeg6bryooEzE-6O4GAemGCXqGBXH-vMtog7dlWLiuqy2VwjZ9MFatxQCHd-T7LkiU0R24HyJJQUguijFVKADhYTWSqlVS3bbT7vM04dMhaJR3RdoCqBpNfkwsYfdIcd0Q=w408-h544-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ-yGxEHi6bjQRWgeOhnCVFBU,戶外,545.0,虎尾鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
-（歡迎預約，週二三休園)雲林638晁陽綠能休閒農場,"
+"(歡迎預約,週二三休園)雲林638晁陽綠能休閒農場","
 星期三 休息
 星期四 09:30–17:00
 星期五 09:30–17:00
@@ -15852,7 +15852,7 @@ Mr. Lobby Coffee Roaster（大堂咖啡企業社）,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",雲林縣,雲林縣二崙鄉湳子路62之5號,3.8,POINT(120.41300 23.75120),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npbyxwf327j-iTH6iY1jE2CLGCGhrHhWOPiz68ZdUMNVFvF9FjHh1mW3HWfi6g2NfYlo79qbIX3rlyk16msQ4qgN5rOguKLZzCc5AT-ekjdNbH2VDb8Sxl4DhUQbVd1enG2nbG0=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJG2jpAyCxbjQR62ibdLvynHw,戶外,284.0,二崙鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-古坑綠色隧道交流驛站（鵝媽媽鵝童驛站）,"
+古坑綠色隧道交流驛站(鵝媽媽鵝童驛站),"
 星期三 休息
 星期四 09:00–18:00
 星期五 09:00–18:00
@@ -15900,7 +15900,7 @@ Mr. Lobby Coffee Roaster（大堂咖啡企業社）,"
 星期日 09:30–17:00
 星期一 09:30–17:00
 星期二 09:30–17:00",雲林縣,雲林縣林內鄉進興路6之5號,4.7,POINT(120.59348 23.77379),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nojUfT8PBtuZsmIS9GulBh3KEfHPvevGppDPxQs_Ymec1O9hZg9NmDSAlnkMzJzdblGZQJ7keGEScfoZX4q9zkcf4VML8Farkm2Noti6XyLx7wL-_W1j1Sz5rCokXtgx6mrcRBz6g=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJM3Vd8sDLbjQR_mMX4mN_XOE,戶外,88.0,林內鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-林內教芋部（芋頭食農教育農場）,"
+林內教芋部(芋頭食農教育農場),"
 星期三 10:00–17:30
 星期四 10:00–17:30
 星期五 10:00–17:30
@@ -15965,7 +15965,7 @@ Mr. Lobby Coffee Roaster（大堂咖啡企業社）,"
 星期日 09:30–18:00
 星期一 休息
 星期二 休息",雲林縣,雲林縣古坑鄉光昌路247號,4.8,POINT(120.54831 23.63142),https://lh3.googleusercontent.com/p/AF1QipPgljkkMbLnvoxAy3Ca9jCrLK3VkMF8HU0Ky1tp=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJpfo4vGHHbjQRmJF7cF42Ukw,室內,584.0,古坑鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-雲林縣樟湖藍染人文協會—有間靛(樟湖國小舊校區２Ｆ),"
+雲林縣樟湖藍染人文協會—有間靛(樟湖國小舊校區2F),"
 星期三 09:00–17:00
 星期四 09:00–17:00
 星期五 09:00–17:00
@@ -15973,7 +15973,7 @@ Mr. Lobby Coffee Roaster（大堂咖啡企業社）,"
 星期日 10:00–17:00
 星期一 09:00–17:00
 星期二 09:00–17:00",雲林縣,雲林縣古坑鄉28號,4.3,POINT(120.64264 23.61854),https://lh3.googleusercontent.com/p/AF1QipPrTQg7WfB-hP18_Z-w246q4JvYkJ43xoUCzstq=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJB8KJecrFbjQRylgl49KZlJQ,戶外,119.0,古坑鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-笨港傳薪學院(北港光明屋獨立書店）,"
+笨港傳薪學院(北港光明屋獨立書店),"
 星期三 09:30–17:30
 星期四 09:30–17:30
 星期五 09:30–17:30
@@ -16171,7 +16171,7 @@ Mr. Lobby Coffee Roaster（大堂咖啡企業社）,"
 星期日 09:00–18:00
 星期一 10:00–18:00
 星期二 10:00–18:00",屏東縣,屏東縣萬巒鄉沿山路一段500號,4.0,POINT(120.62164 22.59086),https://lh3.googleusercontent.com/p/AF1QipNmYe4qL7bLkeIh27H4rgeW4mai9nF4WdYfYDMA=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJEbl9vYQjbjQR8qE4q--C99A,室內,974.0,萬巒鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-枋山休閒農場 芒果好吃 MangoHouse（芒果冰棒超好吃！）,"
+枋山休閒農場 芒果好吃 MangoHouse(芒果冰棒超好吃!),"
 星期三 10:00–17:00
 星期四 10:00–17:00
 星期五 10:00–17:00
@@ -16273,7 +16273,7 @@ Mr. Lobby Coffee Roaster（大堂咖啡企業社）,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",屏東縣,屏東縣春日鄉大漢林道,4.5,POINT(120.75654 22.40763),https://lh3.googleusercontent.com/gps-cs-s/AC9h4np4nqyA4a6mWjTosYS2jmoRlpGQCZkxseVDzYGIe3xFgNnDY9spaJbYEl8UYSvz5S9hb8xxZAOp51BGPuy_IcB62CpJr4IXnnIcn6u8XEFsgeFOBlr2F4fbKBqHp_6AZG93w1M=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJi2T3WcnecTQRanhLy71CGyY,戶外,671.0,春日鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-佳冬蕭家祖屋（縣定古蹟）,"
+佳冬蕭家祖屋(縣定古蹟),"
 星期三 09:00–12:00 14:00–17:00
 星期四 09:00–12:00 14:00–17:00
 星期五 09:00–12:00 14:00–17:00
@@ -16299,7 +16299,7 @@ Mr. Lobby Coffee Roaster（大堂咖啡企業社）,"
 星期二 08:00–17:00",屏東縣,屏東縣獅子鄉楓林二巷26號,4.6,POINT(120.70571 22.20179),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrsKXpXDE4W3gno1fWmSMbD3vCbasNL9tiAhGJ4OJw1zQhi7PvRZjAsnyi7bbQFoFxwVzuZLpuSzUIgEI8ptnxtBzz_cx6LybPVQUAnDCYNa3wmgXIrYhIqIosUThvgNsjf7F2G=w408-h544-k-no,https://www.google.com/maps/place/?q=place_id:ChIJdy1jhfDFcTQRY7p_406oXPg,室內,54.0,獅子鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
 四重溪溫泉公園,,屏東縣,屏東縣車城鄉溫泉路玉泉巷30之10號,4.4,POINT(120.74713 22.09439),https://lh3.googleusercontent.com/p/AF1QipPJ-dkmojH4Qx7ZM7NSfLTpSMeX90dfsEFUQsSq=w408-h272-k-no,https://www.google.com/maps/place/?q=place_id:ChIJEQQD_de3cTQROPaoxqTeFFY,室內,10269.0,車城鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
 優生美地休閒農場,,屏東縣,屏東縣車城鄉溫泉路57之26號,4.1,POINT(120.74589 22.09088),https://lh3.googleusercontent.com/gps-proxy/ALd4DhELo6XX8uBZrGZEuFmwA3BYSemvNboUjrBudgtm0qtykXwA-P4EL8LgxRZfPpciF3zA4UIWk2Dr1aWWjUJIeh0_R555ZD7PZSpZoo1gJouFcmMVOWOWFUCW49rwjhys4JCm8Wv90g27T5AFR2NKF0dYPIObPusWefCib9hlcTdM53EI8y1xnS6u=w408-h317-k-no,https://www.google.com/maps/place/?q=place_id:ChIJC6Wg5tm3cTQRvifRvlv-b9s,戶外,308.0,車城鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-恆春石牌公園｜猴洞山,"
+恆春石牌公園|猴洞山,"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -16528,7 +16528,7 @@ Mr. Lobby Coffee Roaster（大堂咖啡企業社）,"
 星期日 09:00–18:00
 星期一 09:00–18:00
 星期二 09:00–18:00",台東縣,台東縣綠島鄉草山201號,4.3,POINT(121.49545 22.67121),https://lh3.googleusercontent.com/p/AF1QipMI1uE38PgkQzoEavOQjs4AzzUTIRdowwfxENtX=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ469-otyNbzQRGZdgX3rNP5c,戶外,283.0,綠島鄉,2025-05-07 03:50:30,2025-05-07 03:50:30
-五孔洞 jikarahem（最深處）,"
+五孔洞 jikarahem(最深處),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -16612,7 +16612,7 @@ Ji mazicing 龍頭岩,"
 星期日 休息
 星期一 09:00–17:00
 星期二 09:00–17:00",台東縣,台東縣關山鎮中興85號,4.4,POINT(121.17360 23.00757),https://lh3.googleusercontent.com/p/AF1QipMi20ZvBrmXUMvCZ_8ykqjtorhsF3C6HSHRycxb=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJtcGEiMqgbzQRaimp9EVbJyU,室內,111.0,關山鎮,2025-05-07 03:50:30,2025-05-07 03:50:30
-鸞山森林博物館（森林文化博物館）,"
+鸞山森林博物館(森林文化博物館),"
 星期三 09:00–14:00
 星期四 09:00–14:00
 星期五 09:00–14:00
@@ -16926,7 +16926,7 @@ Ji mazicing 龍頭岩,"
 星期二 09:00–17:00",新竹市,新竹市東區東大路一段2號,4.4,POINT(120.97807 24.80128),https://lh3.googleusercontent.com/gps-cs-s/AC9h4noZMGDZuVrt2aknkYje6DisiUTOXN0Rv9tR7wPj7FDyqJ_ckqRh-rJP8kTdC7W3hTdInRO7GNbQB60lbPJSqbrZfHC-iiZ2IQv3jxrlMSO9Re7OTvWzdph26PG1cGeUOrpxqHgT=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJGy1ZZN01aDQRz64n3fFmkZk,室內,915.0,東區,2025-05-07 03:50:30,2025-05-07 03:50:30
 新竹市影像博物館,,新竹市,新竹市東區中正路65號,4.2,POINT(120.96960 24.80497),https://lh3.googleusercontent.com/p/AF1QipOz0lSzPfuKXF2lttidgzrmrzBm5AAI3Z6UyiA8=w408-h282-k-no,https://www.google.com/maps/place/?q=place_id:ChIJtejVmsE1aDQRl4Ulmd9XJ6A,室內,808.0,東區,2025-05-07 03:50:30,2025-05-07 03:50:30
 新竹市消防博物館,,新竹市,新竹市北區中山路4號,4.3,POINT(120.96810 24.80645),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrfH6tQ0FX-SHeo6Yc_WlWqetyFMgTZw9JcmMZ5JvX_Q6PkY0Cb5sF2yRoqdXuZou7HrjSIgRkPn_7vhTi1Z_dUzZL0FrhnXTKwDUKazW3gAvvJxIljybJdZAm5A9aX7MV7G1I=w408-h305-k-no,https://www.google.com/maps/place/?q=place_id:ChIJXxXUBME1aDQRPiUooOehiI0,室內,1466.0,北區,2025-05-07 03:50:30,2025-05-07 03:50:30
-國定古蹟-進士第（鄭用錫宅邸）,,新竹市,新竹市北區北門街179號,4.7,POINT(120.96526 24.80949),https://lh3.googleusercontent.com/gps-cs-s/AC9h4noQ8C0aexI5abFKpn8YKs5SnFUGOX2AAO4DPGXGFy07RGhicMacvb24jXOaoezncPi_svDowmuBINUSXIlRkhaBvFPRf0LCg6aJzmEAHwKEiLwHs3HsvPlNr-v7U-ABqCHsXLio=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJHS95FgA1aDQRNTExISJzzEo,戶外,6.0,北區,2025-05-07 03:50:30,2025-05-07 03:50:30
+國定古蹟-進士第(鄭用錫宅邸),,新竹市,新竹市北區北門街179號,4.7,POINT(120.96526 24.80949),https://lh3.googleusercontent.com/gps-cs-s/AC9h4noQ8C0aexI5abFKpn8YKs5SnFUGOX2AAO4DPGXGFy07RGhicMacvb24jXOaoezncPi_svDowmuBINUSXIlRkhaBvFPRf0LCg6aJzmEAHwKEiLwHs3HsvPlNr-v7U-ABqCHsXLio=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJHS95FgA1aDQRNTExISJzzEo,戶外,6.0,北區,2025-05-07 03:50:30,2025-05-07 03:50:30
 市定古蹟-張氏節孝坊,"
 星期三 24 小時營業
 星期四 24 小時營業
@@ -17215,7 +17215,7 @@ KANO園區星光溜滑梯,"
 星期日 09:00–17:00
 星期一 09:00–17:00
 星期二 09:00–21:00",台北市,台北市中正區徐州路46號,4.1,POINT(121.52447 25.04034),https://lh3.googleusercontent.com/p/AF1QipN4vPRgHNJptrc4GZNxFHmJjLPBu6OxWKIbTzNP=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJgZ9_SHepQjQRUVSTSQoCVYU,室內,1232.0,中正區,2025-05-07 03:50:30,2025-05-07 03:50:30
-紫藤廬（12/16起修繕休館中）,,台北市,台北市大安區新生南路三段16巷1號,4.2,POINT(121.53448 25.02455),https://lh3.googleusercontent.com/p/AF1QipNZQqIYpK9kkpyPAft97ijpa_pcLVcp4z6Vlhfn=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJTW8Gs4epQjQRRA0-FAu_O0k,室內,1821.0,大安區,2025-05-07 03:50:30,2025-05-07 03:50:30
+紫藤廬(12/16起修繕休館中),,台北市,台北市大安區新生南路三段16巷1號,4.2,POINT(121.53448 25.02455),https://lh3.googleusercontent.com/p/AF1QipNZQqIYpK9kkpyPAft97ijpa_pcLVcp4z6Vlhfn=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJTW8Gs4epQjQRRA0-FAu_O0k,室內,1821.0,大安區,2025-05-07 03:50:30,2025-05-07 03:50:30
 信義公民會館 社區館,"
 星期三 09:00–17:00
 星期四 09:00–17:00
@@ -17241,7 +17241,7 @@ KANO園區星光溜滑梯,"
 星期日 09:00–17:00
 星期一 休息
 星期二 09:00–17:00",台北市,台北市萬華區廣州街101號,4.4,POINT(121.50326 25.03662),https://lh3.googleusercontent.com/p/AF1QipPNOSUUm36E7onjYtbScjACrCgMiLDSmZbXPCe_=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJg1xfGKapQjQRm3ri-24jMR4,室內,713.0,萬華區,2025-05-07 03:50:30,2025-05-07 03:50:30
-臺北府城 北門（承恩門）,,台北市,台北市中正區忠孝西路一段,4.4,POINT(121.51125 25.04777),https://lh3.googleusercontent.com/p/AF1QipP3rPPLNaOyR7fQFCvMyfWf2PJHK98125Hl1gbM=w408-h272-k-no,https://www.google.com/maps/place/?q=place_id:ChIJPa9rpw2pQjQRX_lDhL9Wnhw,戶外,6615.0,中正區,2025-05-07 03:50:30,2025-05-07 03:50:30
+臺北府城 北門(承恩門),,台北市,台北市中正區忠孝西路一段,4.4,POINT(121.51125 25.04777),https://lh3.googleusercontent.com/p/AF1QipP3rPPLNaOyR7fQFCvMyfWf2PJHK98125Hl1gbM=w408-h272-k-no,https://www.google.com/maps/place/?q=place_id:ChIJPa9rpw2pQjQRX_lDhL9Wnhw,戶外,6615.0,中正區,2025-05-07 03:50:30,2025-05-07 03:50:30
 總統府,"
 星期三 09:00–11:30
 星期四 09:00–11:30
@@ -17314,7 +17314,7 @@ KANO園區星光溜滑梯,"
 星期日 休息
 星期一 08:30–21:00
 星期二 08:30–21:00",台北市,台北市中正區忠孝西路一段120號,4.5,POINT(121.51149 25.04728),https://lh3.googleusercontent.com/p/AF1QipMC9TEsa85DL8JsgPcr2glXv356psBTscShKjHK=w408-h307-k-no,https://www.google.com/maps/place/?q=place_id:ChIJxccAAQ2pQjQRgGoVa3_yuI4,戶外,1010.0,中正區,2025-05-07 03:50:30,2025-05-07 03:50:30
-陳天來故居（錦記茶行）,,台北市,台北市大同區貴德街73號,4.1,POINT(121.50844 25.05600),https://lh3.googleusercontent.com/p/AF1QipMjJA6KGFJR1-BeYmWLtNiJBIomd37Ko7-SpssG=w408-h408-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ7RYjqBapQjQR2l0p-ZwCrmQ,戶外,227.0,大同區,2025-05-07 03:50:30,2025-05-07 03:50:30
+陳天來故居(錦記茶行),,台北市,台北市大同區貴德街73號,4.1,POINT(121.50844 25.05600),https://lh3.googleusercontent.com/p/AF1QipMjJA6KGFJR1-BeYmWLtNiJBIomd37Ko7-SpssG=w408-h408-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ7RYjqBapQjQR2l0p-ZwCrmQ,戶外,227.0,大同區,2025-05-07 03:50:30,2025-05-07 03:50:30
 玫瑰古蹟—蔡瑞月舞蹈研究社,"
 星期三 13:00–21:00
 星期四 13:00–21:00
@@ -17487,7 +17487,7 @@ KANO園區星光溜滑梯,"
 星期日 09:00–17:00
 星期一 休息
 星期二 09:00–17:00",台北市,台北市文山區指南路三段40巷8之2號,4.1,POINT(121.59429 24.96907),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npJ7NzfXb2NK0wD2Wq3OMozQdO01jiBiu3MIt6ADSoCeVzW3Ca4K0Mp2nSV8W7u4eSIbNySgwI-9sFfJVfYTkZKhxfTVp0oKQ55JltdHnBrWoL9OfwtGA4LEYsG1RU22mswTLs9=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJhQCvgSUAaDQR1ZDKfGIA-eA,室內,1180.0,文山區,2025-05-07 03:50:30,2025-05-07 03:50:30
-鄭南榕基金會．紀念館,"
+鄭南榕基金會.紀念館,"
 星期三 休息
 星期四 休息
 星期五 休息
@@ -17536,7 +17536,7 @@ KANO園區星光溜滑梯,"
 星期日 09:00–22:00
 星期一 09:00–22:00
 星期二 09:00–22:00",台北市,台北市松山區南京東路四段2號,4.5,POINT(121.55012 25.05068),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqY354C05-K_9jrQ7bqc-t7Rh1Fru8jQBfJOjeS0l3KoWFA878kS1HSYWzJgPa0y5jmWJ9TPm2qrYAoFjYtjDhzA0EpBnfclQ8uJw7Iv7icgXbKXSUW9od9BhPhjDPeZvfxkSrR=w408-h305-k-no,https://www.google.com/maps/place/?q=place_id:ChIJcVe4HuirQjQRWHrzxtVRImg,戶外,26537.0,松山區,2025-05-07 03:50:30,2025-05-07 03:50:30
-南港公園（防災公園）,"
+南港公園(防災公園),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -17668,7 +17668,7 @@ Miramar美麗華百樂園,"
 星期日 16:00–00:00
 星期一 16:00–00:00
 星期二 16:00–00:00",台北市,台北市士林區基河路101號,4.1,POINT(121.52435 25.08850),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npderPOqaWmyoR5H0ekV_s50hONR08NNN3DQK-j2ndFqSs0FRRdIvia8DVUXyaGyEB7iQJCqkqrf6mrQjr7Dyoac5SOLlDjRmGRSsqyEsw51xdFgX5AN_PITUibkHdxUpsLtabq=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJBa_9xLGuQjQRKfnnhr5twuc,戶外,17838.0,士林區,2025-05-07 03:50:30,2025-05-07 03:50:30
-慈音山莊景觀餐廳｜慈音休閒農莊,"
+慈音山莊景觀餐廳|慈音休閒農莊,"
 星期三 休息
 星期四 休息
 星期五 11:00–17:00
@@ -17717,7 +17717,7 @@ Miramar美麗華百樂園,"
 星期日 17:00–23:30
 星期一 17:00–23:30
 星期二 17:00–23:30",台北市,台北市大同區寧夏路58號,4.2,POINT(121.51536 25.05668),https://lh3.googleusercontent.com/gps-cs-s/AC9h4noLjaZvDHgxSo2vDJv1p6pVjSSAVhVAYlDWGOx2yWzXQ5GEigUVgO376ZPZooHqpGl70VjzuACOI4WezbjuYTHjc86gR-kyct429MLvBGRwb87EHLh-DazVWe2Sb5YdJbEZa-E85w=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJxUXPVmupQjQRtBB6oj-S5qI,戶外,57945.0,大同區,2025-05-07 03:50:30,2025-05-07 11:19:53
-通化街夜市｜臨江街觀光夜市,"
+通化街夜市|臨江街觀光夜市,"
 星期三 18:00–00:00
 星期四 18:00–00:00
 星期五 18:00–00:00
@@ -17733,7 +17733,7 @@ Miramar美麗華百樂園,"
 星期日 18:00–00:00
 星期一 18:00–00:00
 星期二 18:00–00:00",台北市,台北市大同區延平北路三段,4.1,POINT(121.51118 25.06336),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npMzu9TTf17goBNxJpMKwQyqWF1takQFzQ4J5ttY2GiiKVHegcIvLhvXPcy9ThDcxwu4QAf6NG49miMaM0kYhEebzTOSku_KmH0GyRyXWMWjvRSz5znEOYELZJ4ZKkZvimer-Q=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJC1Rh4j6pQjQRDJAu726hNOo,戶外,9185.0,大同區,2025-05-07 03:50:30,2025-05-07 11:19:53
-台北花市（臺北花卉批發市場）,"
+台北花市(臺北花卉批發市場),"
 星期三 04:00–12:00
 星期四 04:00–12:00
 星期五 04:00–12:00
@@ -17901,7 +17901,7 @@ MAJI MAJI集食行樂,"
 星期一 24 小時營業
 星期二 24 小時營業",台北市,台北市文山區纜車站旁,4.4,POINT(121.58740 24.96729),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqmytasAq4Xrg_Bm5IkgUlgQHtV3-9i4T1EvzCXBoaLmO7LD_eZjsIKt2op-ZE0T9QjnZd4_9Ah_oZN12wSxke_mIjH09S4wOyLg3udXCYUdkXI5yOipU4ItBnLaDVJkgpPAbBk=w408-h272-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ7z1HcjIAaDQRc_nMbAt7gl8,戶外,2575.0,文山區,2025-05-07 03:50:30,2025-05-07 11:19:53
 台北市市議會,,台北市,台北市信義區仁愛路四段507號,3.9,POINT(121.56200 25.03839),https://lh3.googleusercontent.com/gps-cs-s/AC9h4noKuGSRpRxItHY0nnxWk0Drh44lCjDcHLUonarr0M3JxOVNHlsp9hEUZZYCi3MTrQmEGmaanpZ_-NWLZL7CzwUtRu-vrkdcF6UJjEudvpyf_CWNkYLDjpPW6L0q9ny5lBJGYxY1=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJJRzHooarQjQRJaUIMdH1kuU,戶外,159.0,信義區,2025-05-07 03:50:30,2025-05-07 11:19:53
-臺灣戲曲中心（國立傳統藝術中心所屬）,,台北市,台北市士林區文林路751號,4.5,POINT(121.51978 25.10228),https://lh3.googleusercontent.com/p/AF1QipN6LDE5pCKMpB-Kse1njykggmL2wn0x4qi3aaAj=w408-h305-k-no,https://www.google.com/maps/place/?q=place_id:ChIJNUHw25WuQjQRYLJoDlpDb6Y,室內,3400.0,士林區,2025-05-07 03:50:30,2025-05-07 11:19:53
+臺灣戲曲中心(國立傳統藝術中心所屬),,台北市,台北市士林區文林路751號,4.5,POINT(121.51978 25.10228),https://lh3.googleusercontent.com/p/AF1QipN6LDE5pCKMpB-Kse1njykggmL2wn0x4qi3aaAj=w408-h305-k-no,https://www.google.com/maps/place/?q=place_id:ChIJNUHw25WuQjQRYLJoDlpDb6Y,室內,3400.0,士林區,2025-05-07 03:50:30,2025-05-07 11:19:53
 東三水街市場、新富市場,"
 星期三 07:00–15:00
 星期四 07:00–15:00
@@ -17934,7 +17934,7 @@ MAJI MAJI集食行樂,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",台北市,台北市北投區紗帽路116之15號,4.4,POINT(121.54818 25.15068),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrlPSbgnyOAim4VMdKu84EWsA_CNKl87XtBCJwKVwPubhdW4vu_rb4gVBgIcA4_FGD6jN4gqpKz-Ia-RPyM8n355zha1TW7zYfrgUnWAcrRR5Y43FHIb0ofqV_SFBXM-tBYyr3jnA=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ4-X2dPqtQjQRqDAoxin-m9E,戶外,3671.0,北投區,2025-05-07 03:50:30,2025-05-07 11:19:53
-台北奧萬大 賞楓季4月～5月 無公休,"
+台北奧萬大 賞楓季4月~5月 無公休,"
 星期三 休息
 星期四 10:00–18:00
 星期五 10:00–18:00
@@ -18017,7 +18017,7 @@ i-Ride TAIPEI,"
 星期日 09:30–17:00
 星期一 休息
 星期二 09:30–17:00",台北市,台北市大同區延平北路一段2號,4.6,POINT(121.51134 25.04873),https://lh3.googleusercontent.com/p/AF1QipNRdMs3J5TnZ-Nd-VtqrlJMGZT38AYYU6gLKpYX=w408-h727-k-no,https://www.google.com/maps/place/?q=place_id:ChIJZVl9mw2pQjQRNl7qT3nVk80,室內,5609.0,大同區,2025-05-07 03:50:30,2025-05-07 11:19:53
-松山療養所所長宿舍（靜心苑-療癒古蹟）,"
+松山療養所所長宿舍(靜心苑-療癒古蹟),"
 星期三 11:00–21:00
 星期四 11:00–21:00
 星期五 11:00–21:00
@@ -18025,7 +18025,7 @@ i-Ride TAIPEI,"
 星期日 11:00–21:00
 星期一 11:00–21:00
 星期二 休息",台北市,台北市南港區昆陽街164號,4.5,POINT(121.59352 25.04845),https://lh3.googleusercontent.com/p/AF1QipPwC_BbalSbnlu8XBVHNj6fQzy0YL8D6PR956_g=w408-h272-k-no,https://www.google.com/maps/place/?q=place_id:ChIJWfRZ0nGrQjQRGhWpfYlrUcM,戶外,1053.0,南港區,2025-05-07 03:50:30,2025-05-07 11:19:53
-麗山農民廣場（麗山公園）,"
+麗山農民廣場(麗山公園),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -18228,7 +18228,7 @@ N24台北方舟 ARK·TPE 台北區塊鏈創新育成基地,"
 星期日 08:00–17:00
 星期一 08:00–17:00
 星期二 08:00–17:00",新北市,新北市萬里區,4.4,POINT(121.69731 25.21373),https://lh3.googleusercontent.com/p/AF1QipO9yI91VM1cUIOYbQDz5BQDeD-oRT3BpKZbuCkV=w408-h270-k-no,https://www.google.com/maps/place/?q=place_id:ChIJK1cuNvNLXTQRFe2Kqlos_fM,戶外,230.0,萬里區,2025-05-07 03:50:30,2025-05-07 11:19:53
-筠園（鄧麗君紀念公園）Yun Garden (Teresa Teng Memorial Park),"
+筠園(鄧麗君紀念公園)Yun Garden (Teresa Teng Memorial Park),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -18244,7 +18244,7 @@ N24台北方舟 ARK·TPE 台北區塊鏈創新育成基地,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",新北市,新北市金山區民生路208號,4.6,POINT(121.65062 25.22613),https://lh3.googleusercontent.com/p/AF1QipMsJAXxdXqNJMYoQbqX91QVoqPCAysjRCohhyuv=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJCXFMfl1LXTQRktgZo98GZUw,戶外,241.0,金山區,2025-05-07 03:50:30,2025-05-07 11:19:53
-蓋淡坑遺址（大豐二號坑）,"
+蓋淡坑遺址(大豐二號坑),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -18496,7 +18496,7 @@ N24台北方舟 ARK·TPE 台北區塊鏈創新育成基地,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",新北市,新北市三峽區,4.7,POINT(121.37701 24.88406),https://lh3.googleusercontent.com/gps-cs-s/AC9h4no-zFx4solVYFkAIW5Rs31MJSA0Y59lzv3mBG8lV4gaOOyCMZAqVDGaLB1Urb4WuPKD60bUeHVCHM1OMa118kUPXp_XbMzxWCCyFGjjZZJHj31LvV9yrBe-OEcvZt1e439rsO0D=w408-h544-k-no,https://www.google.com/maps/place/?q=place_id:ChIJP-oGVD8aaDQRLSwFzxc1R00,戶外,2011.0,三峽區,2025-05-07 03:50:30,2025-05-07 11:19:53
-九份夜間導覽的開創者九份金礦博物館Jiufen cultural tour（參觀需預約喔，Reservation Only!）,"
+"九份夜間導覽的開創者九份金礦博物館Jiufen cultural tour(參觀需預約喔,Reservation Only!)","
 星期三 16:00–00:00
 星期四 16:00–00:00
 星期五 16:00–00:00
@@ -18756,7 +18756,7 @@ N24台北方舟 ARK·TPE 台北區塊鏈創新育成基地,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",新北市,新北市新店區銀河越嶺步道,4.4,POINT(121.58341 24.95849),https://lh3.googleusercontent.com/p/AF1QipOt_9nUI2F347M3V8xb2QfrZ92DrZpki9UtgDQi=w408-h488-k-no,https://www.google.com/maps/place/?q=place_id:ChIJxSNAVTUAaDQR7vNyKE1bJtU,戶外,4639.0,新店區,2025-05-07 03:50:30,2025-05-07 11:19:53
-汐止白雲派出所（原十三分警察官吏派出所）,"
+汐止白雲派出所(原十三分警察官吏派出所),"
 星期三 24 小時營業
 星期四 24 小時營業
 星期五 24 小時營業
@@ -19251,7 +19251,7 @@ N24台北方舟 ARK·TPE 台北區塊鏈創新育成基地,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",台中市,台中市太平區,3.8,POINT(120.77168 24.10814),https://lh3.googleusercontent.com/gps-cs-s/AC9h4noc-NgcLNkU9p1Q3-LvJC1HLUEPlIQap84eHkItRDxQNuLgIsfKITiBaBTtB79KlbwCVsnVSfQ1S-sZ1g2LvDIKcu87x_CA8LwmRZbP_72CvpBC5Eqv_RTmGcwZsoAItmVNM0xwcQ=w408-h544-k-no,https://www.google.com/maps/place/?q=place_id:ChIJf8ZiUk4iaTQRx27Y_tW4T50,戶外,72.0,太平區,2025-05-07 03:50:30,2025-05-07 11:19:53
-聚奎居（市定古蹟）,"
+聚奎居(市定古蹟),"
 星期三 10:30–17:00
 星期四 10:30–17:00
 星期五 10:30–17:00
@@ -19326,7 +19326,7 @@ N24台北方舟 ARK·TPE 台北區塊鏈創新育成基地,"
 星期日 07:45–04:45
 星期一 休息
 星期二 07:45–04:45",高雄市,高雄市美濃區中山路與永安路交叉口,4.1,POINT(120.53393 22.90222),https://lh3.googleusercontent.com/gps-cs-s/AC9h4noS2DT8K6Pbk_pstpFrRX825Erdj9oYq1Al3F-_kc1IuD54UOzk3qPtmPZo4Y5VE-OE4aUY-Z1n3on6iRumAnVNikDH7qE7trbWJjpYD5BfdXGBOrQnocedRYlMwe5ulbp0YCK3=w408-h531-k-no,https://www.google.com/maps/place/?q=place_id:ChIJM3oheftBbjQRHalLzCC7rr8,戶外,423.0,美濃區,2025-05-07 03:50:30,2025-05-07 11:19:53
-市定古蹟 西子灣蔣介石行館（原高雄觀光館）,"
+市定古蹟 西子灣蔣介石行館(原高雄觀光館),"
 星期三 10:00–17:00
 星期四 10:00–17:00
 星期五 10:00–17:00
@@ -19592,7 +19592,7 @@ N24台北方舟 ARK·TPE 台北區塊鏈創新育成基地,"
 星期日 08:30–17:00
 星期一 08:30–17:00
 星期二 08:30–17:00",台東縣,台東縣成功鎮基翬路87號,4.4,POINT(121.40831 23.12333),https://lh3.googleusercontent.com/gps-cs-s/AC9h4npWOORqNX8wp7TyrOetagcn84TKxFZ6PF75r9d09iZg3KHbi0FVAPzGvLOU6JqUe0mkxV26gp9UzBt0rpqz48WpVbDn1H0CG-ShntK1sRAi3Is_KJnZbtXpGR6DGaPTRguU8Zen=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJwx8IS0ZwbzQRgoFe8aDAFx0,室內,14282.0,成功鎮,2025-05-07 03:50:30,2025-05-07 11:19:53
-墾夢莊園（新光兆豐農場）,"
+墾夢莊園(新光兆豐農場),"
 星期三 休息
 星期四 08:30–17:00
 星期五 08:30–17:00
@@ -19649,7 +19649,7 @@ N24台北方舟 ARK·TPE 台北區塊鏈創新育成基地,"
 星期日 08:00–17:00
 星期一 08:00–17:00
 星期二 08:00–17:00",花蓮縣,花蓮縣光復鄉大全街,4.2,POINT(121.40967 23.65775),https://lh3.googleusercontent.com/p/AF1QipP7o8Jow-ui9kMDkl03Qw5W5-gQsC0Ptijn2lrb=w408-h275-k-no,https://www.google.com/maps/place/?q=place_id:ChIJd6_kRjJNbzQR0r3ZVecrANk,戶外,1611.0,光復鄉,2025-05-07 03:50:30,2025-05-07 11:19:53
-大鵬灣 搭船丨大鵬灣 坐船丨大鵬灣 遊湖丨仁鵬遊湖丨㊣創始店丨遊艇遊湖丨生態導覽丨無限量烤蚵丨烤蚵烤到爽丨大鵬灣濱灣公園,"
+大鵬灣 搭船,"
 星期三 09:00–17:00
 星期四 09:00–17:00
 星期五 09:00–17:00
@@ -19740,7 +19740,7 @@ LITTLE GREECE 希臘小鎮,,屏東縣,屏東縣恆春鎮南灣路新營巷71號,
 星期一 06:00–18:00
 星期二 06:00–18:00",南投縣,南投縣魚池鄉文正巷5之10號,4.7,POINT(120.92068 23.89235),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrQEbgdc3dHczWbUEuM_DFKIgOyP6CwYD40dp52x9S-Kpl_pqe2u_ZVq-w2_a2NUnIgAGcB6o9bYCayoFASEFm9lx_UGKUP76m1ulqyimMB7nJysI5lgsD0j87K-TwVCvSiGZlD=w425-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJNUnxPkrWaDQRvi_-eBC_IoE,戶外,1014.0,魚池鄉,2025-05-07 03:50:30,2025-05-07 11:19:53
 埔里露營‧埔里桃米草湳溼地農場,,南投縣,南投縣埔里鎮種瓜路44號,4.2,POINT(120.91510 23.94864),https://lh3.googleusercontent.com/gps-cs-s/AC9h4no2TYWhRxcfWSJIa02zPGWWsPdy_BvLondrV82CklxHcS_DRMJKfzveS6pnsmhDr-XonZbIm1bh6e4Uf8emeTaW-GfbVsF2IiP6znLE05rJvilL6fkrn5Y3-xTaseJA_SlKTFmA=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJWayy7RvYaDQRR-wmKfUOnAw,戶外,223.0,埔里鎮,2025-05-07 03:50:30,2025-05-07 11:19:53
-泥炭土活盆地｜會跳動的泥土,"
+泥炭土活盆地|會跳動的泥土,"
 星期三 07:00–17:00
 星期四 07:00–17:00
 星期五 07:00–17:00
@@ -19830,7 +19830,7 @@ Jijibanana集元果觀光工廠,"
 星期日 09:00–17:30
 星期一 09:00–17:30
 星期二 09:00–17:30",南投縣,南投縣集集鎮大坪巷38號,4.2,POINT(120.81428 23.82505),https://lh3.googleusercontent.com/p/AF1QipOrzcjAG04cIP_iKlk0VvrMp7hIX34BURA3Nbjj=w426-h240-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ2dFkhnsraTQR5PAEvA_aWyE,室內,3444.0,集集鎮,2025-05-07 03:50:30,2025-05-07 11:19:53
-水里親水公園（水里水漾樂園）,"
+水里親水公園(水里水漾樂園),"
 星期三 休息
 星期四 休息
 星期五 休息
@@ -20253,7 +20253,7 @@ Jijibanana集元果觀光工廠,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",嘉義縣,嘉義縣布袋鎮161縣道29號,4.5,POINT(120.17251 23.34277),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nphdHuC_U2YL0pWuaG5ta-mvTLhVRQe-mKjBqLZ1wUOha3FN6wl7vA_JsBO6n0VSHxXEqQ03sTi1LAz0II81RXs_UMMGyJS-PBfH37pGMW4jyuAyQo_NZR9KarpdlVYf5pIl1Kc=w408-h306-k-no,https://www.google.com/maps/place/?q=place_id:ChIJJbbyEKWDbjQRn-n80MD9Gsc,戶外,11.0,布袋鎮,2025-05-07 03:50:30,2025-05-07 12:20:59
-布袋海上巴士(蛋糕沙灘）,"
+布袋海上巴士(蛋糕沙灘),"
 星期三 10:00–16:00
 星期四 10:00–16:00
 星期五 10:00–16:00
@@ -20285,7 +20285,7 @@ Jijibanana集元果觀光工廠,"
 星期日 09:00–17:00
 星期一 09:00–17:00
 星期二 09:00–17:00",台南市,台南市官田區福田路99號,4.3,POINT(120.33550 23.18850),https://lh3.googleusercontent.com/p/AF1QipMch8mkG92ZaCXiC9HnYAAb6gPq6D7OYPbr9eCF=w408-h272-k-no,https://www.google.com/maps/place/?q=place_id:ChIJrz3TiSV9bjQR-c2SIvSHNk8,室內,798.0,官田區,2025-05-07 03:50:30,2025-05-07 12:20:59
-南瀛天文館（兒童節連假正常開放）,,台南市,台南市大內區34之2號,4.7,POINT(120.39164 23.11766),https://lh3.googleusercontent.com/p/AF1QipN7KIEbK0uMTlSUncd6zVZtlVNDhe_1e__UIZHs=w408-h272-k-no,https://www.google.com/maps/place/?q=place_id:ChIJl64-Rn9jbjQRjciFlk2qCt0,室內,3458.0,大內區,2025-05-07 03:50:30,2025-05-07 12:20:59
+南瀛天文館(兒童節連假正常開放),,台南市,台南市大內區34之2號,4.7,POINT(120.39164 23.11766),https://lh3.googleusercontent.com/p/AF1QipN7KIEbK0uMTlSUncd6zVZtlVNDhe_1e__UIZHs=w408-h272-k-no,https://www.google.com/maps/place/?q=place_id:ChIJl64-Rn9jbjQRjciFlk2qCt0,室內,3458.0,大內區,2025-05-07 03:50:30,2025-05-07 12:20:59
 台南二寮觀日亭,"
 星期三 24 小時營業
 星期四 24 小時營業
@@ -20294,7 +20294,7 @@ Jijibanana集元果觀光工廠,"
 星期日 24 小時營業
 星期一 24 小時營業
 星期二 24 小時營業",台南市,台南市左鎮區二寮,4.5,POINT(120.40987 22.99274),https://lh3.googleusercontent.com/gps-cs-s/AC9h4nryhbu5nwc4khpzEDfX2itj0bjS4IxnjdAjVMkHA64JnKkHZSrBNnsVVkRkYPheYWJ_MaPyzuMSynPwnlh7Enh5PPODSc3v7NzlTUB-Jv73aUMRc5sRqG9G0bRxRDR2uKRWH15LcA=w408-h272-k-no,https://www.google.com/maps/place/?q=place_id:ChIJ-XPq1RVvbjQRD21-L-YusKo,戶外,4871.0,左鎮區,2025-05-07 03:50:30,2025-05-07 12:20:59
-台南高爾夫俱樂部（台南球場）,"
+台南高爾夫俱樂部(台南球場),"
 星期三 05:00–19:00
 星期四 05:00–19:00
 星期五 05:00–19:00
@@ -20368,7 +20368,7 @@ Jijibanana集元果觀光工廠,"
 星期日 11:00–19:00
 星期一 11:00–21:00
 星期二 11:00–21:00",台北市,台北市大安區新生南路三段56巷7號2樓,4.6,POINT(121.53367 25.02053),https://lh3.googleusercontent.com/p/AF1QipNSRiz13XIXsZd85FPoM6E8jdKOkq3VZ8VqfQXU=w408-h292-k-no,https://www.google.com/maps/place/?q=place_id:ChIJLXtP_IipQjQReqJPCsSpNig,室內,289.0,大安區,2025-05-07 03:50:30,2025-05-07 12:20:59
-小小書房／小寫出版（小小創意有限公司）,"
+小小書房/小寫出版(小小創意有限公司),"
 星期三 12:30–22:00
 星期四 12:30–22:00
 星期五 12:30–22:00
