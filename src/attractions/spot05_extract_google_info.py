@@ -40,8 +40,17 @@ def get_google_info(url: str, driver, wait):
         )
         page_source = driver.page_source
         soup = BeautifulSoup(page_source, "html.parser")
-        b_hours_tag = soup.select_one(".eK4R0e.fontBodyMedium")
-        b_hours = b_hours_tag.text if b_hours_tag else ""
+        b_hours_tags = soup.select(".y0skZc")
+        b_hours = ""
+        if b_hours_tags:
+            for tag in b_hours_tags:
+                weekday = tag.select_one(".ylH6lf").text
+                b_hours += f"\n{weekday}"
+                times = tag.select(".G8aQO")
+                for time_ in times:
+                    b_hours += f" {time_.text}"
+        elif "永久歇業" in soup.text:
+            b_hours = "永久歇業"
         pic_url = soup.select_one("img[decoding='async']")["src"]
         rate_comm_tag = soup.select_one(".F7nice")
         rate = None
