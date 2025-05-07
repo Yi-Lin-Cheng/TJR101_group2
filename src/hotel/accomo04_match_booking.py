@@ -1,10 +1,15 @@
 import re
-
+from pathlib import Path
 import pandas as pd
 from rapidfuzz import fuzz
 
+# -------- 檔案路徑設定（實務常用寫法） --------
+file_path = Path(__file__).resolve().parents[2] / "data" / "hotel" / "accomo03_extract_booking.csv"
 
-# -------- 地址標準化函式 --------
+# -------- 讀取資料並做前處理 --------
+data = pd.read_csv(file_path, encoding="utf-8", engine="python")
+
+# --------地址標準化函式--------
 def normalize_address(text: str) -> str:
     text = re.sub(r"\s+", "", text.replace("-", "之").replace(",", ""))
     text = re.sub(r"f", "樓", text, flags=re.IGNORECASE)
@@ -41,13 +46,13 @@ def normalize_address(text: str) -> str:
 
     return f"{city_str}{area_str}{core}{no_str}{floor}"
 
-# -------- 名稱正規化 --------
+# --------名稱正規化--------
 def normalize_text(text):
     text = re.sub(r"\s+", "", text)
     text = text.replace("臺", "台")
     return text
 
-# -------- 模糊比對函式 --------
+# --------模糊比對函式--------
 def fuzzy_match(name1, name2, threshold=80):
     name1 = normalize_text(str(name1))
     name2 = normalize_text(str(name2))
@@ -60,8 +65,8 @@ def fuzzy_match(name1, name2, threshold=80):
     best_score = max(scores.values())
     return best_score >= threshold, best_score
 
-# -------- 讀取資料並做前處理 --------
-data = pd.read_csv("accomo03_extract_booking.csv", encoding="utf-8", engine="python")
+# # --------讀取資料並做前處理--------
+# data = pd.read_csv("accomo03_extract_booking.csv", encoding="utf-8", engine="python")
 data = data[~data["name"].isna()]
 data["add_open"] = data["add_open"].astype(str).apply(normalize_address)
 data["add"] = data["add"].astype(str).apply(normalize_address)
@@ -117,9 +122,5 @@ matched_data = matched_data.reset_index(drop=True)
 print(f"合併後比對成功總筆數：{len(matched_data)}")
 
 # -------- 輸出結果 --------
-matched_data.to_csv(
-    "accomo04_booking_test_with_score.csv",
-    encoding="utf-8",
-    header=True,
-    index=False,
-)    index=False,
+output_path = Path(__file__).resolve().parents[2] / "data" / "hotel" / "accomo04_match_booking.csv"
+matched_data.to_csv(output_path, encoding="utf-8", header=True, index=False)
