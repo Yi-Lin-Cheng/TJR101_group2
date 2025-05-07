@@ -52,12 +52,12 @@ def scroll_to_bottom(driver, pause_time=5, max_wait_time=300):
             retries = 0  # 有新增就重置
             last_count = current_count
 
-        # 超過兩次都沒有就停止
+        # 超過兩次都沒有新增，就停止
         if retries >= 2:
             print("卡片數未增加，停止滾動")
             break
 
-        # 超過最大等待時間就停止
+        # 超過最大等待時間
         if time.time() - start_time > max_wait_time:
             print("超過最大等待時間，停止滾動")
             break
