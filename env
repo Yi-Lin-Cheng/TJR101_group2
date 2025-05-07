@@ -1,0 +1,4 @@
+MySQL_host = "35.234.56.196"
+MySQL_user = "TJR101_2"
+MySQL_passwd = "TJR101_2pass"
+MySQL_db = "mydb"
