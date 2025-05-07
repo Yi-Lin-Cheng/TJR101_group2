@@ -23,7 +23,7 @@ def encoding_transform(file_path):
         return
 
     # 讀取文字內容
-    content = best_guess.text
+    content = str(best_guess)
 
     # 轉成 UTF-8 存檔
     with open(file_path, "w", encoding="utf-8", newline="") as f:
