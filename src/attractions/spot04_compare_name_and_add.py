@@ -82,7 +82,7 @@ def compare_name_and_add(data):
     # 清理名稱
     matched_data["s_name"] = matched_data["s_name"].apply(
         lambda name: (
-            re.split(r"\||│|｜|\-|－|/|／", name)[0] if len(name) > 20 else name
+            re.split(r"\||│|丨|｜|\-|－|/|／", name)[0] if len(name) > 20 else name
         )
     )
     return matched_data
