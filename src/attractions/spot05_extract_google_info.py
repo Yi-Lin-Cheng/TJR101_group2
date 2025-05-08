@@ -168,7 +168,7 @@ def main():
     data.loc[data["create_time"].isna(), "create_time"] = now
     gmaps_url_list = data["gmaps_url"].tolist()
     for i in range(start_idx, len(gmaps_url_list)):
-        if i % 50 == 0:
+        if i % 200 == 0:
             driver, wait, profile = web_open()
             if not driver:
                 break
@@ -197,7 +197,7 @@ def main():
         update_time_list.append(update_time)
         rate_list = [float(r) if r not in [None, ""] else None for r in rate_list]
         comm_list = [int(c) if str(c).isdigit() else None for c in comm_list]
-        if ((i + 1) % 50 == 0) or i + 1 == len(gmaps_url_list):
+        if ((i + 1) % 200 == 0) or (i + 1) == len(gmaps_url_list):
             end_idx = i + 1
             start_idx = end_idx - len(b_hours_list)
             data.loc[start_idx : end_idx - 1, "b_hours"] = b_hours_list

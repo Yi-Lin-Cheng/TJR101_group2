@@ -1,6 +1,8 @@
 from pathlib import Path
 
 import pandas as pd
+import uuid
+
 
 file_path = Path("data", "spot")
 
@@ -13,6 +15,8 @@ data = data.drop_duplicates(subset=["gmaps_url"])
 
 data["b_hours"] = data["b_hours"].str.replace("", "\n")
 
+for _,row in data.iterrows():
+    row["spot_id"] = str(uuid.uuid4()) if pd.isna(row["spot_id"]) else row["spot_id"]
 
 data.to_csv(
     file_path / "spot06_cleaned_final.csv",
