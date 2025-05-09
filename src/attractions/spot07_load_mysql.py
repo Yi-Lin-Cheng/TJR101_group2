@@ -28,6 +28,12 @@ def main():
     # 執行插入或更新
     for i, row in data.iterrows():
         values = [None if pd.isna(v) else v for v in row[base_columns]]
+        # values = []
+        # for v in row[base_columns]:
+        #     if pd.isna(v):
+        #         values.append(None)
+        #     else:
+        #         values.append(v)
         values.append(row["geo_loc"])
         cursor.execute(sql, values)
         print(f"第{i+1}筆完成")

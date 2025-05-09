@@ -75,7 +75,7 @@ def main():
     for row in data.itertuples():
         info, err_msg = get_place_info(row, gmaps_client)
         info_list += info
-        err_log += err_msg + "\n"
+        err_log += err_msg
         print(info)
 
     info_data = pd.DataFrame(info_list)

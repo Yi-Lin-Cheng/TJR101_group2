@@ -2,6 +2,7 @@ import random
 import re
 import shutil
 import time
+import uuid
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -17,6 +18,8 @@ new_file = data_dir / "spot04_compare_name_and_add_new.csv"
 update_target_file = data_dir / "spot05_extract_googlemap.csv"
 progress_file = data_dir / "spot05_extract_googlemap_progress.csv"
 err_log_file = data_dir / "spot05_extract_googlemap_err_log.txt"
+
+now = datetime.now().replace(microsecond=0)
 
 
 def read_data():
@@ -43,15 +46,17 @@ def read_data():
             encoding="utf-8",
             engine="python",
         )
+        data["spot_id"] = [str(uuid.uuid4()) for _ in range(len(data))]
         data["b_hours"] = ""
         data["rate"] = None
         data["pic_url"] = ""
         data["comm"] = None
-        data["create_time"] = pd.NaT
+        data["create_time"] = now
         data["update_time"] = pd.NaT
         # 按欄位順序排列
         data = data[
             [
+                "spot_id",
                 "s_name",
                 "b_hours",
                 "county",
@@ -75,7 +80,7 @@ def read_data():
                 engine="python",
             )
             data = pd.concat([data1, data], ignore_index=True)
-            data = data.drop_duplicates(subset=["gmaps_url"])
+            data = data.drop_duplicates(subset=["gmaps_url"],keep="first")
     return data
 
 
@@ -188,8 +193,6 @@ def main():
     start_idx = get_start_idx(data)
     if start_idx == -1:
         return
-    now = datetime.now().replace(microsecond=0)
-    data.loc[data["create_time"].isna(), "create_time"] = now
     gmaps_url_list = data["gmaps_url"].tolist()
     # 多久寫入一次dataframe並存檔
     batch_size = 200
@@ -221,11 +224,12 @@ def main():
         pic_url_list.append(result["pic_url"])
         comm_list.append(result["comm"])
         update_time_list.append(update_time)
-        rate_list = [float(r) if r not in [None, ""] else None for r in rate_list]
-        comm_list = [int(c) if str(c).isdigit() else None for c in comm_list]
+
         if ((i + 1) % batch_size == 0) or (i + 1) == len(gmaps_url_list):
             end_idx = i + 1
             start_idx = end_idx - len(b_hours_list)
+            rate_list = [float(r) if r not in [None, ""] else None for r in rate_list]
+            comm_list = [int(c) if str(c).isdigit() else None for c in comm_list]
             data.loc[start_idx : end_idx - 1, "b_hours"] = b_hours_list
             data.loc[start_idx : end_idx - 1, "rate"] = rate_list
             data.loc[start_idx : end_idx - 1, "pic_url"] = pic_url_list
