@@ -3,7 +3,7 @@ import re
 from datetime import datetime
 import uuid
 
-# 地址清理
+# -------- 地址清理函數 --------
 def cleaned_address(text):
     if pd.isna(text):
         return ""
@@ -28,7 +28,7 @@ def cleaned_address(text):
 
     return text
 
-# 縣市/鄉鎮區擷取
+# -------- 縣市/鄉鎮區 擷取函數 --------
 def extract_county_area(address):
     county_pattern = r"(台北市|新北市|桃園市|台中市|台南市|高雄市|基隆市|新竹市|嘉義市|新竹縣|苗栗縣|彰化縣|南投縣|雲林縣|嘉義縣|屏東縣|台東縣|花蓮縣|宜蘭縣)"
     area_pattern = r"([\u4e00-\u9fa5]{2,4}(區|鄉|鎮|市))|北區|東區|南區|西區|中區|那瑪夏區|阿里山鄉|三地門鄉|太麻里鄉"
@@ -41,7 +41,7 @@ def extract_county_area(address):
 
     return county, area
 
-# f_type 自動分類
+# -------- f_type 自動分類函數 --------
 def classify_f_type(f_name):
     if pd.isna(f_name):
         return "餐廳"
@@ -50,42 +50,11 @@ def classify_f_type(f_name):
         return "咖啡廳"
     return "餐廳"
 
-
-df = pd.read_csv("02_restaurants(compared)_raw_latest.csv", encoding="utf-8", engine="python")
-
-# 名稱修正
-mismatch = df['gov Name 景點名稱'] != df['名稱']
-df.loc[mismatch, 'gov Name 景點名稱'] = df.loc[mismatch, '名稱']
-df.drop(columns=['gov Name 景點名稱'], inplace=True)
-
-# 地址清洗
-df["地址"] = df["地址"].apply(cleaned_address)
-
-# 擷取 縣市與鄉鎮
-df[["county", "area"]] = df["地址"].apply(lambda x: pd.Series(extract_county_area(x)))
-
-# 刪除不需要的欄位
-columns_to_drop = ["gov Id 識別碼", "Place ID", "分類標籤", "營業狀態"]
-df.drop(columns=[col for col in columns_to_drop if col in df.columns], inplace=True)
-
-# geo_loc 欄位以 POINT(lng,lat) 格式
-df["geo_loc"] = df.apply(lambda row: f"POINT({row['經度']} {row['緯度']})", axis=1)
-df.drop(columns=["經度", "緯度"], inplace=True)
-
-# 欄位重新命名（中文 → 英文）
-rename_map = {
-    "名稱": "f_name",
-    "評分": "rate",
-    "評論數": "comm",
-    "地址": "address",
-    "營業時間": "b_hours",
-    "圖片資訊": "pic_url"
-}
-df.rename(columns=rename_map, inplace=True)
+# -------- 主處理流程 --------
+df = pd.read_csv("cafe_craw_googlemap.csv", encoding="utf-8", engine="python")
 
 # 新增所需欄位並填充
 df["food_id"] = [str(uuid.uuid4()) for _ in range(len(df))]
-df["gmaps_url"] = ""  # 暫無資料
 df["f_type"] = df["f_name"].apply(classify_f_type)  # 自動分類
 
 # 建立時間與更新時間
@@ -94,4 +63,4 @@ df["create_time"] = now_time
 df["update_time"] = now_time
 
 # 儲存結果
-df.to_csv("cleaned_restaurants_all.csv", index=False, encoding="utf-8")
+df.to_csv("cleaned_cafe_all.csv", index=False, encoding="utf-8")
