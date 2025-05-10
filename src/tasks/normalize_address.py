@@ -26,7 +26,7 @@ def normalize_address(text: str) -> str:
         "那瑪夏區|阿里山鄉|三地門鄉|太麻里鄉"
     )
     text = re.sub(r"(台灣)?\d{3,6}$", "", text)
-    text = re.sub(rf"^([0-9]{{3,6}})?台灣", "", text)
+    text = re.sub(rf"^([0-9]{{3,6}})?台灣?", "", text)
     text = re.sub(rf"({city_pattern})([0-9]{{3,5}})?", r"\1", text)
     text = re.sub(r"No\.?([0-9]+(?:之[0-9]+)?)", r"\1號", text, flags=re.IGNORECASE)
     text = re.sub(r"No", "", text, flags=re.IGNORECASE)
