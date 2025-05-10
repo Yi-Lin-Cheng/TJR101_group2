@@ -6,7 +6,7 @@ import pandas as pd
 from tasks import fuzzy_match, normalize_address
 from utils import to_half_width
 
-file_path = Path("data", "spot")
+data_dir = Path("data", "spot")
 
 
 def filter_types_and_town(data):
@@ -80,40 +80,36 @@ def compare_name_and_add(data):
     # 刪除重複名稱
     matched_data = matched_data.drop_duplicates(subset="place_id")
     print(f"過濾同ID最後留下的筆數{len(matched_data)}")
-    # 清理名稱
-    matched_data["s_name"] = matched_data["s_name"].apply(
-            lambda name: (
-                re.split(r"\||│|丨|｜|\-|－|/|／", name)[0] if len(name) > 20 else name
-            )
-        )
-    matched_data["s_name"] = matched_data["s_name"].apply(to_half_width)
     return matched_data
 
 
 def isindoor(matched_data):
-    indoor = r"館|中心|廳|共和國|廠|店|合作社"
-    s_name_list = matched_data["s_name"].to_list()
-    types_list = matched_data["types"].to_list()
-    type_list = []
+    matched_data["s_type"] = "戶外"
+    indoor_pattern = r"館|中心|廳|共和國|廠|店|合作社"
+    matched_data.loc[
+        matched_data["s_name"].str.contains(indoor_pattern, regex=True)
+        | matched_data["types"].str.contains("museum|store", regex=True),
+        "s_type",
+    ] = "室內"
 
-    for i in range(len(matched_data)):
-        if re.search(indoor, s_name_list[i]):
-            type_list.append("室內")
-        elif "museum" in types_list[i] or "store" in types_list[i]:
-            type_list.append("室內")
-        else:
-            type_list.append("戶外")
-    matched_data["s_type"] = type_list
     return matched_data
 
 
-def main():
-    data = pd.read_csv(
-        file_path / "spot03_googleapi_newdata.csv", encoding="utf-8", engine="python"
+def clean_name(matched_data):
+    # 清理名稱
+    matched_data.loc[matched_data["s_name"].str.len() > 20, "s_name"] = (
+        matched_data["s_name"].str.split(r"\||│|丨|｜|\-|－|/|／").str[0]
     )
-    data = filter_types_and_town(data)
-    matched_data = compare_name_and_add(data)
-    matched_data = isindoor(matched_data)
+    # matched_data["s_name"] = matched_data["s_name"].apply(
+    #     lambda name: (
+    #         re.split(r"\||│|丨|｜|\-|－|/|／", name)[0] if len(name) > 20 else name
+    #     )
+    # )
+    matched_data["s_name"] = matched_data["s_name"].apply(to_half_width)
+    return matched_data
+
+
+def select_columns(matched_data):
     final_data = pd.DataFrame(
         {
             "s_name": matched_data["s_name"],
@@ -129,8 +125,20 @@ def main():
             "area": matched_data["town_open"],
         }
     )
+    return final_data
+
+
+def main():
+    read_file = data_dir / "spot03_googleapi_newdata.csv"
+    save_file = data_dir / "spot04_compare_name_and_add_new.csv"
+    data = pd.read_csv(read_file, encoding="utf-8", engine="python")
+    data = filter_types_and_town(data)
+    matched_data = compare_name_and_add(data)
+    matched_data = isindoor(matched_data)
+    matched_data = clean_name(matched_data)
+    final_data = select_columns(matched_data)
     final_data.to_csv(
-        file_path / "spot04_compare_name_and_add_new.csv",
+        save_file,
         encoding="utf-8",
         header=True,
         index=False,

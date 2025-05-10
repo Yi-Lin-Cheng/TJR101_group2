@@ -2,6 +2,7 @@ import random
 import re
 import shutil
 import time
+import uuid
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -12,7 +13,142 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from utils import web_open
 
-file_path = Path("data", "spot")
+data_dir = Path("data", "spot")
+new_file = data_dir / "spot04_compare_name_and_add_new.csv"
+update_target_file = data_dir / "spot05_extract_googlemap.csv"
+progress_file = data_dir / "spot05_extract_googlemap_progress.csv"
+err_log_file = data_dir / "spot05_extract_googlemap_err_log.txt"
+
+now = datetime.now().replace(microsecond=0)
+
+
+def read_data():
+    """
+    Load and prepare data for processing.
+
+    If a progress file exists, resume from it (note: it will be deleted after a complete run).
+    If not, load the new data, add required columns, then load the old data,
+    merge them into a single DataFrame, and return it.
+
+    Returns:
+        pd.DataFrame: A combined DataFrame ready for processing.
+    """
+    if progress_file.exists():
+        print("發現進度檔案，從中斷處繼續")
+        data = pd.read_csv(
+            progress_file,
+            encoding="utf-8",
+            engine="python",
+        )
+    else:
+        data = pd.read_csv(
+            new_file,
+            encoding="utf-8",
+            engine="python",
+        )
+        data["spot_id"] = [str(uuid.uuid4()) for _ in range(len(data))]
+        data["b_hours"] = ""
+        data["rate"] = None
+        data["pic_url"] = ""
+        data["comm"] = None
+        data["create_time"] = now
+        data["update_time"] = pd.NaT
+        # 按欄位順序排列
+        data = data[
+            [
+                "spot_id",
+                "s_name",
+                "b_hours",
+                "county",
+                "address",
+                "rate",
+                "geo_loc",
+                "pic_url",
+                "gmaps_url",
+                "s_type",
+                "comm",
+                "area",
+                "create_time",
+                "update_time",
+            ]
+        ]
+
+        if update_target_file.exists():
+            data1 = pd.read_csv(
+                update_target_file,
+                encoding="utf-8",
+                engine="python",
+            )
+            data = pd.concat([data1, data], ignore_index=True)
+            data = data.drop_duplicates(subset=["gmaps_url"], keep="first")
+    return data
+
+
+def get_start_idx(data, threshold_hours: int = 20) -> int:
+    """
+    Return the index of the first row that requires an update based on 'update_time'.
+
+    Args:
+        data (pd.DataFrame): A DataFrame with an 'update_time' column.
+        threshold_hours (int): Number of hours after which a record is considered outdated.
+
+    Returns:
+        int: The index of the first outdated or missing record, or -1 if all are up to date.
+    """
+    data["update_time"] = pd.to_datetime(data["update_time"], errors="coerce")
+    if data["update_time"].notna().any():
+        condition1 = data["update_time"] <= datetime.now() - timedelta(
+            hours=threshold_hours
+        )
+        condition2 = data["update_time"].isna()
+        start_idx = data[condition1 | condition2].index.min()
+        if pd.isna(start_idx):
+            print("此階段已完成")
+            return -1
+        return start_idx
+    else:
+        return 0
+
+
+def process_batch(data, start_idx, batch_size):
+    driver, wait, profile = web_open()
+    b_hours_list = []
+    rate_list = []
+    pic_url_list = []
+    comm_list = []
+    update_time_list = []
+    err_log = ""
+    for i in range(start_idx, min(start_idx + batch_size, len(data))):
+        url = data.at[i, "gmaps_url"]
+        result = get_google_info(url, driver, wait)
+        if not result["error"]:
+            print(f"第{i+1}筆完成")
+            update_time = now
+        else:
+            err_msg = f"{datetime.now()}第{i+1}筆 {url} 出現錯誤"
+            print(err_msg)
+            err_log += err_msg + "\n"
+            update_time = data.at[i, "update_time"] or now
+        b_hours_list.append(result["b_hours"])
+        rate_list.append(result["rate"])
+        pic_url_list.append(result["pic_url"])
+        comm_list.append(result["comm"])
+        update_time_list.append(update_time)
+
+    rate_list = [float(r) if r not in [None, ""] else None for r in rate_list]
+    comm_list = [int(c) if str(c).isdigit() else None for c in comm_list]
+    end_idx = start_idx + len(b_hours_list)
+    data.loc[start_idx : end_idx - 1, "b_hours"] = b_hours_list
+    data.loc[start_idx : end_idx - 1, "rate"] = rate_list
+    data.loc[start_idx : end_idx - 1, "pic_url"] = pic_url_list
+    data.loc[start_idx : end_idx - 1, "comm"] = comm_list
+    data.loc[start_idx : end_idx - 1, "update_time"] = update_time_list
+    save_data(data, err_log)
+    print(f"第{i+1}筆儲存完成")
+    driver.quit()
+    shutil.rmtree(profile)
+    time.sleep(random.uniform(3, 5))
+    return data
 
 
 def get_google_info(url: str, driver, wait):
@@ -34,7 +170,7 @@ def get_google_info(url: str, driver, wait):
     """
     try:
         driver.get(url)
-        time.sleep(random.uniform(2, 4))
+        time.sleep(random.uniform(1, 2))
         wait.until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "img[decoding='async']"))
         )
@@ -68,84 +204,25 @@ def get_google_info(url: str, driver, wait):
             "error": False,
         }
     except Exception as err:
-        time.sleep(random.uniform(5, 10))
+        time.sleep(random.uniform(3, 5))
         return {"b_hours": "", "rate": None, "pic_url": "", "comm": None, "error": err}
-
-
-def read_data():
-    """
-    Load and prepare data for processing.
-
-    If a progress file exists, resume from it (note: it will be deleted after a complete run).
-    If not, load the new data, add required columns, then load the old data,
-    merge them into a single DataFrame, and return it.
-
-    Returns:
-        pd.DataFrame: A combined DataFrame ready for processing.
-    """
-    if (file_path / "spot05_extract_googlemap_progress.csv").exists():
-        print("發現進度檔案，從中斷處繼續")
-        data = pd.read_csv(
-            file_path / "spot05_extract_googlemap_progress.csv",
-            encoding="utf-8",
-            engine="python",
-        )
-    else:
-        data = pd.read_csv(
-            file_path / "spot04_compare_name_and_add_new.csv",
-            encoding="utf-8",
-            engine="python",
-        )
-        data["b_hours"] = ""
-        data["rate"] = None
-        data["pic_url"] = ""
-        data["comm"] = None
-        data["create_time"] = pd.NaT
-        data["update_time"] = pd.NaT
-        # 按欄位順序排列
-        data = data[
-            [
-                "s_name",
-                "b_hours",
-                "county",
-                "address",
-                "rate",
-                "geo_loc",
-                "pic_url",
-                "gmaps_url",
-                "s_type",
-                "comm",
-                "area",
-                "create_time",
-                "update_time",
-            ]
-        ]
-
-        if (file_path / "spot05_extract_googlemap.csv").exists():
-            data1 = pd.read_csv(
-                file_path / "spot05_extract_googlemap.csv",
-                encoding="utf-8",
-                engine="python",
-            )
-            data = pd.concat([data1, data], ignore_index=True)
-    return data
 
 
 def save_data(data, err_log):
     data.to_csv(
-        file_path / "spot05_extract_googlemap.csv",
+        update_target_file,
         encoding="utf-8",
         header=True,
         index=False,
     )
     data.to_csv(
-        file_path / "spot05_extract_googlemap_progress.csv",
+        progress_file,
         encoding="utf-8",
         header=True,
         index=False,
     )
     with open(
-        file_path / "spot05_extract_googlemap_err_log.txt",
+        err_log_file,
         "a",
         encoding="utf-8",
     ) as f:
@@ -154,65 +231,16 @@ def save_data(data, err_log):
 
 def main():
     data = read_data()
-    data["update_time"] = pd.to_datetime(data["update_time"], errors="coerce")
-    if data["update_time"].notna().any():
-        condition1 = data["update_time"] <= datetime.now() - timedelta(hours=20)
-        condition2 = data["update_time"].isna()
-        start_idx = data[condition1 | condition2].index.min()
-        if pd.isna(start_idx):
-            print("此階段已完成")
-            return
-    else:
-        start_idx = 0
-    now = datetime.now().replace(microsecond=0)
-    data.loc[data["create_time"].isna(), "create_time"] = now
-    gmaps_url_list = data["gmaps_url"].tolist()
-    for i in range(start_idx, len(gmaps_url_list)):
-        if i % 200 == 0:
-            driver, wait, profile = web_open()
-            if not driver:
-                break
-            b_hours_list = []
-            rate_list = []
-            pic_url_list = []
-            comm_list = []
-            update_time_list = []
-            err_log = ""
-        url = gmaps_url_list[i]
-        result = get_google_info(url, driver, wait)
-        if not result["error"]:
-            print(f"第{i+1}筆完成")
-            update_time = now
-        else:
-            err_msg = f"{datetime.now()}第{i+1}筆 {url} 出現錯誤"
-            print(err_msg)
-            err_log += err_msg + "\n"
-            update_time = (
-                data.at[i, "update_time"] if data.at[i, "update_time"] else now
-            )
-        b_hours_list.append(result["b_hours"])
-        rate_list.append(result["rate"])
-        pic_url_list.append(result["pic_url"])
-        comm_list.append(result["comm"])
-        update_time_list.append(update_time)
-        rate_list = [float(r) if r not in [None, ""] else None for r in rate_list]
-        comm_list = [int(c) if str(c).isdigit() else None for c in comm_list]
-        if ((i + 1) % 200 == 0) or (i + 1) == len(gmaps_url_list):
-            end_idx = i + 1
-            start_idx = end_idx - len(b_hours_list)
-            data.loc[start_idx : end_idx - 1, "b_hours"] = b_hours_list
-            data.loc[start_idx : end_idx - 1, "rate"] = rate_list
-            data.loc[start_idx : end_idx - 1, "pic_url"] = pic_url_list
-            data.loc[start_idx : end_idx - 1, "comm"] = comm_list
-            data.loc[start_idx : end_idx - 1, "update_time"] = update_time_list
-            save_data(data, err_log)
-            print(f"第{i+1}筆儲存完成")
-            time.sleep(random.uniform(4, 6))
-            driver.quit()
-            shutil.rmtree(profile)
+    start_idx = get_start_idx(data)
+    if start_idx == -1:
+        return
+    # 批次寫入dataframe並存檔的大小
+    batch_size = 200
+    for i in range(start_idx, len(data), batch_size):
+        data = process_batch(data, i, batch_size)
 
-    if (file_path / "spot05_extract_googlemap_progress.csv").exists():
-        (file_path / "spot05_extract_googlemap_progress.csv").unlink()
+    if progress_file.exists():
+        progress_file.unlink()
     print("已完成全部資料，進度檔案已刪除")
 
 

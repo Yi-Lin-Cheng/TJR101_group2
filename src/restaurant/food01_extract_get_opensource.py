@@ -4,13 +4,13 @@ import requests
 
 from utils import encoding_transform
 
-data_dir = Path("data", "spot")
+data_dir = Path("data", "restaurant")
 
 
 def main():
-    latest_file = data_dir / "spot01_open_data_raw_latest.csv"
-    previous_file = data_dir / "spot01_open_data_raw_previous.csv"
-    url = "https://media.taiwan.net.tw/XMLReleaseALL_public/Scenic_Spot_C_f.csv"
+    latest_file = data_dir / "restaurant01_open_data_raw_latest.csv"
+    previous_file = data_dir / "restaurant01_open_data_raw_previous.csv"
+    url = "https://media.taiwan.net.tw/XMLReleaseALL_public/Restaurant_C_f.csv"
     response = requests.get(url)
     if response.status_code == 200:
         if latest_file.exists():
