@@ -80,7 +80,7 @@ def read_data():
                 engine="python",
             )
             data = pd.concat([data1, data], ignore_index=True)
-            data = data.drop_duplicates(subset=["gmaps_url"],keep="first")
+            data = data.drop_duplicates(subset=["gmaps_url"], keep="first")
     return data
 
 
@@ -110,6 +110,47 @@ def get_start_idx(data, threshold_hours: int = 20) -> int:
         return 0
 
 
+def process_batch(data, start_idx, batch_size):
+    driver, wait, profile = web_open()
+    b_hours_list = []
+    rate_list = []
+    pic_url_list = []
+    comm_list = []
+    update_time_list = []
+    err_log = ""
+    for i in range(start_idx, min(start_idx + batch_size, len(data))):
+        url = data.at[i, "gmaps_url"]
+        result = get_google_info(url, driver, wait)
+        if not result["error"]:
+            print(f"第{i+1}筆完成")
+            update_time = now
+        else:
+            err_msg = f"{datetime.now()}第{i+1}筆 {url} 出現錯誤"
+            print(err_msg)
+            err_log += err_msg + "\n"
+            update_time = data.at[i, "update_time"] or now
+        b_hours_list.append(result["b_hours"])
+        rate_list.append(result["rate"])
+        pic_url_list.append(result["pic_url"])
+        comm_list.append(result["comm"])
+        update_time_list.append(update_time)
+
+    rate_list = [float(r) if r not in [None, ""] else None for r in rate_list]
+    comm_list = [int(c) if str(c).isdigit() else None for c in comm_list]
+    end_idx = start_idx + len(b_hours_list)
+    data.loc[start_idx : end_idx - 1, "b_hours"] = b_hours_list
+    data.loc[start_idx : end_idx - 1, "rate"] = rate_list
+    data.loc[start_idx : end_idx - 1, "pic_url"] = pic_url_list
+    data.loc[start_idx : end_idx - 1, "comm"] = comm_list
+    data.loc[start_idx : end_idx - 1, "update_time"] = update_time_list
+    save_data(data, err_log)
+    print(f"第{i+1}筆儲存完成")
+    driver.quit()
+    shutil.rmtree(profile)
+    time.sleep(random.uniform(3, 5))
+    return data
+
+
 def get_google_info(url: str, driver, wait):
     """
     Crawl business info from a Google Maps place page.
@@ -129,7 +170,7 @@ def get_google_info(url: str, driver, wait):
     """
     try:
         driver.get(url)
-        time.sleep(random.uniform(2, 4))
+        time.sleep(random.uniform(1, 2))
         wait.until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "img[decoding='async']"))
         )
@@ -163,7 +204,7 @@ def get_google_info(url: str, driver, wait):
             "error": False,
         }
     except Exception as err:
-        time.sleep(random.uniform(5, 10))
+        time.sleep(random.uniform(3, 5))
         return {"b_hours": "", "rate": None, "pic_url": "", "comm": None, "error": err}
 
 
@@ -193,53 +234,10 @@ def main():
     start_idx = get_start_idx(data)
     if start_idx == -1:
         return
-    gmaps_url_list = data["gmaps_url"].tolist()
-    # 多久寫入一次dataframe並存檔
+    # 批次寫入dataframe並存檔的大小
     batch_size = 200
-    for i in range(start_idx, len(gmaps_url_list)):
-        if i % batch_size == 0:
-            driver, wait, profile = web_open()
-            if not driver:
-                break
-            b_hours_list = []
-            rate_list = []
-            pic_url_list = []
-            comm_list = []
-            update_time_list = []
-            err_log = ""
-        url = gmaps_url_list[i]
-        result = get_google_info(url, driver, wait)
-        if not result["error"]:
-            print(f"第{i+1}筆完成")
-            update_time = now
-        else:
-            err_msg = f"{datetime.now()}第{i+1}筆 {url} 出現錯誤"
-            print(err_msg)
-            err_log += err_msg + "\n"
-            update_time = (
-                data.at[i, "update_time"] if data.at[i, "update_time"] else now
-            )
-        b_hours_list.append(result["b_hours"])
-        rate_list.append(result["rate"])
-        pic_url_list.append(result["pic_url"])
-        comm_list.append(result["comm"])
-        update_time_list.append(update_time)
-
-        if ((i + 1) % batch_size == 0) or (i + 1) == len(gmaps_url_list):
-            end_idx = i + 1
-            start_idx = end_idx - len(b_hours_list)
-            rate_list = [float(r) if r not in [None, ""] else None for r in rate_list]
-            comm_list = [int(c) if str(c).isdigit() else None for c in comm_list]
-            data.loc[start_idx : end_idx - 1, "b_hours"] = b_hours_list
-            data.loc[start_idx : end_idx - 1, "rate"] = rate_list
-            data.loc[start_idx : end_idx - 1, "pic_url"] = pic_url_list
-            data.loc[start_idx : end_idx - 1, "comm"] = comm_list
-            data.loc[start_idx : end_idx - 1, "update_time"] = update_time_list
-            save_data(data, err_log)
-            print(f"第{i+1}筆儲存完成")
-            time.sleep(random.uniform(4, 6))
-            driver.quit()
-            shutil.rmtree(profile)
+    for i in range(start_idx, len(data), batch_size):
+        data = process_batch(data, i, batch_size)
 
     if progress_file.exists():
         progress_file.unlink()

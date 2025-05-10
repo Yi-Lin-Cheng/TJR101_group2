@@ -16,7 +16,7 @@ def get_place_info(row, gmaps_client):
     Retrieve Google Maps place details for a given row of data.
 
     Args:
-        row (_PandasNamedTuple): A row from a DataFrame, typically passed from data.iterrows().
+        row (_PandasNamedTuple): A row from a DataFrame, typically passed from data.itertuples().
         gmaps_client (googlemaps.Client): An initialized Google Maps client instance.
             Make sure the API key is loaded from the .env file.
 
