@@ -30,7 +30,7 @@ def accomo03_extract_booking():
     else:
         print("沒有進度檔案，從頭開始")
         data_open = pd.read_csv(
-            file_path / "accomo02_open_data_filtered_new.csv",
+            file_path / "accomo02_added_rows_from_newdata_filtered.csv",
             encoding="utf-8",
             engine="python",
         )

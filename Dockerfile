@@ -2,9 +2,6 @@ FROM python:3.12-slim-bullseye
 
 ENV TZ=Asia/Taipei
 
-# 讓container認得外面的MySQL主機
-ENV API_HOST=http://host.docker.internal:3306 
-
 # 安裝基本工具與開發相關套件
 RUN apt-get update && \
     apt-get install -y \
