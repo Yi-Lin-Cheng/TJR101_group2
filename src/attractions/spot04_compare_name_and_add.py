@@ -15,7 +15,7 @@ def filter_types_and_town(data):
         & (data["types"].str.contains("point_of_interest"))
         & (~data["types"].str.contains("transit_station"))
         & (~data["types"].str.contains("hospital"))
-    ]
+    ].copy()
 
     data["region_open"] = data["region_open"].str.replace("臺", "台", regex=False)
     data = data[
@@ -37,10 +37,10 @@ def compare_name_and_add(data):
     # 開放資料跟GOOGLE到的資料名稱或地址一樣的留下，其餘的歸類到待處理
     matched_data1 = data[
         (data["name_open"] == data["s_name"]) | (data["add_open"] == data["address"])
-    ]
+    ].copy()
     pending_data = data[
         ~((data["name_open"] == data["s_name"]) | (data["add_open"] == data["address"]))
-    ]
+    ].copy()
 
     # 留下的資料裡面同一個地點可能有多筆資料，留下評論數高的
     matched_data1 = matched_data1.loc[matched_data1.groupby("id_open")["comm"].idxmax()]
@@ -65,8 +65,8 @@ def compare_name_and_add(data):
         if match:
             matched_indices.append(i)
 
-    matched_data2 = pending_data.loc[matched_indices]
-    pending_data = pending_data.drop(matched_indices)
+    matched_data2 = pending_data.loc[matched_indices].copy()
+    pending_data = pending_data.drop(matched_indices).copy()
 
     # 留下的資料裡面同一個地點可能有多筆資料，留下評論數高的
     matched_data2 = matched_data2.loc[matched_data2.groupby("id_open")["comm"].idxmax()]
@@ -97,14 +97,10 @@ def isindoor(matched_data):
 
 def clean_name(matched_data):
     # 清理名稱
+    matched_data = matched_data.copy()
     matched_data.loc[matched_data["s_name"].str.len() > 20, "s_name"] = (
         matched_data["s_name"].str.split(r"\||│|丨|｜|\-|－|/|／").str[0]
     )
-    # matched_data["s_name"] = matched_data["s_name"].apply(
-    #     lambda name: (
-    #         re.split(r"\||│|丨|｜|\-|－|/|／", name)[0] if len(name) > 20 else name
-    #     )
-    # )
     matched_data["s_name"] = matched_data["s_name"].apply(to_half_width)
     return matched_data
 
@@ -116,7 +112,7 @@ def select_columns(matched_data):
             "county": matched_data["region_open"],
             "address": matched_data["address"],
             "geo_loc": matched_data.apply(
-                lambda row: f"POINT({round(row['lng'], 5):.5f} {round(row['lat'], 5):.5f})",
+                lambda row: f"POINT({round(row['lat'], 5):.5f} {round(row['lng'], 5):.5f})",
                 axis=1,
             ),
             "gmaps_url": "https://www.google.com/maps/place/?q=place_id:"
