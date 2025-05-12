@@ -120,7 +120,7 @@ def process_batch(data, start_idx, batch_size):
     err_log = ""
     for i in range(start_idx, min(start_idx + batch_size, len(data))):
         url = data.at[i, "gmaps_url"]
-        result = get_google_info(url, driver, wait)
+        result = get_single_google_info(url, driver, wait)
         if not result["error"]:
             print(f"第{i+1}筆完成")
             update_time = now
@@ -151,7 +151,7 @@ def process_batch(data, start_idx, batch_size):
     return data
 
 
-def get_google_info(url: str, driver, wait):
+def get_single_google_info(url: str, driver, wait):
     """
     Crawl business info from a Google Maps place page.
 
