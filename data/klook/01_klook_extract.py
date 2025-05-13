@@ -289,7 +289,7 @@ def e_request_detail(url: str, error_count:int = 0):
     options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(service=service, options=options)
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
-    # driver.set_page_load_timeout(3)
+    driver.set_page_load_timeout(3)
     try:
         try:
             driver.get(url) # 更改網址以前往不同網頁
@@ -579,63 +579,63 @@ def t_county(df: pd.DataFrame):
 
 def main():
     # region 取得列表頁資料
-    # response_code, response_data = e_request_list()
-    # if response_code != 200:
-    #     print(f"請求失敗，status code: {response_code}")
-    #     response_data = e_reuqest_list_by_selenium()
+    response_code, response_data = e_request_list()
+    if response_code != 200:
+        print(f"請求失敗，status code: {response_code}")
+        response_data = e_reuqest_list_by_selenium()
         
-    # try:
-    #     parsed_data = e_parse_response_json(response_data)
-    #     activity_df = pd.DataFrame(parsed_data)
-    # finally:
-    #     activity_df.to_csv(f"{data_dir_path}/01_klook_data.csv", encoding="utf-8-sig", index=False)
+    try:
+        parsed_data = e_parse_response_json(response_data)
+        activity_df = pd.DataFrame(parsed_data)
+    finally:
+        activity_df.to_csv(f"{data_dir_path}/01_klook_data.csv", encoding="utf-8-sig", index=False)
     # endregion 取得列表頁資料
     
     # region 清理 title 資訊
-    # try:
-    #     df = pd.read_csv(f"{data_dir_path}/01_klook_data.csv", encoding="utf-8-sig")
-    #     df = t_title(df)
-    #     df.to_csv(f"{data_dir_path}/01_klook_transform_title_data.csv", encoding="utf-8-sig", index=False)
-    #     pass
-    # except Exception as e:
-    #     print(str(e))
+    try:
+        df = pd.read_csv(f"{data_dir_path}/01_klook_data.csv", encoding="utf-8-sig")
+        df = t_title(df)
+        df.to_csv(f"{data_dir_path}/01_klook_transform_title_data.csv", encoding="utf-8-sig", index=False)
+        pass
+    except Exception as e:
+        print(str(e))
     # endregion 清理 title 資訊
     
     # region 取得地址、位置資訊
-    # try:
-    #     df = pd.read_csv(f"{data_dir_path}/01_klook_transform_title_data.csv", encoding="utf-8-sig") 
-    #     df = e_update_address(df)
-    #     df.to_csv(f"{data_dir_path}/01_klook_data_update_address.csv", encoding="utf-8-sig", index=False)
-    # except Exception as e:
-    #     print(str(e))
+    try:
+        df = pd.read_csv(f"{data_dir_path}/01_klook_transform_title_data.csv", encoding="utf-8-sig") 
+        df = e_update_address(df)
+        df.to_csv(f"{data_dir_path}/01_klook_data_update_address.csv", encoding="utf-8-sig", index=False)
+    except Exception as e:
+        print(str(e))
     # endregion 取得地址、位置資訊
     
     # region 清理地理位置資訊
-    # try:
-    #     df = pd.read_csv(f"{data_dir_path}/01_klook_data_update_address.csv", encoding="utf-8-sig") 
-    #     df = t_address_location(df)
-    #     df.to_csv(f"{data_dir_path}/01_klook_data_transform_address.csv", encoding="utf-8-sig", index=False)
-    # except Exception as e:
-    #     print(str(e))    
+    try:
+        df = pd.read_csv(f"{data_dir_path}/01_klook_data_update_address.csv", encoding="utf-8-sig") 
+        df = t_address_location(df)
+        df.to_csv(f"{data_dir_path}/01_klook_data_transform_address.csv", encoding="utf-8-sig", index=False)
+    except Exception as e:
+        print(str(e))    
     # endregion 清理地理位置資訊
     
     # region 取得Google 座標
-    # try:
-    #     df = pd.read_csv(f"{data_dir_path}/01_klook_data_transform_address.csv", encoding="utf-8-sig") 
-    #     df = e_upadte_coordinate(df)
-    #     df.to_csv(f"{data_dir_path}/01_klook_data_update_coordinate.csv", encoding="utf-8-sig", index=False)
-    # except Exception as e:
-    #     print(str(e))    
+    try:
+        df = pd.read_csv(f"{data_dir_path}/01_klook_data_transform_address.csv", encoding="utf-8-sig") 
+        df = e_upadte_coordinate(df)
+        df.to_csv(f"{data_dir_path}/01_klook_data_update_coordinate.csv", encoding="utf-8-sig", index=False)
+    except Exception as e:
+        print(str(e))    
     # endregion
         
     # region 清理日期格式
-    # try:
+    try:
         
-    #     df = pd.read_csv(f"{data_dir_path}/01_klook_data_update_coordinate.csv", encoding="utf-8-sig") 
-    #     df = t_date(df)
-    #     df.to_csv(f"{data_dir_path}/01_klook_data_transform_date.csv", encoding="utf-8-sig", index=False)
-    # except Exception as e:
-    #     print(str(e))
+        df = pd.read_csv(f"{data_dir_path}/01_klook_data_update_coordinate.csv", encoding="utf-8-sig") 
+        df = t_date(df)
+        df.to_csv(f"{data_dir_path}/01_klook_data_transform_date.csv", encoding="utf-8-sig", index=False)
+    except Exception as e:
+        print(str(e))
     # endregion 清理日期格式
     
     # region 轉換字(臺->台)(county)
@@ -663,13 +663,6 @@ if __name__ == "__main__":
     print("=========== Program Start ===========")
 
     main()
-    # response_code, response_data = e_request_list()
-    # region 抓取detail address, location
-    # try:
-    #     activity_df = e_update_address(pd.read_csv("klook/01_klook_data.csv", encoding="utf-8-sig"))
-    # finally:
-    #     activity_df.to_csv("klook/01_klook_data.csv", encoding="utf-8-sig", index=False)
-    # endregion 抓取detail address, location
     
     print("----------- Program End -----------")
 
