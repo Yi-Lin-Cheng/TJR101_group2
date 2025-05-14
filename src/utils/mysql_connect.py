@@ -1,5 +1,4 @@
 import os
-from airflow.hooks.base import BaseHook
 import pymysql
 from dotenv import load_dotenv
 
@@ -29,6 +28,7 @@ def get_connection():
         print("Successfully connected via .env")
     except Exception as e:
         print(f".env 連線失敗，切換使用 Airflow Connection: {e}")
+        from airflow.hooks.base import BaseHook
         conn = BaseHook.get_connection("mysql_conn")
         conn = pymysql.connect(
             host=conn.host,

@@ -63,6 +63,7 @@ df[["county", "area"]] = df["address"].apply(extract_county_area).apply(pd.Serie
 df["geo_loc"] = df["geo_loc"].apply(loc_transform)
 # 清理名字
 df = clean_name(df)
+df = df.drop_duplicates(subset="f_name")
 # 建立時間與更新時間
 now_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 df["create_time"] = now_time
