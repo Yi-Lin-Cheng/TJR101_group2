@@ -49,7 +49,7 @@ def clean_address(text):
     return text
 
 # ---------------------
-# nmae清理
+# name清理
 # ---------------------
 def clean_name_advanced(text):
     if pd.isna(text): return ""

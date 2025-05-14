@@ -1,59 +1,57 @@
 import pandas as pd
-from sqlalchemy import create_engine, text
 from pathlib import Path
+from utils import get_connection, close_connection  # 原生連線函式
 
-# -------- 資料庫連線設定 --------
-db_config = {
-    "host": "35.234.56.196",
-    "port": 3306,
-    "user": "TJR101_2",
-    "password": "TJR101_2pass",
-    "database": "mydb",
-    "charset": "utf8mb4"
-}
+# -------- 根據是否在 Airflow container 中，動態設定資料夾路徑 --------
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/hotel")  # Airflow container 路徑
+else:
+    data_dir = Path("data/hotel")  # 本機開發環境路徑
 
 # -------- 讀取 CSV 檔案 --------
-file_path = Path(__file__).resolve().parents[2] / "data" / "hotel" / "accomo07_for_db.csv"
+file_path = data_dir / "accomo07_for_db.csv"
 df = pd.read_csv(file_path, encoding="utf-8")
 
-# -------- 建立 SQLAlchemy 引擎 --------
-conn_str = f"mysql+pymysql://{db_config['user']}:{db_config['password']}@{db_config['host']}:{db_config['port']}/{db_config['database']}?charset={db_config['charset']}"
-engine = create_engine(conn_str)
-
-# --------先"清空"舊的資料表 ACCOMO --------
-with engine.begin() as conn:
-    conn.execute(text("DELETE FROM ACCOMO"))
-
-# -------- 整理資料為批次寫入格式 --------
+# -------- 整理成批次寫入格式（轉成 tuple）--------
 records = []
 for _, row in df.iterrows():
-    records.append({
-        "accomo_id": row["accomo_id"],
-        "a_name": row["a_name"],
-        "county": row["county"],
-        "address": row["address"],
-        "rate": float(row["rate"]) if not pd.isna(row["rate"]) else None,
-        "geo_loc": row["geo_loc"],
-        "pic_url": row["pic_url"],
-        "b_url": row["b_url"],
-        "ac_type": row["ac_type"],
-        "comm": int(row["comm"]) if not pd.isna(row["comm"]) else None,
-        "area": row["area"],
-        "fac": row["fac"] if not pd.isna(row["fac"]) else None
-    })
+    records.append((
+        row["accomo_id"],
+        row["a_name"],
+        row["county"],
+        row["address"],
+        float(row["rate"]) if not pd.isna(row["rate"]) else None,
+        row["geo_loc"],  # WKT 格式，如 "POINT(121.5 25.0)"
+        row["pic_url"],
+        row["b_url"],
+        row["ac_type"],
+        int(row["comm"]) if not pd.isna(row["comm"]) else None,
+        row["area"],
+        row["fac"] if not pd.isna(row["fac"]) else None
+    ))
 
-# -------- 批次寫入資料 --------
-sql = text("""
+# -------- 原生 PyMySQL 支援的 SQL 語法（使用 %s）--------
+sql = """
     INSERT INTO ACCOMO (
         accomo_id, a_name, county, address, rate,
         geo_loc, pic_url, b_url, ac_type, comm, area, fac
     ) VALUES (
-        :accomo_id, :a_name, :county, :address, :rate,
-        ST_GeomFromText(:geo_loc), :pic_url, :b_url, :ac_type, :comm, :area, :fac
+        %s, %s, %s, %s, %s,
+        ST_GeomFromText(%s, 4326), %s, %s, %s, %s, %s, %s
     )
-""")
+"""
 
-with engine.begin() as conn:
-    conn.execute(sql, records)
+# -------- 執行資料表清空 + 匯入 --------
+conn, cursor = get_connection()
+
+# 清空原有資料（注意：不可在生產環境亂清除）
+cursor.execute("DELETE FROM ACCOMO")
+
+# 批次匯入資料
+cursor.executemany(sql, records)
+
+# 提交並關閉連線
+conn.commit()
+close_connection(conn, cursor)
 
 print(f"資料表 ACCOMO 清空並匯入 {len(records)} 筆資料")

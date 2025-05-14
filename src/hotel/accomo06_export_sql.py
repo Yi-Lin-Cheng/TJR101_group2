@@ -11,7 +11,7 @@ df = pd.read_csv(input_path, encoding="utf-8")
 df["accomo_id"] = df["id_open"]
 
 # -------- geo_loc：合併經緯度為 POINT --------
-df["geo_loc"] = df.apply(lambda r: f"POINT({r['lng']} {r['lat']})", axis=1)
+df["geo_loc"] = df.apply(lambda r: f"POINT({r['lat']} {r['lng']})", axis=1)
 
 # -------- 欄位轉換 --------
 df["a_name"] = df["name"]

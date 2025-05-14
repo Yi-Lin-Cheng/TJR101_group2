@@ -79,7 +79,7 @@ def parse_s_time(row):
         s_time = dates[0].split("(")[0]
         e_time = dates[1].split("(")[0]
         
-    else:
+    else:8
         s_time = date.split("(")[0]
         e_time = s_time
         
