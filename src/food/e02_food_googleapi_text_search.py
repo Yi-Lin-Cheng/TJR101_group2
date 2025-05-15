@@ -6,9 +6,18 @@ import pandas as pd
 from dotenv import load_dotenv
 
 load_dotenv()
-API_KEY = os.getenv("MySQL_host")
+try:
+    API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
+except Exception as e:
+    print(f"環境變數讀取失敗，改用 Airflow Variable: {e}")
+    from airflow.models import Variable
+
+    API_KEY = Variable.get("GOOGLE_MAPS_API_KEY")
 gmaps_client = googlemaps.Client(key=API_KEY)
-data_dir = Path("data", "spot")
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/food")
+else:
+    data_dir = Path("data/food")
 
 
 def get_place_info(row, gmaps_client):
@@ -16,7 +25,7 @@ def get_place_info(row, gmaps_client):
     Retrieve Google Maps place details for a given row of data.
 
     Args:
-        row (_PandasNamedTuple): A row from a DataFrame, typically passed from data.itertuples().
+        row (_PandasNamedTuple): A row from a DataFrame, typically passed from data.iterrows().
         gmaps_client (googlemaps.Client): An initialized Google Maps client instance.
             Make sure the API key is loaded from the .env file.
 
@@ -47,7 +56,7 @@ def get_place_info(row, gmaps_client):
             "town_open": town_open,
             "add_open": add_open,
             "place_id": place.get("place_id", ""),
-            "s_name": place.get("name", ""),
+            "f_name": place.get("name", ""),
             "rate": place.get("rating", None),
             "comm": place.get("user_ratings_total", None),
             "types": place.get("types", []),
@@ -62,9 +71,9 @@ def get_place_info(row, gmaps_client):
 
 
 def main():
-    read_file = data_dir / "spot02_added_rows_from_newdata_filtered.csv"
-    save_file = data_dir / "spot03_googleapi_newdata.csv"
-    err_log_file = data_dir / "spot03_googleapi_newdata_err_log.txt"
+    read_file = data_dir / "restaurant02_added_rows_from_newdata_filtered.csv"
+    save_file = data_dir / "restaurant03_googleapi_newdata.csv"
+    err_log_file = data_dir / "restaurant03_googleapi_newdata_err_log.txt"
     data = pd.read_csv(
         read_file,
         encoding="utf-8",

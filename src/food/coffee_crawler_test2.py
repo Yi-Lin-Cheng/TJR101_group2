@@ -1,17 +1,17 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
-import pandas as pd
+import os
 import random
+import re
 import shutil
 import time
-import re
-import os
+
+import pandas as pd
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 def get_unfinished_keywords(temp_folder="temp"):
@@ -59,16 +59,14 @@ def google_search(driver, keyword):
     """第二步、google_map搜尋"""
     # 等待搜尋列表出現
     coffee_search = WebDriverWait(driver, 15).until(
-        EC.presence_of_element_located(
-            (By.CSS_SELECTOR, "input#searchboxinput"))
+        EC.presence_of_element_located((By.CSS_SELECTOR, "input#searchboxinput"))
     )
     coffee_search.clear()
     coffee_search.send_keys(keyword)
 
     # 點擊搜尋按鈕
     coffee_search_button = WebDriverWait(driver, 15).until(
-        EC.element_to_be_clickable(
-            (By.CSS_SELECTOR, "button#searchbox-searchbutton"))
+        EC.element_to_be_clickable((By.CSS_SELECTOR, "button#searchbox-searchbutton"))
     )
     coffee_search_button.click()
 
@@ -80,24 +78,20 @@ def scroll_to_bottom(driver, pause_time=3, max_wait_time=300):
     retries = 0
 
     WebDriverWait(driver, 15).until(
-        EC.presence_of_element_located(
-            (By.CSS_SELECTOR, "div[role='feed']"))
+        EC.presence_of_element_located((By.CSS_SELECTOR, "div[role='feed']"))
     )
 
     # google map左邊面板
-    leftside_panel = driver.find_element(
-        By.CSS_SELECTOR, "div[role='feed']"
-    )
+    leftside_panel = driver.find_element(By.CSS_SELECTOR, "div[role='feed']")
 
     while True:
         # 滾動到底部
         driver.execute_script(
-            "arguments[0].scrollTop = arguments[0].scrollHeight", leftside_panel)
+            "arguments[0].scrollTop = arguments[0].scrollHeight", leftside_panel
+        )
         time.sleep(pause_time)
 
-        coffees = driver.find_elements(
-            By.CSS_SELECTOR, "div.Nv2PK.THOPZb.CpccDe"
-        )
+        coffees = driver.find_elements(By.CSS_SELECTOR, "div.Nv2PK.THOPZb.CpccDe")
 
         current_count = len(coffees)
         print(f"目前已載入的數量：{current_count}")
@@ -140,13 +134,14 @@ def get_google_map_data(driver):
             # 評分
             coffee_rate_elm = coffee.find_element(
                 By.CSS_SELECTOR,
-                "div.UaQhfb.fontBodyMedium > div:nth-child(3) > div > span.e4rVHe.fontBodyMedium > span > span.MW4etd"
+                "div.UaQhfb.fontBodyMedium > div:nth-child(3) > div > span.e4rVHe.fontBodyMedium > span > span.MW4etd",
             )
             coffee_rate = coffee_rate_elm.text
 
             # 評論數
             coffee_comm_elm = coffee.find_element(
-                By.CSS_SELECTOR, "span.e4rVHe.fontBodyMedium > span > span.UY7F9")
+                By.CSS_SELECTOR, "span.e4rVHe.fontBodyMedium > span > span.UY7F9"
+            )
             coffee_comm = coffee_comm_elm.text.strip("()")
 
             coffee_list.append(
@@ -211,13 +206,14 @@ def coffee_other_data(driver, coffee_list):
             time.sleep(random.uniform(3, 5))
 
             coffee_address_elm = driver.find_element(
-                By.CSS_SELECTOR, "div.Io6YTe.fontBodyMedium.kR99db.fdkmkc")
+                By.CSS_SELECTOR, "div.Io6YTe.fontBodyMedium.kR99db.fdkmkc"
+            )
             coffee["address"] = coffee_address_elm.text
 
             coffee_business_time_elm = driver.find_element(
-                By.CSS_SELECTOR, "div.t39EBf.GUrTXd")
-            coffee["b_time"] = coffee_business_time_elm.get_attribute(
-                "aria-label")
+                By.CSS_SELECTOR, "div.t39EBf.GUrTXd"
+            )
+            coffee["b_time"] = coffee_business_time_elm.get_attribute("aria-label")
 
         except:
             coffee["address"] = None
@@ -229,14 +225,28 @@ def coffee_other_data(driver, coffee_list):
 def get_search_keywords(category):
     """列出台灣縣市與指定類別的搜尋關鍵字"""
     taiwan_cities = [
-        "基隆市", "台北市", "新北市", "桃園市", "新竹市", "新竹縣", "宜蘭縣",
-        "苗栗縣", "台中市", "彰化縣", "南投縣", "雲林縣",
-        "嘉義市", "嘉義縣", "台南市", "高雄市", "屏東縣",
-        "花蓮縣", "台東縣",
+        "基隆市",
+        "台北市",
+        "新北市",
+        "桃園市",
+        "新竹市",
+        "新竹縣",
+        "宜蘭縣",
+        "苗栗縣",
+        "台中市",
+        "彰化縣",
+        "南投縣",
+        "雲林縣",
+        "嘉義市",
+        "嘉義縣",
+        "台南市",
+        "高雄市",
+        "屏東縣",
+        "花蓮縣",
+        "台東縣",
     ]
     finished_cities = get_unfinished_keywords(temp_folder="temp")
-    unfinished_cities = [
-        city for city in taiwan_cities if city not in finished_cities]
+    unfinished_cities = [city for city in taiwan_cities if city not in finished_cities]
 
     return [f"{city} {category}" for city in unfinished_cities]
 

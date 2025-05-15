@@ -1,4 +1,5 @@
 import re
+import uuid
 from pathlib import Path
 
 import pandas as pd
@@ -6,15 +7,19 @@ import pandas as pd
 from tasks import fuzzy_match, normalize_address
 from utils import to_half_width
 
-data_dir = Path("data", "spot")
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/food")
+else:
+    data_dir = Path("data/food")
 
 
 def filter_types_and_town(data):
     data = data[
         (data["business_status"] != "CLOSED_PERMANENTLY")
-        & (data["types"].str.contains("point_of_interest"))
-        & (~data["types"].str.contains("transit_station"))
-        & (~data["types"].str.contains("hospital"))
+        & (
+            (data["types"].str.contains("restaurant"))
+            | (data["types"].str.contains("cafe"))
+        )
     ].copy()
 
     data["region_open"] = data["region_open"].str.replace("臺", "台", regex=False)
@@ -36,10 +41,10 @@ def compare_name_and_add(data):
 
     # 開放資料跟GOOGLE到的資料名稱或地址一樣的留下，其餘的歸類到待處理
     matched_data1 = data[
-        (data["name_open"] == data["s_name"]) | (data["add_open"] == data["address"])
+        (data["name_open"] == data["f_name"]) | (data["add_open"] == data["address"])
     ].copy()
     pending_data = data[
-        ~((data["name_open"] == data["s_name"]) | (data["add_open"] == data["address"]))
+        ~((data["name_open"] == data["f_name"]) | (data["add_open"] == data["address"]))
     ].copy()
 
     # 留下的資料裡面同一個地點可能有多筆資料，留下評論數高的
@@ -56,7 +61,7 @@ def compare_name_and_add(data):
     matched_indices = []
     for i in range(len(pending_data)):
         name1 = pending_data.loc[i, "name_open"]
-        name2 = pending_data.loc[i, "s_name"]
+        name2 = pending_data.loc[i, "f_name"]
         if len(name1) + len(name2) >= 20:
             match, score = fuzzy_match(name1, name2, 65)
         else:
@@ -83,57 +88,61 @@ def compare_name_and_add(data):
     return matched_data
 
 
-def isindoor(matched_data):
-    matched_data["s_type"] = "戶外"
-    indoor_pattern = r"館|中心|廳|共和國|廠|店|合作社"
-    matched_data.loc[
-        matched_data["s_name"].str.contains(indoor_pattern, regex=True)
-        | matched_data["types"].str.contains("museum|store", regex=True),
-        "s_type",
-    ] = "室內"
-
-    return matched_data
-
-
 def clean_name(matched_data):
     # 清理名稱
     matched_data = matched_data.copy()
-    matched_data.loc[matched_data["s_name"].str.len() > 20, "s_name"] = (
-        matched_data["s_name"].str.split(r"\||│|丨|｜|\-|－|/|／").str[0]
+    matched_data.loc[matched_data["f_name"].str.len() > 20, "f_name"] = (
+        matched_data["f_name"].str.split(r"\||│|丨|｜|\-|－|/|／").str[0]
     )
-    matched_data["s_name"] = matched_data["s_name"].apply(to_half_width)
+    # matched_data["f_name"] = matched_data["f_name"].apply(
+    #     lambda name: (
+    #         re.split(r"\||│|丨|｜|\-|－|/|／", name)[0] if len(name) > 20 else name
+    #     )
+    # )
+    matched_data["f_name"] = matched_data["f_name"].apply(to_half_width)
     return matched_data
 
 
-def select_columns(matched_data):
-    final_data = pd.DataFrame(
-        {
-            "s_name": matched_data["s_name"],
-            "county": matched_data["region_open"],
-            "address": matched_data["address"],
-            "geo_loc": matched_data.apply(
-                lambda row: f"POINT({round(row['lat'], 5):.5f} {round(row['lng'], 5):.5f})",
-                axis=1,
-            ),
-            "gmaps_url": "https://www.google.com/maps/place/?q=place_id:"
-            + matched_data["place_id"],
-            "s_type": matched_data["s_type"],
-            "area": matched_data["town_open"],
-        }
-    )
-    return final_data
+def classify_f_type(types):
+    if "restaurant" in types:
+        return "餐廳"
+    else:
+        return "咖啡廳"
 
 
 def main():
-    read_file = data_dir / "spot03_googleapi_newdata.csv"
-    save_file = data_dir / "spot04_compare_name_and_add_new.csv"
-    data = pd.read_csv(read_file, encoding="utf-8", engine="python")
-    data = filter_types_and_town(data)
-    matched_data = compare_name_and_add(data)
-    matched_data = isindoor(matched_data)
-    matched_data = clean_name(matched_data)
-    final_data = select_columns(matched_data)
-    final_data.to_csv(
+    read_file = data_dir / "restaurant03_googleapi_newdata.csv"
+    save_file = data_dir / "restaurant04_compare_name_and_add_new.csv"
+    df = pd.read_csv(read_file, encoding="utf-8", engine="python")
+    df = filter_types_and_town(df)
+    df = compare_name_and_add(df)
+    df = clean_name(df)
+
+    df["food_id"] = [str(uuid.uuid4()) for _ in range(len(df))]
+    df["gmaps_url"] = "https://www.google.com/maps/place/?q=place_id:" + df["place_id"]
+    df["f_type"] = df["types"].apply(classify_f_type)  # 自動分類
+    df["geo_loc"] = df.apply(
+        lambda row: f"POINT({round(row['lat'], 5):.5f} {round(row['lng'], 5):.5f})",
+        axis=1,
+    )
+    df.rename(columns={"region_open": "county", "town_open": "area"}, inplace=True)
+    # 留下要得欄位
+    df = df[
+        [
+            "food_id",
+            "f_name",
+            "county",
+            "address",
+            "rate",
+            "geo_loc",
+            "gmaps_url",
+            "f_type",
+            "comm",
+            "area",
+        ]
+    ]
+
+    df.to_csv(
         save_file,
         encoding="utf-8",
         header=True,

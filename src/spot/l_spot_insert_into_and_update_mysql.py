@@ -4,7 +4,10 @@ import pandas as pd
 
 from utils import close_connection, get_connection
 
-data_dir = Path("data", "spot")
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/spot")
+else:
+    data_dir = Path("data/spot")
 
 
 def main():

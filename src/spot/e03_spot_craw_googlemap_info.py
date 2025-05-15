@@ -7,19 +7,23 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 import pandas as pd
+import pytz
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
 from utils import web_open
 
-data_dir = Path("data", "spot")
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/spot")
+else:
+    data_dir = Path("data/spot")
 new_file = data_dir / "spot04_compare_name_and_add_new.csv"
 update_target_file = data_dir / "spot05_extract_googlemap.csv"
 progress_file = data_dir / "spot05_extract_googlemap_progress.csv"
 err_log_file = data_dir / "spot05_extract_googlemap_err_log.txt"
-
-now = datetime.now().replace(microsecond=0)
+tz = pytz.timezone("Asia/Taipei")
+now = datetime.now(tz).replace(microsecond=0)
 
 
 def read_data():
@@ -81,6 +85,11 @@ def read_data():
             )
             data = pd.concat([data1, data], ignore_index=True)
             data = data.drop_duplicates(subset=["gmaps_url"], keep="first")
+    data["rate"] = data["rate"].astype("float64")
+    data["comm"] = data["comm"].astype("Int64")
+    data["update_time"] = pd.to_datetime(data["update_time"], errors="coerce")
+    if data["update_time"].dt.tz is None:
+        data["update_time"] = data["update_time"].dt.tz_localize("Asia/Taipei")
     return data
 
 
@@ -97,7 +106,7 @@ def get_start_idx(data, threshold_hours: int = 20) -> int:
     """
     data["update_time"] = pd.to_datetime(data["update_time"], errors="coerce")
     if data["update_time"].notna().any():
-        condition1 = data["update_time"] <= datetime.now() - timedelta(
+        condition1 = data["update_time"] <= datetime.now(tz) - timedelta(
             hours=threshold_hours
         )
         condition2 = data["update_time"].isna()
@@ -125,7 +134,7 @@ def process_batch(data, start_idx, batch_size):
             print(f"第{i+1}筆完成")
             update_time = now
         else:
-            err_msg = f"{datetime.now()}第{i+1}筆 {url} 出現錯誤"
+            err_msg = f"{datetime.now(tz)}第{i+1}筆 {url} 出現錯誤"
             print(err_msg)
             err_log += err_msg + "\n"
             update_time = data.at[i, "update_time"] or now

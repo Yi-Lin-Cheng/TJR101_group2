@@ -35,11 +35,11 @@ def clean_name(matched_data):
     matched_data["f_name"] = matched_data["f_name"].apply(to_half_width)
     return matched_data
 
+
 def loc_transform(geo_loc):
-    geo_loc = geo_loc.replace("POINT(","").replace(")","")
-    lng,lat = geo_loc.split()
+    geo_loc = geo_loc.replace("POINT(", "").replace(")", "")
+    lng, lat = geo_loc.split()
     return f"POINT({lat} {lng})"
-    
 
 
 # 主流程

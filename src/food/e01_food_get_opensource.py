@@ -4,7 +4,10 @@ import requests
 
 from utils import encoding_transform
 
-data_dir = Path("data", "food")
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/food")
+else:
+    data_dir = Path("data/food")
 
 
 def main():

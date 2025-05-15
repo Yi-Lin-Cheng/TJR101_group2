@@ -6,6 +6,7 @@ from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
+import pytz
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -13,6 +14,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from utils import web_open
 
 file_path = Path("data", "hotel")
+tz = pytz.timezone("Asia/Taipei")
 
 
 # 多數註解都是第一輪抓取，同時執行5隻selenium用的
@@ -66,6 +68,8 @@ def read_data():
         for col in new_cols:
             data[col] = None
         # data = data.loc[start:end,:].reset_index(drop=True)
+    data["rating"] = data["rating"].astype("float64")
+    data["user_rating_total"] = data["user_rating_total"].astype("Int64")
     return data
 
 
@@ -99,7 +103,7 @@ def process_batch(data, start_idx, batch_size):
         if not result["error"]:
             print(f"第{i+1}筆完成")
         else:
-            err_msg = f"{datetime.now()}第{i+1}筆 {data[i,"name_open"]} 出現錯誤"
+            err_msg = f"{datetime.now(tz)}第{i+1}筆 {data[i,"name_open"]} 出現錯誤"
             print(err_msg)
             err_log += err_msg + "\n"
 
