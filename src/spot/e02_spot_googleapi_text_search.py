@@ -6,12 +6,11 @@ import pandas as pd
 from dotenv import load_dotenv
 
 load_dotenv()
-try:
-    API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
-except Exception as e:
-    print(f"環境變數讀取失敗，改用 Airflow Variable: {e}")
-    from airflow.models import Variable
+API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
 
+if not API_KEY:
+    print("未讀取到環境變數，改從 Airflow Variable 載入 API_KEY")
+    from airflow.models import Variable
     API_KEY = Variable.get("GOOGLE_MAPS_API_KEY")
 gmaps_client = googlemaps.Client(key=API_KEY)
 if Path("/opt/airflow/data").exists():
