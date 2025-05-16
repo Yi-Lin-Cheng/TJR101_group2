@@ -1,7 +1,7 @@
 import pandas as pd
 import re
 from pathlib import Path
-from hotel.facility_map import replacements  # 匯入自定義設施縮寫對照表
+from hotel.facility_map import replacements  # 匯入設施對照表
 
 # -------- 讀取來源資料 --------
 input_path = Path(__file__).resolve().parents[2] / "data" / "hotel" / "accomo05_match_result.csv"
@@ -52,7 +52,7 @@ output_cols = [
 df_out = df[output_cols]
 
 # -------- 儲存輸出檔案 --------
-output_path = input_path.parent / "accomo07_for_db.csv"
+output_path = input_path.parent / "accomo06_for_db.csv"
 df_out.to_csv(output_path, index=False, encoding="utf-8-sig")
 
 print(f"轉換完成，檔案已儲存：{output_path}")
