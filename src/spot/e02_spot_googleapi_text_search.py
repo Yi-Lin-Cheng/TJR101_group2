@@ -13,8 +13,6 @@ except Exception as e:
     from airflow.models import Variable
 
     API_KEY = Variable.get("GOOGLE_MAPS_API_KEY")
-
-
 gmaps_client = googlemaps.Client(key=API_KEY)
 if Path("/opt/airflow/data").exists():
     data_dir = Path("/opt/airflow/data/spot")
