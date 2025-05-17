@@ -3,7 +3,10 @@ from pathlib import Path
 
 import pandas as pd
 
-data_dir = Path("data", "hotel")
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/hotel")
+else:
+    data_dir = Path("data/hotel")
 
 
 def main():
@@ -16,6 +19,7 @@ def main():
     data_new = data_latest[
         (~data_latest["Region"].str.contains(r"連江|金門|澎湖", na=False))
         & (~data_latest["Town"].str.contains(r"琉球|蘭嶼|綠島", na=False))
+        & (~data_latest["Add"].str.contains(r"連江|金門|澎湖|琉球|蘭嶼|綠島", na=False))
         & (~data_latest["Id"].isin(data_previous["Id"]))
     ]
 

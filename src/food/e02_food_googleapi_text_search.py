@@ -44,7 +44,7 @@ def get_place_info(row, gmaps_client):
     # search_result可能包含多個json，也可能一個都沒有
     if not search_result["results"]:
         err_msg = f"{name_open} couldn't find the result.\n"
-        return [], err_msg
+        return [{"name_open": name_open}], err_msg
 
     info_sublist = []
     for place in search_result["results"]:

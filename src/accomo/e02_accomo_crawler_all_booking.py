@@ -13,7 +13,10 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from utils import web_open
 
-file_path = Path("data", "hotel")
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/hotel")
+else:
+    data_dir = Path("data/hotel")
 tz = pytz.timezone("Asia/Taipei")
 
 
@@ -21,7 +24,8 @@ tz = pytz.timezone("Asia/Taipei")
 # def accomo03_extract_booking(start, end,step):
 #     if (file_path/f"accomo03_extract_booking_progress_part{step}.csv").exists():
 #         print("發現進度檔案，從中斷處繼續")
-#         data = pd.read_csv(file_path/f"accomo03_extract_booking_progress_part{step}.csv", encoding="utf-8", engine="python")
+#         data = pd.read_csv(file_path/f"accomo03_extract_booking_progress_part{step}.csv",
+#                encoding="utf-8", engine="python")
 def read_data():
     if (file_path / "accomo03_extract_booking_progress.csv").exists():
         print("發現進度檔案，從中斷處繼續")
