@@ -46,8 +46,8 @@ for _, row in df.iterrows():
     if pd.notna(lat_open) and pd.notna(lat) and pd.notna(lng_open) and pd.notna(lng):
         distance_km = haversine(lat_open, lng_open, lat, lng)
 
-    # 去除數字與英字
-    core_name_clean = re.sub(r"[0-9a-zA-Z]+", "", name_clean)
+    # # 去除數字與英字
+    # core_name_clean = re.sub(r"[0-9a-zA-Z]+", "", name_clean)
 
     # 比對分數分類
     if ((name_open == name or name_open_clean == name_clean or name_clean in name_open_clean) and add_open_clean == add_clean) \
