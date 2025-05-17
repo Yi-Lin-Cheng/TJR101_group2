@@ -9,6 +9,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
 
 from utils import get_connection, close_connection
@@ -42,9 +43,13 @@ wait = WebDriverWait(driver, 10)
 
 result_rows = []
 
-for _, row in df.iterrows():
+for i, row in df.iterrows():
     accomo_id = row["accomo_id"]
     url = row["b_url"]
+    # 測完可註記
+    # 每 100 筆顯示進度
+    if i % 100 == 0 and i != 0:
+        print(f"處理中：第 {i}/{len(df)} 筆...")
 
     try:
         driver.get(url)
@@ -58,8 +63,10 @@ for _, row in df.iterrows():
         if rating is not None and review_count is not None:
             result_rows.append((accomo_id, rating, review_count))
 
-    except:
-        continue  # 出錯就跳過，不報錯、不記錄
+    except TimeoutException:
+        continue  # 超過 10 秒沒找到就跳過
+    except Exception:
+        continue  # 其他錯誤也跳過
 
 driver.quit()
 
