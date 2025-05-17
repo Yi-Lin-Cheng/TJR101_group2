@@ -11,6 +11,7 @@ API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
 if not API_KEY:
     print("未讀取到環境變數，改從 Airflow Variable 載入 API_KEY")
     from airflow.models import Variable
+
     API_KEY = Variable.get("GOOGLE_MAPS_API_KEY")
 gmaps_client = googlemaps.Client(key=API_KEY)
 if Path("/opt/airflow/data").exists():

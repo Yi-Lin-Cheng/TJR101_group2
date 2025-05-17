@@ -1,4 +1,5 @@
 import os
+
 import pymysql
 from dotenv import load_dotenv
 
@@ -8,7 +9,7 @@ load_dotenv()  # 載入 .env 檔
 def get_connection():
     """
     Establish a connection to the MySQL database and return the connection and cursor objects.
-    
+
     Returns:
         tuple: A tuple containing:
             - conn: The MySQL connection object.
@@ -29,6 +30,7 @@ def get_connection():
     except Exception as e:
         print(f".env 連線失敗，切換使用 Airflow Connection: {e}")
         from airflow.hooks.base import BaseHook
+
         conn = BaseHook.get_connection("mysql_conn")
         conn = pymysql.connect(
             host=conn.host,
@@ -36,7 +38,7 @@ def get_connection():
             password=conn.password,
             database=conn.schema,
             port=conn.port or 3306,
-            charset="utf8mb4"
+            charset="utf8mb4",
         )
         print("Successfully connected via Airflow Connection")
     return conn, conn.cursor()
