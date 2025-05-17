@@ -6,9 +6,9 @@ import pandas as pd
 from accomo.remove_phrases import remove_phrases
 
 if Path("/opt/airflow/data").exists():
-    data_dir = Path("/opt/airflow/data/hotel")
+    data_dir = Path("/opt/airflow/data/accomo")
 else:
-    data_dir = Path("data/hotel")
+    data_dir = Path("data/accomo")
 
 
 # ---------------------

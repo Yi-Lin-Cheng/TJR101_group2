@@ -14,9 +14,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from utils import web_open
 
 if Path("/opt/airflow/data").exists():
-    data_dir = Path("/opt/airflow/data/hotel")
+    data_dir = Path("/opt/airflow/data/accomo")
 else:
-    data_dir = Path("data/hotel")
+    data_dir = Path("data/accomo")
 tz = pytz.timezone("Asia/Taipei")
 
 

@@ -6,9 +6,9 @@ import pandas as pd
 from utils import close_connection, get_connection  # 原生連線函式
 
 if Path("/opt/airflow/data").exists():
-    data_dir = Path("/opt/airflow/data/hotel")
+    data_dir = Path("/opt/airflow/data/accomo")
 else:
-    data_dir = Path("data/hotel")
+    data_dir = Path("data/accomo")
 
 
 def main():

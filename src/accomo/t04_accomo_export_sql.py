@@ -7,9 +7,9 @@ from hotel.facility_map import replacements  # 匯入自定義設施縮寫對照
 
 # -------- 讀取來源資料 --------
 if Path("/opt/airflow/data").exists():
-    data_dir = Path("/opt/airflow/data/hotel")
+    data_dir = Path("/opt/airflow/data/accomo")
 else:
-    data_dir = Path("data/hotel")
+    data_dir = Path("data/accomo")
 input_path = data_dir / "accomo05_match_result.csv"
 df = pd.read_csv(input_path, encoding="utf-8")
 

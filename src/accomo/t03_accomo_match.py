@@ -7,9 +7,9 @@ from rapidfuzz import fuzz
 
 # -------- 檔案路徑 --------
 if Path("/opt/airflow/data").exists():
-    data_dir = Path("/opt/airflow/data/hotel")
+    data_dir = Path("/opt/airflow/data/accomo")
 else:
-    data_dir = Path("data/hotel")
+    data_dir = Path("data/accomo")
 file_path = data_dir / "accomo04_clean_word.csv"
 df = pd.read_csv(file_path, encoding="utf-8")
 
