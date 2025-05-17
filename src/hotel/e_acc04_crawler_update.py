@@ -60,7 +60,7 @@ for i, row in df.iterrows():
         review_count = data.get("aggregateRating", {}).get("reviewCount")
 
         if rating is not None and review_count is not None:
-            rating = round(float(rating) / 2, 1)  # ⭐ 轉為 5 分制
+            rating = round(float(rating) / 2, 1)  # 轉成 5 分制
             result_rows.append((accomo_id, rating, int(review_count)))
 
     except TimeoutException:

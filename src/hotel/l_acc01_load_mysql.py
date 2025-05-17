@@ -1,38 +1,38 @@
 import pandas as pd
 from pathlib import Path
-from utils import get_connection, close_connection  # 連線函式
+from utils import get_connection, close_connection  # DB 連線模組
 
-# -------- 是否在 Airflow container 中，動態設定資料夾路徑 --------
-if Path("/opt/airflow/data").exists():
-    data_dir = Path("/opt/airflow/data/hotel")
-else:
-    data_dir = Path("data/hotel")
-
-# -------- 讀取 CSV 檔案 --------
+# -------- 路徑設定 --------
+data_dir = Path("/opt/airflow/data/hotel") if Path("/opt/airflow/data").exists() else Path("data/hotel")
 file_path = data_dir / "accomo06_for_db.csv"
-df = pd.read_csv(file_path, encoding="utf-8")
 
-# -------- 將 float64 欄位轉為 object，準備 NaN → None --------
+# -------- 載入資料 --------
+df = pd.read_csv(file_path, encoding="utf-8")
 for col in df.columns:
     if df[col].dtype == "float64":
         df[col] = df[col].astype(object)
-df = df.where(pd.notna(df), None)  # 將 NaN 替換為 None，符合 MySQL 看得懂的 NULL
+df = df.where(pd.notna(df),None)
 
-# -------- 欄位處理 --------
-update_columns = [
-    "a_name", "county", "address", "rate",
-    "geo_loc", "pic_url", "b_url", "ac_type",
-    "comm", "area", "fac"
+# -------- 欄位順序定義 --------
+all_columns = [
+    "accomo_id", "a_name", "county", "address", "rate",
+    "pic_url", "b_url", "ac_type", "comm", "area", "fac",
+    "geo_loc"
 ]
 
-# geo_loc 做 ST_GeomFromText 處理，其餘直接插入
-base_columns = [col for col in df.columns if col != "geo_loc"]
-all_columns = base_columns + ["geo_loc"]
+# -------- SQL 組合 --------
+update_columns = [
+    "a_name", "county", "address", "rate",
+    "pic_url", "b_url", "ac_type",
+    "comm", "area", "fac", "geo_loc"
+]
 
-# -------- 產出 SQL 語句 --------
-columns_str = ", ".join([f"{col}" for col in all_columns])
-placeholders = ", ".join(["%s"] * len(base_columns) + ["ST_GeomFromText(%s, 4326)"])
-update_clause = ", ".join([f"{col} = VALUES({col})" for col in update_columns])
+columns_str = ", ".join(f"`{col}`" for col in all_columns)
+placeholders = ", ".join(["%s"] * (len(all_columns) - 1) + [
+    "ST_GeomFromText(%s, 4326)"
+])
+update_clause = ", ".join([f"`{col}` = VALUES(`{col}`)" for col in update_columns])
+
 
 sql = f"""
     INSERT INTO ACCOMO ({columns_str})
@@ -40,13 +40,12 @@ sql = f"""
     ON DUPLICATE KEY UPDATE {update_clause}
 """
 
-# -------- 資料轉換為 list 傳入 executemany --------
 values_list = df[all_columns].values.tolist()
 
-# -------- 資料寫入資料庫 --------
+# -------- 寫入資料庫 --------
 conn, cursor = get_connection()
 cursor.executemany(sql, values_list)
 conn.commit()
 close_connection(conn, cursor)
 
-print(f"成功更新 ACCOMO  資料表，共處理 {len(values_list)} 筆資料")
+print(f"成功更新 ACCOMO 資料表，共處理 {len(values_list)} 筆資料")

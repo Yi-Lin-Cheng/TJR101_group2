@@ -10,8 +10,7 @@ df = pd.read_csv(input_path, encoding="utf-8")
 # -------- accomo_id：使用 id_open --------
 df["accomo_id"] = df["id_open"]
 
-# -------- geo_loc：合併經緯度為 POINT --------
-df["geo_loc"] = df.apply(lambda r: f"POINT({r['lng']} {r['lat']})", axis=1)
+# -------- 保留原始經緯度欄位，不產生 geo_loc --------
 
 # -------- 欄位轉換 --------
 df["a_name"] = df["name"]
@@ -44,7 +43,9 @@ def generate_fac_note(text):
 
 df["fac"] = df["facilities"].apply(generate_fac_note)
 
-# -------- 選擇輸出欄位順序（對應 SQL 欄位）--------
+# -------- 選擇輸出欄位順序（對應 SQL 欄位）-------- 
+# 加入 lat, lng 欄位，不要 geo_loc
+df["geo_loc"] = df.apply(lambda row:f"POINT({row["lat"]} {row["lng"]})", axis=1)
 output_cols = [
     "accomo_id", "a_name", "county", "address", "rate",
     "geo_loc", "pic_url", "b_url", "ac_type", "comm", "area", "fac"
