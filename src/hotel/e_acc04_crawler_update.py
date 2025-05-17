@@ -27,17 +27,17 @@ def get_safe_driver():
     return webdriver.Chrome(service=service, options=options)
 
 
-# 連線抓資料
+# -------- 連線抓取資料 --------
 conn, cursor = get_connection()
 cursor.execute("SELECT accomo_id, b_url FROM ACCOMO")
 rows = cursor.fetchall()
 df = pd.DataFrame(rows, columns=["accomo_id", "b_url"])
 close_connection(conn, cursor)
 
-# 過濾空的或無效網址
+# -------- 過濾無效網址 --------
 df = df[df["b_url"].notna() & df["b_url"].str.startswith("http")].reset_index(drop=True)
 
-# 開始爬蟲
+# -------- 開始爬蟲 --------
 driver = get_safe_driver()
 wait = WebDriverWait(driver, 10)
 
@@ -46,8 +46,7 @@ result_rows = []
 for i, row in df.iterrows():
     accomo_id = row["accomo_id"]
     url = row["b_url"]
-    # 測完可註記
-    # 每 100 筆顯示進度
+
     if i % 100 == 0 and i != 0:
         print(f"處理中：第 {i}/{len(df)} 筆...")
 
@@ -61,16 +60,17 @@ for i, row in df.iterrows():
         review_count = data.get("aggregateRating", {}).get("reviewCount")
 
         if rating is not None and review_count is not None:
-            result_rows.append((accomo_id, rating, review_count))
+            rating = round(float(rating) / 2, 1)  # ⭐ 轉為 5 分制
+            result_rows.append((accomo_id, rating, int(review_count)))
 
     except TimeoutException:
-        continue  # 超過 10 秒沒找到就跳過
+        continue
     except Exception:
-        continue  # 其他錯誤也跳過
+        continue
 
 driver.quit()
 
-# 輸出
+# -------- 輸出 CSV --------
 result_df = pd.DataFrame(result_rows, columns=["accomo_id", "rate", "comm"])
 today_str = date.today().strftime("%Y%m%d")
 

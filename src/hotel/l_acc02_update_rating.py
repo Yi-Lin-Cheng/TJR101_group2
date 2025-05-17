@@ -16,18 +16,17 @@ print(f"讀入檔案：{file_name}，筆數：{len(df)}")
 values_list = []
 for _, row in df.iterrows():
     values_list.append((
-        row["accomo_id"],
         float(row["rate"]) if not pd.isna(row["rate"]) else None,
-        int(row["comm"]) if not pd.isna(row["comm"]) else None
+        int(row["comm"]) if not pd.isna(row["comm"]) else None,
+        row["accomo_id"]
     ))
 
-# -------- SQL 語法（PyMySQL 標準） --------
+# -------- SQL 語法：改為 UPDATE --------
 sql = """
-    INSERT INTO ACCOMO (accomo_id, rate, comm)
-    VALUES (%s, %s, %s)
-    ON DUPLICATE KEY UPDATE
-        rate = VALUES(rate),
-        comm = VALUES(comm)
+    UPDATE ACCOMO
+    SET rate = %s,
+        comm = %s
+    WHERE accomo_id = %s
 """
 
 # -------- 資料寫入資料庫 --------
