@@ -298,7 +298,7 @@ def google_latlon(driver):
     print("Accupass第3輪經緯度爬蟲完成!")
 
 
-def main():
+def e_accupass_crawler():
     try:
         driver, wait, user_data_dir = web_open()
         accupass_crawler_list(driver)
@@ -317,4 +317,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    e_accupass_crawler()

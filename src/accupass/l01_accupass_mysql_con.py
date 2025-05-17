@@ -21,7 +21,7 @@ def read_from_csv(key):
     return df
 
 
-def main():
+def l_accupass_mysql_con():
     df = read_from_csv("four_step_t")
     df = df.where(pd.notnull(df), None)
 
@@ -83,4 +83,5 @@ def main():
         close_connection(conn, cursor)
 
 
-main()
+if __name__ == "__main__":
+    l_accupass_mysql_con()

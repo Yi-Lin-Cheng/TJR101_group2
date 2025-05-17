@@ -142,7 +142,7 @@ def clean_dropna_end(df):
     return df
 
 
-def main():
+def t_accupass_data_clean():
     df = read_from_csv("third_step_e")
 
     df = clean_dropna_first(df)
@@ -170,4 +170,5 @@ def main():
     print("清理完成!")
 
 
-main()
+if __name__ == "__main__":
+    t_accupass_data_clean()
