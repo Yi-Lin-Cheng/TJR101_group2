@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from hotel.facility_map import replacements  # 匯入自定義設施縮寫對照表
+from accomo.facility_map import replacements  # 匯入自定義設施縮寫對照表
 
 # -------- 讀取來源資料 --------
 if Path("/opt/airflow/data").exists():

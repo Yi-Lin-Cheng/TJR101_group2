@@ -27,17 +27,17 @@ tz = pytz.timezone("Asia/Taipei")
 #         data = pd.read_csv(file_path/f"accomo03_extract_booking_progress_part{step}.csv",
 #                encoding="utf-8", engine="python")
 def read_data():
-    if (file_path / "accomo03_extract_booking_progress.csv").exists():
+    if (data_dir / "accomo03_extract_booking_progress.csv").exists():
         print("發現進度檔案，從中斷處繼續")
         data = pd.read_csv(
-            file_path / "accomo03_extract_booking_progress.csv",
+            data_dir / "accomo03_extract_booking_progress.csv",
             encoding="utf-8",
             engine="python",
         )
     else:
         print("沒有進度檔案，從頭開始")
         data_open = pd.read_csv(
-            file_path / "accomo02_added_rows_from_newdata_filtered.csv",
+            data_dir / "accomo02_added_rows_from_newdata_filtered.csv",
             encoding="utf-8",
             engine="python",
         )
@@ -246,13 +246,13 @@ def get_single_booking_info(row, driver, wait):
 
 def save_data(data, err_log):
     data.to_csv(
-        file_path / "accomo03_extract_booking.csv",
+        data_dir / "accomo03_extract_booking.csv",
         encoding="utf-8",
         header=True,
         index=False,
     )
     data.to_csv(
-        file_path / "accomo03_extract_booking_progress.csv",
+        data_dir / "accomo03_extract_booking_progress.csv",
         encoding="utf-8",
         header=True,
         index=False,
@@ -270,8 +270,8 @@ def main():
     for i in range(start_idx, len(data), batch_size):
         data = process_batch(data, i, batch_size)
 
-    if (file_path / "accomo03_extract_booking_progress.csv").exists():
-        (file_path / "accomo03_extract_booking_progress.csv").unlink()
+    if (data_dir / "accomo03_extract_booking_progress.csv").exists():
+        (data_dir / "accomo03_extract_booking_progress.csv").unlink()
         print("已完成全部資料，進度檔案已刪除")
 
 
