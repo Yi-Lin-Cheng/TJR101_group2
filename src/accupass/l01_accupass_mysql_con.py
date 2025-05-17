@@ -1,11 +1,17 @@
 import uuid
+from pathlib import Path
 
 import pandas as pd
 import pymysql
 
 from utils import close_connection, get_connection
 
-data_name = {"four_step_t": "./data/accupass/t_04_accupass_clean.csv"}
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/accupass")
+else:
+    data_dir = Path("data/accupass")
+
+data_name = {"four_step_t": data_dir / "t_04_accupass_clean.csv"}
 
 
 def save_to_csv(data, key):

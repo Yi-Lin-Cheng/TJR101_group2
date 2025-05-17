@@ -1,10 +1,16 @@
 import re
+from pathlib import Path
 
 import pandas as pd
 
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/accupass")
+else:
+    data_dir = Path("data/accupass")
+
 data_name = {
-    "third_step_e": "./data/accupass/e_03_accupass_latlon.csv",
-    "four_step_t": "./data/accupass/t_04_accupass_clean.csv",
+    "third_step_e": data_dir / "e_03_accupass_latlon.csv",
+    "four_step_t": data_dir / "t_04_accupass_clean.csv",
 }
 
 

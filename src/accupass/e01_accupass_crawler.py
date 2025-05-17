@@ -1,6 +1,7 @@
 import random
 import re
 import time
+from pathlib import Path
 
 import pandas as pd
 from selenium.webdriver.common.by import By
@@ -9,10 +10,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from utils.web_open import web_open
 
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/accupass")
+else:
+    data_dir = Path("data/accupass")
+
 data_name = {
-    "first_step_e": "./data/accupass/e_01_accupass_crawler_list.csv",
-    "second_step_e": "./data/accupass/e_02_accupass_crawler_address.csv",
-    "third_step_e": "./data/accupass/e_03_accupass_latlon.csv",
+    "first_step_e": data_dir / "e_01_accupass_crawler_list.csv",
+    "second_step_e": data_dir / "e_02_accupass_crawler_address.csv",
+    "third_step_e": data_dir / "e_03_accupass_latlon.csv",
 }
 
 
