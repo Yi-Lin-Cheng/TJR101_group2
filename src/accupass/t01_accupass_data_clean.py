@@ -1,10 +1,12 @@
-import pandas as pd
 import re
+
+import pandas as pd
 
 data_name = {
     "third_step_e": "./data/accupass/e_03_accupass_latlon.csv",
     "four_step_t": "./data/accupass/t_04_accupass_clean.csv",
 }
+
 
 def save_to_csv(data, key):
     filename = data_name.get(key)
@@ -30,7 +32,7 @@ def clean_address(text):
     text = re.sub(r"(\b台中(?:市)?)\1", "", text)
 
     # 統一括號格式
-    text = re.sub(r'^"(.*)"$', r'\1', text)
+    text = re.sub(r'^"(.*)"$', r"\1", text)
     text = re.sub(r"（(.*?)）", r"(\1)", text)
 
     # 清理地址
@@ -42,7 +44,10 @@ def clean_address(text):
 
     # 清理英文
     text = re.sub(
-        r",?\s?(Taipei|New Taipei|Kaohsiung|Taichung|Tainan|Chiayi|Keelung|Hsinchu)\s?City,?\s?Taiwan", "", text)
+        r",?\s?(Taipei|New Taipei|Kaohsiung|Taichung|Tainan|Chiayi|Keelung|Hsinchu)\s?City,?\s?Taiwan",
+        "",
+        text,
+    )
 
     # 清理郵遞區號
     text = re.sub(r"^\d{3,6}\s*", "", text)
@@ -60,7 +65,9 @@ def clean_address(text):
 
 def clean_address_add(text):
     text = re.sub(r"^(基隆|台北|新北|桃園|台中|台南|高雄)(?![縣市])", r"\1市", text)
-    text = re.sub(r"^(宜蘭|苗栗|彰化|南投|雲林|屏東|花蓮|台東)(?![縣市])", r"\1縣", text)
+    text = re.sub(
+        r"^(宜蘭|苗栗|彰化|南投|雲林|屏東|花蓮|台東)(?![縣市])", r"\1縣", text
+    )
     return text
 
 
@@ -76,16 +83,18 @@ def add_start_end_date(df):
 
     df["e_time"] = df["e_time"].str.replace(r"\([A-Za-z]{3}\)", "", regex=True)
 
-    pattern = re.compile((
-        r"(?P<start_date>\d{4}\.\d{2}\.\d{2}\s*)"
-        r"(?P<start_time>\d{2}\:\d{2})"
-        r"\s*\-\s*"
-        r"(?:"
-        r"(?P<end_full_date>\d{4}\.\d{2}\.\d{2}\s*\d{2}\:\d{2})"
-        r"|(?P<end_date_and_time>\d{2}\.\d{2}\s*\d{2}\:\d{2})"
-        r"|(?P<end_time>\d{2}\:\d{2})"
-        r")"
-    ))
+    pattern = re.compile(
+        (
+            r"(?P<start_date>\d{4}\.\d{2}\.\d{2}\s*)"
+            r"(?P<start_time>\d{2}\:\d{2})"
+            r"\s*\-\s*"
+            r"(?:"
+            r"(?P<end_full_date>\d{4}\.\d{2}\.\d{2}\s*\d{2}\:\d{2})"
+            r"|(?P<end_date_and_time>\d{2}\.\d{2}\s*\d{2}\:\d{2})"
+            r"|(?P<end_time>\d{2}\:\d{2})"
+            r")"
+        )
+    )
 
     for text in df["e_time"]:
         match = pattern.match(text)
@@ -115,7 +124,8 @@ def add_start_end_date(df):
     df["e_time"] = e_times
     df["e_time"] = df["e_time"].str.replace(r"\s+", " ", regex=True)
     df["e_time"] = df["e_time"].str.replace(
-        r"(\d{4})\s(\d{2}\.\d{2})", r"\1.\2", regex=True)
+        r"(\d{4})\s(\d{2}\.\d{2})", r"\1.\2", regex=True
+    )
     df["e_time"] = pd.to_datetime(df["e_time"])
     return df
 
@@ -139,11 +149,22 @@ def main():
     df["address"] = df["address"].apply(clean_address)
     df["address"] = df["address"].apply(clean_address_add)
     df = add_region_town(df)
-    df =  add_start_end_date(df)
+    df = add_start_end_date(df)
 
     df = df.rename(columns={"city": "county"})
-    df = df[["e_name", "s_time", "e_time", "county", "address",
-             "geo_loc", "pic_url", "accupass_url", "tag"]]
+    df = df[
+        [
+            "e_name",
+            "s_time",
+            "e_time",
+            "county",
+            "address",
+            "geo_loc",
+            "pic_url",
+            "accupass_url",
+            "tag",
+        ]
+    ]
 
     save_to_csv(df, "four_step_t")
     print("清理完成!")

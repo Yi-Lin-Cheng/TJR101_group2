@@ -1,18 +1,20 @@
+import random
+import re
+import time
+
+import pandas as pd
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from utils.web_open import web_open
 
-import pandas as pd
-import random
-import time
-import re
+from utils.web_open import web_open
 
 data_name = {
     "first_step_e": "./data/accupass/e_01_accupass_crawler_list.csv",
     "second_step_e": "./data/accupass/e_02_accupass_crawler_address.csv",
     "third_step_e": "./data/accupass/e_03_accupass_latlon.csv",
 }
+
 
 def save_to_csv(data, key):
     filename = data_name.get(key)
@@ -34,13 +36,11 @@ def scroll_to_bottom(driver, pause_time=5, max_wait_time=300):
 
     while True:
         # 滾動到底部
-        driver.execute_script(
-            "window.scrollTo(0, document.body.scrollHeight);")
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(pause_time)
 
         # 取得活動數量
-        cards = driver.find_elements(
-            By.CSS_SELECTOR, ".Events-c1fc08e1-event-card")
+        cards = driver.find_elements(By.CSS_SELECTOR, ".Events-c1fc08e1-event-card")
         current_count = len(cards)
         print(f"目前已載入活動數量：{current_count}")
 
@@ -71,13 +71,19 @@ def accupass_crawler_list(driver):
     # 等待活動載入
     WebDriverWait(driver, 20).until(
         EC.presence_of_element_located(
-            (By.CSS_SELECTOR, "#content > div > div.SearchPage-d3ff7972-container > main > section > div.Grid-e7cd5bad-container > div:nth-child(2) > div")))
+            (
+                By.CSS_SELECTOR,
+                "#content > div > div.SearchPage-d3ff7972-container > main > section > div.Grid-e7cd5bad-container > div:nth-child(2) > div",
+            )
+        )
+    )
 
     # 滾到底部直到不再載入新資料
     scroll_to_bottom(driver)
 
     accupass_cards = driver.find_elements(
-        By.XPATH, '//div[contains(@class, "EventCard-e27ded2d-home-event-card")]')
+        By.XPATH, '//div[contains(@class, "EventCard-e27ded2d-home-event-card")]'
+    )
 
     accupass_data = []
 
@@ -85,34 +91,43 @@ def accupass_crawler_list(driver):
         try:
             # 名稱
             name_elm = card.find_element(
-                By.XPATH, './/div[contains(@class, "EventCard-f0d917f9-event-content")]//p[contains(@class, "EventCard-de38a23c-event-name")]',)
+                By.XPATH,
+                './/div[contains(@class, "EventCard-f0d917f9-event-content")]//p[contains(@class, "EventCard-de38a23c-event-name")]',
+            )
             e_name = name_elm.text
             if not e_name:
                 continue
 
             # 時間（日期）
             time_elm = card.find_element(
-                By.XPATH, './/div[contains(@class, "EventCard-f0d917f9-event-content")]//p[contains(@class, "EventCard-c051398a-event-time")]',)
+                By.XPATH,
+                './/div[contains(@class, "EventCard-f0d917f9-event-content")]//p[contains(@class, "EventCard-c051398a-event-time")]',
+            )
             e_time = time_elm.text
 
             # 縣市
             county_elm = card.find_element(
-                By.XPATH, './/div[contains(@class, "EventCard-a800ada2-sub-info-container")]//span',)
+                By.XPATH,
+                './/div[contains(@class, "EventCard-a800ada2-sub-info-container")]//span',
+            )
             e_county = county_elm.text
 
             # 標籤
             tag_elm = card.find_element(
-                By.XPATH, './/div[contains(@class, "TagStatsBottom-c31d7527-tags-container")]//a',)
+                By.XPATH,
+                './/div[contains(@class, "TagStatsBottom-c31d7527-tags-container")]//a',
+            )
             e_tag = tag_elm.text
 
             # 圖片連結
             pic_elm = card.find_element(
-                By.XPATH, './/div[contains(@class, "EventCard-c48c2d9c-event-photo")]//img',)
+                By.XPATH,
+                './/div[contains(@class, "EventCard-c48c2d9c-event-photo")]//img',
+            )
             e_pic_url = pic_elm.get_attribute("src")
 
             # 連結
-            url_elm = card.find_element(
-                By.XPATH, './/a[starts-with(@href, "/event/")]')
+            url_elm = card.find_element(By.XPATH, './/a[starts-with(@href, "/event/")]')
             accupass_url = url_elm.get_attribute("href")
 
             accupass_data.append(
@@ -123,7 +138,8 @@ def accupass_crawler_list(driver):
                     "tag": e_tag,
                     "pic_url": e_pic_url,
                     "accupass_url": accupass_url,
-                })
+                }
+            )
 
         except Exception as e:
             print(f"沒有活動：{e}")
@@ -135,7 +151,8 @@ def accupass_crawler_list(driver):
                     "tag": None,
                     "pic_url": None,
                     "accupass_url": None,
-                })
+                }
+            )
 
     df = pd.DataFrame(accupass_data)
     df = df[df["e_name"].notna() & (df["e_name"].str.strip() != "")]
@@ -158,12 +175,19 @@ def accupass_crawler_address(driver):
         driver.get(url)
 
         WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.XPATH, "//div[contains(@class, 'EventDetail-module-f47e87db-event-subtitle-content')]")))
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    "//div[contains(@class, 'EventDetail-module-f47e87db-event-subtitle-content')]",
+                )
+            )
+        )
 
         try:
             # 活動通地址
             e_address_elm = driver.find_element(
-                By.XPATH, "//div[contains(@class, 'EventDetail-module-d6b190fd-event-external-link')]"
+                By.XPATH,
+                "//div[contains(@class, 'EventDetail-module-d6b190fd-event-external-link')]",
             )
             e_address = e_address_elm.text
 
@@ -184,18 +208,20 @@ def clean_for_search(df):
     """爬經緯度：暫時分離樓層"""
     df["floor"] = df["address"].str.extract(r"(\d+樓(?:之\d+)?)")
     df["clean_address"] = df["address"].str.replace(
-        r"(\d+樓(?:之\d+)?)", "", regex=True)
+        r"(\d+樓(?:之\d+)?)", "", regex=True
+    )
     return df
 
 
 def change_for_search(df):
     """修改地址"""
+    df["clean_address"] = df["clean_address"].str.replace("台灣", "", regex=False)
     df["clean_address"] = df["clean_address"].str.replace(
-        "台灣", "", regex=False)
+        "Sherlock Board game store", "台北市大安區仁愛路四段345巷4弄24號", regex=False
+    )
     df["clean_address"] = df["clean_address"].str.replace(
-        "Sherlock Board game store", "台北市大安區仁愛路四段345巷4弄24號", regex=False)
-    df["clean_address"] = df["clean_address"].str.replace(
-        "台北市DeRoot休閒空間", "台北市中正區新生南路一段60號B1", regex=False)
+        "台北市DeRoot休閒空間", "台北市中正區新生南路一段60號B1", regex=False
+    )
     return df
 
 
@@ -221,7 +247,8 @@ def google_latlon(driver):
             # 搜尋框
             search_box = WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located(
-                    (By.CSS_SELECTOR, "input#searchboxinput"))
+                    (By.CSS_SELECTOR, "input#searchboxinput")
+                )
             )
             search_box.clear()
             search_box.send_keys(address)
@@ -229,14 +256,14 @@ def google_latlon(driver):
             # 點擊搜尋按鈕
             search_button = WebDriverWait(driver, 5).until(
                 EC.element_to_be_clickable(
-                    (By.CSS_SELECTOR, "button#searchbox-searchbutton"))
+                    (By.CSS_SELECTOR, "button#searchbox-searchbutton")
+                )
             )
             search_button.click()
 
             # 等經緯度出現
             WebDriverWait(driver, 5).until(EC.url_contains("!3d"))
-            WebDriverWait(driver, 5).until(
-                EC.url_matches(r"!3d([-.\d]+)!4d([-.\d])+"))
+            WebDriverWait(driver, 5).until(EC.url_matches(r"!3d([-.\d]+)!4d([-.\d])+"))
 
             # 抓經緯度
             maps_url = driver.current_url
@@ -259,11 +286,17 @@ def google_latlon(driver):
 
     # 合併地址樓層
     df["address"] = df.apply(
-        lambda add: add["clean_address"] + add["floor"]
-        if pd.notna(add["floor"]) else add["clean_address"], axis=1)
+        lambda add: (
+            add["clean_address"] + add["floor"]
+            if pd.notna(add["floor"])
+            else add["clean_address"]
+        ),
+        axis=1,
+    )
 
     save_to_csv(df, "third_step_e")
     print("Accupass第3輪經緯度爬蟲完成!")
+
 
 def main():
     try:
@@ -281,6 +314,7 @@ def main():
 
     except Exception as e:
         print("執行主流程時發生錯誤：", e)
+
 
 if __name__ == "__main__":
     main()
