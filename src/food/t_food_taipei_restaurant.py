@@ -31,5 +31,6 @@ def main():
         data_dir / "taipei_restaurant_cleaned.csv", index=False, encoding="utf-8"
     )
 
+
 if __name__ == "__main__":
     main()
