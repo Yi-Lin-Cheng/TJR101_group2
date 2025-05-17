@@ -3,7 +3,7 @@ import re
 
 data_name = {
     "third_step_e": "./data/accupass/e_03_accupass_latlon.csv",
-    "four_step_t": "./data/accupass/e_04_accupass_clean.csv",
+    "four_step_t": "./data/accupass/t_04_accupass_clean.csv",
 }
 
 def save_to_csv(data, key):
