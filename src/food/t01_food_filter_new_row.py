@@ -17,7 +17,7 @@ def main():
     data_previous = pd.read_csv(previous_file, encoding="utf-8", engine="python")
 
     data_new = data_latest[
-        (~data_latest["Class"].str.contains("6", na=False))
+        (~data_latest["Class"].astype(str).str.contains("6", na=False))
         & (~data_latest["Region"].str.contains(r"連江|金門|澎湖", na=False))
         & (~data_latest["Town"].str.contains(r"琉球|蘭嶼|綠島", na=False))
         & (~data_latest["Id"].isin(data_previous["Id"]))
