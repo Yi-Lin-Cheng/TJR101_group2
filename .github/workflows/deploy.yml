@@ -10,20 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code (optional)
-        uses: actions/checkout@v3
-
-      - name: Write SSH key to file
-        run: |
-          echo "${{ secrets.VM_SSH_KEY }}" > id_rsa
-          chmod 600 id_rsa
-
       - name: SSH into VM and deploy
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.VM_HOST }}
           username: ${{ secrets.VM_USER }}
-          key_path: id_rsa
+          key: ${{ secrets.VM_SSH_KEY }}
           script: |
             cd /projects/TJR101_group2
             git pull https://github.com/Yi-Lin-Cheng/TJR101_group2.git main
