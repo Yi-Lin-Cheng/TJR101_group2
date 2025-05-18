@@ -78,7 +78,7 @@ def clean_address_add(text):
 
 
 def add_region_town(df):
-    df["city"] = df["address"].str.extract(r"(\w{1,3}?[縣市])")
+    df["county"] = df["address"].str.extract(r"(\w{1,3}?[縣市])")
     return df
 
 
@@ -157,7 +157,6 @@ def t_accupass_data_clean():
     df = add_region_town(df)
     df = add_start_end_date(df)
 
-    df = df.rename(columns={"city": "county"})
     df = df.rename(columns={"e_name": "ev_name"})
     df = df.rename(columns={"accupass_url": "accu_url"})
     df = df[
