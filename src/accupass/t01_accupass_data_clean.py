@@ -158,9 +158,10 @@ def t_accupass_data_clean():
     df = add_start_end_date(df)
 
     df = df.rename(columns={"city": "county"})
+    df = df.rename(columns={"e_name": "ev_name"})
     df = df[
         [
-            "e_name",
+            "ev_name",
             "s_time",
             "e_time",
             "county",
