@@ -1,6 +1,16 @@
 # TJR101_group2 ETL Pipeline
 
-This repository contains the ETL pipeline for TJR101 Group 2, responsible for extracting, transforming, and loading data from various sources such as accommodations, food, events, and more.
+This project, developed by Group 2 of TJR101, focuses on integrating open government data with enriched business information using Google Maps API and web scraping techniques. The goal is to automate data extraction, enrichment, and storage processes using Apache Airflow and GitHub Actions. The final output powers a LINE BOT that recommends customized travel itineraries based on events and exhibitions.
+
+---
+
+## 📌 Project Objectives
+
+Extract and integrate data from open government sources and Google Maps
+Automatically match and enrich business records (e.g., opening hours, reviews)
+Manage ETL workflows using Apache Airflow
+Automate deployment to a GCP VM via GitHub Actions
+Power a LINE BOT that recommends nearby food, attractions, and accommodations based on ongoing exhibitions and events
 
 ---
 
@@ -30,3 +40,22 @@ TJR101_group2/
 ├── .gitattributes             # Git config (e.g., line endings)
 └── poetry.toml                # (Duplicate, consider removing if unnecessary)
 ```
+
+## 🛠 Tech Stack
+
+Python 3.12
+MySQL
+Docker
+GitHub Actions
+GCP VM
+Apache Airflow
+pandas, Selenium, BeautifulSoup, rapidfuzz
+Google Maps API
+
+---
+
+## ⚙️ CI/CD Deployment Flow
+
+Code pushed to the main branch triggers GitHub Actions
+GitHub Actions connects to the GCP VM via SSH
+The VM executes git pull to synchronize the latest project code
