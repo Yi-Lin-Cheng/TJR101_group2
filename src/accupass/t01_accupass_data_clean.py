@@ -159,6 +159,7 @@ def t_accupass_data_clean():
 
     df = df.rename(columns={"city": "county"})
     df = df.rename(columns={"e_name": "ev_name"})
+    df = df.rename(columns={"accupass_url": "accu_url"})
     df = df[
         [
             "ev_name",
@@ -168,7 +169,7 @@ def t_accupass_data_clean():
             "address",
             "geo_loc",
             "pic_url",
-            "accupass_url",
+            "accu_url",
             "tag",
         ]
     ]
