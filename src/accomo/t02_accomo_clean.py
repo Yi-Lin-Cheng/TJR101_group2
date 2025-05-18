@@ -10,6 +10,10 @@ if Path("/opt/airflow/data").exists():
     data_dir = Path("/opt/airflow/data/accomo")
 else:
     data_dir = Path("data/accomo")
+region_map = pd.read_csv(data_dir / "region.csv")
+town_map = pd.read_csv(data_dir / "town.csv")
+vil_map = pd.read_csv(data_dir / "vil.csv")
+rd_map = pd.read_csv(data_dir / "rd.csv")
 
 
 # ---------------------
@@ -186,6 +190,10 @@ def clean_english_address(text):
 # 中文地址翻英文
 # ---------------------
 def translate_address(addr, region_zh, town_zh):
+    region_dict = dict(zip(region_map["region_zh"], region_map["region_en"]))
+    town_dict = dict(zip(town_map["town_zh"], town_map["town_en"]))
+    vil_dict = dict(zip(vil_map["vil_zh"], vil_map["vil_en"]))
+    rd_dict = dict(zip(rd_map["rd_zh"], rd_map["rd_en"]))
     result = addr
     for zh, en in rd_dict.items():
         result = result.replace(zh, en)
@@ -208,16 +216,6 @@ def main():
 
     for col in ["lat_open", "lng_open", "lat", "lng"]:
         df[col] = pd.to_numeric(df[col], errors="coerce")
-
-    region_map = pd.read_csv(data_dir / "region.csv")
-    town_map = pd.read_csv(data_dir / "town.csv")
-    vil_map = pd.read_csv(data_dir / "vil.csv")
-    rd_map = pd.read_csv(data_dir / "rd.csv")
-
-    region_dict = dict(zip(region_map["region_zh"], region_map["region_en"]))
-    town_dict = dict(zip(town_map["town_zh"], town_map["town_en"]))
-    vil_dict = dict(zip(vil_map["vil_zh"], vil_map["vil_en"]))
-    rd_dict = dict(zip(rd_map["rd_zh"], rd_map["rd_en"]))
 
     df = df.dropna(subset=["url"])
     df = df[
