@@ -11,7 +11,6 @@ if Path("/opt/airflow/data").exists():
 else:
     data_dir = Path("data/accomo")
 file_path = data_dir / "accomo04_clean_word.csv"
-df = pd.read_csv(file_path, encoding="utf-8")
 
 
 # -------- Haversine 計算距離 --------
@@ -30,7 +29,7 @@ def haversine(lat1, lng1, lat2, lng2):
 def main():
     # -------- 比對與計算 --------
     match_score = []
-
+    df = pd.read_csv(file_path, encoding="utf-8")
     for _, row in df.iterrows():
         name_open = row["name_open"]
         name = row["name"]

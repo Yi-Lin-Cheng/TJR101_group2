@@ -11,10 +11,11 @@ if Path("/opt/airflow/data").exists():
 else:
     data_dir = Path("data/accomo")
 input_path = data_dir / "accomo05_match_result.csv"
-df = pd.read_csv(input_path, encoding="utf-8")
+
 
 
 def main():
+    df = pd.read_csv(input_path, encoding="utf-8")
     # -------- accomo_id：使用 id_open --------
     df["accomo_id"] = df["id_open"]
 
