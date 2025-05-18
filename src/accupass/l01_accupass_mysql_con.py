@@ -37,7 +37,7 @@ def l_accupass_mysql_con():
 
         # 設定uuid
         df["events_id"] = [str(uuid.uuid4()) for _ in range(len(df))]
-
+        df["geo_loc"] = "Point(" + df["geo_loc"].str.replace(",", " ") + ")"
         sql_search = "SELECT ev_name FROM EVENTS"  # 取出ev_name的資料
         db_df = pd.read_sql(sql_search, conn)  # 存進df
         print(f"目前資料庫中的資料筆數：{len(db_df)}")
