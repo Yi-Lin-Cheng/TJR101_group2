@@ -19,8 +19,10 @@ def filter_types_and_town(data):
         & (~data["types"].str.contains("transit_station"))
         & (~data["types"].str.contains("hospital"))
     ].copy()
-
     data["region_open"] = data["region_open"].str.replace("臺", "台", regex=False)
+    data["region_open"] = data["region_open"].fillna("").astype(str)
+    data["town_open"] = data["region_open"].fillna("").astype(str)
+    data["address"] = data["address"].fillna("").astype(str)
     data = data[
         data.apply(
             lambda row: row["address"] and row["region_open"] in row["address"], axis=1
@@ -49,7 +51,6 @@ def compare_name_and_add(data):
     matched_data1 = matched_data1.loc[matched_data1.groupby("id_open")["comm"].idxmax()]
     matched_data1 = matched_data1.drop_duplicates(subset=["place_id"])
     print(f"依據相同名稱或地址留下的筆數{len(matched_data1)}")
-
     matched_ids = set(matched_data1["id_open"])
     pending_data = pending_data[
         pending_data["id_open"].apply(lambda x: x not in matched_ids)
@@ -67,14 +68,12 @@ def compare_name_and_add(data):
 
         if match:
             matched_indices.append(i)
-
     matched_data2 = pending_data.loc[matched_indices].copy()
     pending_data = pending_data.drop(matched_indices).copy()
 
     # 留下的資料裡面同一個地點可能有多筆資料，留下評論數高的
     matched_data2 = matched_data2.loc[matched_data2.groupby("id_open")["comm"].idxmax()]
     matched_data2 = matched_data2.drop_duplicates(subset=["place_id"])
-
     print(f"依據相近的名稱留下的筆數{len(matched_data2)}")
     # 合併要留下的資料
     matched_data = pd.concat(
@@ -94,7 +93,6 @@ def isindoor(matched_data):
         | matched_data["types"].str.contains("museum|store", regex=True),
         "s_type",
     ] = "室內"
-
     return matched_data
 
 
@@ -131,6 +129,8 @@ def main():
     read_file = data_dir / "spot03_googleapi_newdata.csv"
     save_file = data_dir / "spot04_compare_name_and_add_new.csv"
     data = pd.read_csv(read_file, encoding="utf-8", engine="python")
+    if data.empty:
+        return
     data = filter_types_and_town(data)
     matched_data = compare_name_and_add(data)
     matched_data = isindoor(matched_data)
