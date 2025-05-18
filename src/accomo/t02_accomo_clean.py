@@ -3,6 +3,7 @@ import unicodedata
 from pathlib import Path
 
 import pandas as pd
+
 from accomo.remove_phrases import remove_phrases
 
 if Path("/opt/airflow/data").exists():
