@@ -84,9 +84,9 @@ def main():
     today_str = date.today().strftime("%Y%m%d")
 
     if Path("/opt/airflow/data").exists():
-        data_dir = Path("/opt/airflow/data/hotel")
+        data_dir = Path("/opt/airflow/data/accomo")
     else:
-        data_dir = Path("data/hotel")
+        data_dir = Path("data/accomo")
 
     output_path = data_dir / f"booking_update_{today_str}.csv"
     result_df.to_csv(output_path, index=False, encoding="utf-8")
