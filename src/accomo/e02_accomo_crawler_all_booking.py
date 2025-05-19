@@ -102,7 +102,7 @@ def process_batch(data, start_idx, batch_size):
     err_log = ""
 
     for i in range(start_idx, min(start_idx + batch_size, len(data))):
-        row = data[i, :]
+        row = data.loc[i]
         result = get_single_booking_info(row, driver, wait)
         if not result["error"]:
             print(f"第{i+1}筆完成")
@@ -257,12 +257,14 @@ def save_data(data, err_log):
         header=True,
         index=False,
     )
-    with open(file_path / "accomo03_extract_booking.txt", "a", encoding="utf-8") as f:
+    with open(data_dir / "accomo03_extract_booking.txt", "a", encoding="utf-8") as f:
         f.write(err_log)
 
 
 def main():
     data = read_data()
+    if data.empty:
+        return
     start_idx = get_start_idx(data)
     if start_idx == -1:
         return
