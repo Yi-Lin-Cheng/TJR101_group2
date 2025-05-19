@@ -107,7 +107,7 @@ def process_batch(data, start_idx, batch_size):
         if not result["error"]:
             print(f"第{i+1}筆完成")
         else:
-            err_msg = f"{datetime.now(tz)}第{i+1}筆 {data[i,"name_open"]} 出現錯誤"
+            err_msg = f"{datetime.now(tz)}第{i+1}筆 {data.loc[i,"name_open"]} 出現錯誤"
             print(err_msg)
             err_log += err_msg + "\n"
 
