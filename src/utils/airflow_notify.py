@@ -14,12 +14,12 @@ def line_notify_failure(context):
     log_url = context["task_instance"].log_url
 
     message = f"""
-❌ Airflow 任務失敗通知
-DAG: {dag_id}
-Task: {task_id}
-時間: {exec_time}
-Log: {log_url}
-"""
+        Airflow 任務失敗通知
+        DAG: {dag_id}
+        Task: {task_id}
+        時間: {exec_time}
+        Log: {log_url}
+        """
 
     headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
 
@@ -30,6 +30,6 @@ Log: {log_url}
             "https://api.line.me/v2/bot/message/push", headers=headers, json=payload
         )
         res.raise_for_status()
-        print("✅ LINE 推播成功")
+        print("LINE 推播成功")
     except Exception as e:
-        print("❌ 發送 LINE 失敗：", e)
+        print("發送 LINE 失敗：", e)
