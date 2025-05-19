@@ -136,6 +136,27 @@ def add_start_end_date(df):
     return df
 
 
+def change_geo_loc(df):
+    """調整經緯度"""
+    df[["lat", "lon"]] = df["geo_loc"].str.split(",", expand=True)
+    df["lon"] = pd.to_numeric(df["lon"], errors="coerce")
+    df["lat"] = pd.to_numeric(df["lat"], errors="coerce")
+
+    df[["lat", "lon"]] = df.apply(
+        lambda x: (
+            (x["lon"], x["lat"])
+            if x["lat"] > 90 or x["lat"] < 90
+            else (x["lat"], x["lon"])
+        ),
+        axis=1,
+        result_type="expand",
+    )
+
+    df = df.dropna(subset=["lat", "lon"])
+    df["geo_loc"] = df.apply(lambda x: f"POINT({x['lon']} {x['lat']})", axis=1)
+    return df
+
+
 def clean_dropna_first(df):
     df.dropna(subset=["geo_loc"], inplace=True)
     df.dropna(subset=["address"], inplace=True)
@@ -144,6 +165,8 @@ def clean_dropna_first(df):
 
 def clean_dropna_end(df):
     df.dropna(subset=["city"], inplace=True)
+    df.columns = df.columns.str.strip()
+    df = df.where(pd.notnull(df), None)
     df.drop(columns="Unnamed: 0", errors="ignore")
     return df
 
@@ -155,21 +178,27 @@ def t_accupass_data_clean():
     df["address"] = df["address"].apply(clean_address)
     df["address"] = df["address"].apply(clean_address_add)
     df = add_region_town(df)
+    df = change_geo_loc(df)
     df = add_start_end_date(df)
+    df = clean_dropna_end(df)
 
-    df = df.rename(columns={"e_name": "ev_name"})
-    df = df.rename(columns={"accupass_url": "accu_url"})
+    df = df.rename(
+        columns={
+            "e_name": "ev_name",
+            "city": "county",
+            "accupass_url": "accu_url",
+        }
+    )
     df = df[
         [
             "ev_name",
-            "s_time",
-            "e_time",
             "county",
             "address",
             "geo_loc",
             "pic_url",
             "accu_url",
-            "tag",
+            "s_time",
+            "e_time",
         ]
     ]
 
