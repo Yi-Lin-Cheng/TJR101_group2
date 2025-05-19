@@ -164,7 +164,7 @@ def clean_dropna_first(df):
 
 
 def clean_dropna_end(df):
-    df.dropna(subset=["city"], inplace=True)
+    df.dropna(subset=["county"], inplace=True)
     df.columns = df.columns.str.strip()
     df = df.where(pd.notnull(df), None)
     df.drop(columns="Unnamed: 0", errors="ignore")
@@ -185,7 +185,6 @@ def t_accupass_data_clean():
     df = df.rename(
         columns={
             "e_name": "ev_name",
-            "city": "county",
             "accupass_url": "accu_url",
         }
     )
