@@ -81,14 +81,13 @@ def main():
 
     # -------- 輸出 CSV --------
     result_df = pd.DataFrame(result_rows, columns=["accomo_id", "rate", "comm"])
-    today_str = date.today().strftime("%Y%m%d")
 
     if Path("/opt/airflow/data").exists():
         data_dir = Path("/opt/airflow/data/accomo")
     else:
         data_dir = Path("data/accomo")
 
-    output_path = data_dir / f"booking_update_{today_str}.csv"
+    output_path = data_dir / f"booking_update.csv"
     result_df.to_csv(output_path, index=False, encoding="utf-8")
 
     print(f"今日成功更新 {len(result_df)} 筆資料，已儲存至：{output_path}")
