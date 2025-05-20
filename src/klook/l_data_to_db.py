@@ -10,7 +10,7 @@ if Path("/opt/airflow/data").exists():
 else:
     data_dir = Path("data/klook")
 
-source_data_path = data_dir / "final_data.csv"
+
 target_table = "EXHIBIT_TEST"
 
 def update_address_with_location(row):
@@ -87,7 +87,8 @@ def db_add_new_records(cursor: Cursor, df: DataFrame):
     ].values.tolist())
 
 
-def main():
+def main(source_file: str = ""):
+    source_data_path = data_dir / source_file
 
     df = pd.read_csv(f"{source_data_path}", encoding="utf-8-sig") 
     event_ids = df["event_id"].astype(str).to_list()
