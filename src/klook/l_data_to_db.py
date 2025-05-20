@@ -11,7 +11,7 @@ else:
     data_dir = Path("data/klook")
 
 source_data_path = data_dir / "final_data.csv"
-target_table = "EXHIBIT"
+target_table = "EXHIBIT_TEST"
 
 def update_address_with_location(row):
     if pd.isna(row["address"]) and pd.notna(row["location"]):

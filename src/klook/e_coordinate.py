@@ -23,13 +23,22 @@ data_dir = Path("data", "klook")
 def e_request_coordinate(address: str):
     service = Service(executable_path="/usr/local/bin/chromedriver")
     options = webdriver.ChromeOptions()
-    # options.add_argument('--disable-blink-features=AutomationControlled')
-    # options.add_argument('--start-maximized')  
-    options.add_argument("--headless=new")
-    # options.add_argument("--no-sandbox")
-    # options.add_argument('--disable-dev-shm-usage')        
-    # options.add_argument(f"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36")                
-    # options.add_argument(f"user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:89.0) Gecko/20100101 Firefox/89.0")                
+    options.add_argument("--headless=new")  # "new" 是新版 headless 模式（更穩定）
+    options.add_argument("--no-sandbox")  # 避免 sandbox 問題
+    options.add_argument("--disable-dev-shm-usage")  # 避免 /dev/shm 空間不足
+
+    # 偽裝參數（防止 Selenium 被網站偵測）
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option('useAutomationExtension', False)
+
+    # 指定使用者代理（User-Agent）可以提升成功率
+    options.add_argument(
+        "user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+    )
+
+    # 可選：模擬最大化視窗（有些網站會根據螢幕尺寸載入不同結構）
+    options.add_argument("start-maximized")                  
     driver = webdriver.Chrome(service=service, options=options)    
     
     driver.set_page_load_timeout(3)
