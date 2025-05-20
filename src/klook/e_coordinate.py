@@ -18,7 +18,11 @@ from selenium.webdriver.support import expected_conditions as EC
 import os
 
 # data_dir = Path("data", "klook")
-data_dir = Path("data", "klook")
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/klook")
+else:
+    data_dir = Path("data/klook")
+    
 # region e_request_coordinate
 def e_request_coordinate(address: str):
     service = Service(executable_path="/usr/local/bin/chromedriver")

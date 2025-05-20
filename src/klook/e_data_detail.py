@@ -17,7 +17,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import os
 
-data_dir = Path("data", "klook")
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/klook")
+else:
+    data_dir = Path("data/klook")
 
 # region e_request_detail
 def e_request_detail(url: str, error_count:int = 0):

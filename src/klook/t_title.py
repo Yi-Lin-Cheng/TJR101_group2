@@ -17,7 +17,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import os
 
-data_dir = Path("data", "klook")
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/klook")
+else:
+    data_dir = Path("data/klook")
 
 # region 清除 title 末端有包含 location 的資訊
 def trim_location_from_title(row):

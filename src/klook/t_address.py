@@ -17,7 +17,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import os
 
-data_dir = Path("data", "klook")
+if Path("/opt/airflow/data").exists():
+    data_dir = Path("/opt/airflow/data/klook")
+else:
+    data_dir = Path("data/klook")
 
 # region 清除 address 包含括號的資料
 def trim_location_from_address(row):
