@@ -24,7 +24,7 @@ else:
 
 # region 清除 title 末端有包含 location 的資訊
 def trim_location_from_title(row):
-    title = str(row['title'])
+    title = str(row['ex_name'])
     location = str(row['location'])
     if title.endswith(location):
         return title[: -len(location)].rstrip().rstrip('｜')
@@ -37,11 +37,11 @@ def t_title(df: pd.DataFrame):
     df["county"] = None
     
     # # 去除並擷取最前面縣市資訊
-    df['county'] = df['title'].astype(str).str.split('|').str[0]
-    df["title"] = df['title'].astype(str).str.split('|').str[1:].str.join("|")
+    df['county'] = df['ex_name'].astype(str).str.split('|').str[0]
+    df["ex_name"] = df['ex_name'].astype(str).str.split('|').str[1:].str.join("|")
 
     # # 去除最後面地理位置資訊
-    df['title'] = df.apply(trim_location_from_title, axis=1)
+    df['ex_name'] = df.apply(trim_location_from_title, axis=1)
     
     return df
 # endregion t_title

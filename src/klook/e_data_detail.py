@@ -164,13 +164,13 @@ def e_update_address(df: pd.DataFrame):
     while df[df['address'].isna() & df['location'].isna()].shape[0] > 0:
         for hash, item in df.iterrows():
 
-            url = item['event_url']
+            url = item['klook_url']
             
             if pd.isna(item['address']) and  pd.isna(item['location']):
 
                 try:
                     location, address = e_request_detail(url)
-                    print(f"title: {df.at[hash, 'title']}, url: {df.at[hash, 'event_url']}")
+                    print(f"ex_name: {df.at[hash, 'ex_name']}, url: {df.at[hash, 'klook_url']}")
                     print(f"address: {address}, location: {location}")
                     df.at[hash, "address"] = address if address is not np.nan else ""
                     df.at[hash, "location"] = location if location is not np.nan else ""

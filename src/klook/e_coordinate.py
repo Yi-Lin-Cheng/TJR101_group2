@@ -108,7 +108,7 @@ def e_upadte_coordinate(df: pd.DataFrame):
             search_content = address if pd.notna(address) else location 
             
             if pd.isna(lat) and  pd.isna(lng) and search_content:
-                print(df.at[hash, "title"])
+                print(df.at[hash, "ex_name"])
                 try:
                     lat, lng = e_request_coordinate(search_content)
                     
