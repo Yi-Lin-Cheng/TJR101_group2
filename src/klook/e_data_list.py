@@ -227,7 +227,7 @@ def main(save_file: str = ""):
         Path.mkdir(data_dir)
             
     # save_data_path = data_dir / "e_data_list.csv"   
-    source_data_path = data_dir / source_file 
+    source_data_path = data_dir / save_file 
     
     # region 取得列表頁資料
     response_code, response_data = e_request_list()
