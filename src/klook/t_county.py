@@ -39,11 +39,7 @@ def main(source_file: str = "", save_file: str = ""):
     # save_data_path = data_dir / "t_address.csv"
     
     source_data_path = data_dir / source_file
-    save_data_path = data_dir / save_file     
-    
-    if not Path.exists(source_data_path):
-        print(f"Source File{source_data_path}:  Not Exists")
-        return     
+    save_data_path = data_dir / save_file        
     
     # region 轉換字(臺->台)(county)
     try:
