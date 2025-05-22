@@ -219,11 +219,15 @@ def e_parse_response_json(source_dataset: list[object]):
 # endregion e_parse_response_json
 
 
-def main():
+def main(save_file: str = ""):
+    
+    
+    
     if not Path.exists(data_dir):
         Path.mkdir(data_dir)
             
-    save_data_path = data_dir / "e_data_list.csv"    
+    # save_data_path = data_dir / "e_data_list.csv"   
+    source_data_path = data_dir / source_file 
     
     # region 取得列表頁資料
     response_code, response_data = e_request_list()

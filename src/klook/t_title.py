@@ -47,15 +47,14 @@ def t_title(df: pd.DataFrame):
 # endregion t_title
 
 # region main
-def main():
+def main(source_file: str = "", save_file: str = ""):
     
-    source_data_path = data_dir / "e_coordinate.csv"
-    save_data_path = data_dir / "t_title.csv"
+    # source_data_path = data_dir / "e_coordinate.csv"
+    # save_data_path = data_dir / "t_title.csv"
     
-    if not Path.exists(source_data_path):
-        print(f"Source File{source_data_path}:  Not Exists")
-        return         
-    
+    source_data_path = data_dir / source_file
+    save_data_path = data_dir / save_file      
+        
     # region 清理 title 資訊
     try:
         df = pd.read_csv(f"{source_data_path}", encoding="utf-8-sig")
