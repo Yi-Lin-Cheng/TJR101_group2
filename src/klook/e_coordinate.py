@@ -45,13 +45,13 @@ def e_request_coordinate(address: str):
     options.add_argument("start-maximized")                  
     driver = webdriver.Chrome(service=service, options=options)    
     
-    driver.set_page_load_timeout(3)
+    driver.set_page_load_timeout(5)
     url = "https://www.google.com.tw/maps/"
     try:
         try:
             driver.get(url) # 更改網址以前往不同網頁
 
-            wait = WebDriverWait(driver, 3)
+            wait = WebDriverWait(driver, 5)
             action = ActionChains(driver)
 
             # Perform Search
@@ -126,14 +126,13 @@ def e_upadte_coordinate(df: pd.DataFrame):
 # endregion 
 
 
-def main():
+def main(source_file: str = "", save_file: str = ""):
     
-    source_data_path = data_dir / "t_address.csv"
-    save_data_path = data_dir / "e_coordinate.csv"
+    # source_data_path = data_dir / "t_address.csv"
+    # save_data_path = data_dir / "e_coordinate.csv"
     
-    if not Path.exists(source_data_path):
-        print(f"Source File{source_data_path}:  Not Exists")
-        return     
+    source_data_path = data_dir / source_file
+    save_data_path = data_dir / save_file      
     
     # region 取得Google 座標
     try:

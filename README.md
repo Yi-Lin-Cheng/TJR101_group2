@@ -30,7 +30,7 @@ TJR101_group2/
 │   ├── food/                  # Food-related data ETL
 │   ├── klook/                 # Klook activities ETL
 │   ├── spot/                  # Scenic spots ETL
-│   ├── tasks/                 # Shared Airflow task logic
+│   ├── tasks/                 # Shared ETL logic
 │   └── utils/                 # Utility modules (e.g., logging, geocoding)
 ├── data/                      # Output data and logs
 ├── pyproject.toml             # Poetry dependency configuration

@@ -200,12 +200,12 @@ def e_parse_response_json(source_dataset: list[object]):
         
         return_data.append(
             {
-                "ex_name": source_data["ex_name"],
+                "ex_name": source_data["title"],
                 "free": source_data["free"],
                 "from_price": source_data["from_price"],
                 "date": source_data["date_list"][0]["date"] if len(source_data["date_list"]) > 0 else None ,
-                "pic_url": source_data["pic_url"],
-                "klook_url": source_data["klook_url"],
+                "pic_url": source_data["image_url"],
+                "klook_url": source_data["event_url"],
                 "event_id": source_data["event_id"],
                 "address": "",
                 "location": "",
@@ -219,11 +219,15 @@ def e_parse_response_json(source_dataset: list[object]):
 # endregion e_parse_response_json
 
 
-def main():
+def main(save_file: str = ""):
+    
+    
+    
     if not Path.exists(data_dir):
         Path.mkdir(data_dir)
             
-    save_data_path = data_dir / "e_data_list.csv"    
+    # save_data_path = data_dir / "e_data_list.csv"   
+    save_data_path = data_dir / save_file 
     
     # region 取得列表頁資料
     response_code, response_data = e_request_list()

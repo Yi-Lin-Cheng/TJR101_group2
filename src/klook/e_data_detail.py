@@ -187,14 +187,13 @@ def e_update_address(df: pd.DataFrame):
 # endregion 
 
 # region main
-def main():
+def main(source_file: str = "", save_file: str = ""):
     
-    source_data_path = data_dir / "e_data_list.csv"
-    save_data_path = data_dir / "e_data_detail.csv"
+    # source_data_path = data_dir / "e_data_list.csv"
+    # save_data_path = data_dir / "e_data_detail.csv"
     
-    if not Path.exists(source_data_path):
-        print(f"Source File{source_data_path}:  Not Exists")
-        return 
+    source_data_path = data_dir / source_file
+    save_data_path = data_dir / save_file       
     
     # region 取得地址、位置資訊
     try:
