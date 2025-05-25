@@ -242,12 +242,21 @@ def main():
     df["name_open_clean"] = df["name_open"].apply(remove_hotel_suffix)
     df["name_clean"] = df["name"].apply(remove_hotel_suffix)
 
-    df["add_open_eng"] = df.apply(
-        lambda row: translate_address(
-            row["add_open"], row["region_open"], row["town_open"]
-        ),
-        axis=1,
-    )
+    try:
+        df["add_open_eng"] = df.apply(
+            lambda row: translate_address(
+                row["add_open"], row["region_open"], row["town_open"]
+            ),
+            axis=1,
+        )
+    except:
+        df["add_open"] = df["add_open"].apply(lambda x: str(x).split("、")[0] if pd.notna(x) else "")
+        df["add_open_eng"] = df.apply(
+            lambda row: translate_address(
+                row["add_open"], row["region_open"], row["town_open"]
+            ),
+            axis=1,
+        )
 
     final_cols = [
         "id_open",

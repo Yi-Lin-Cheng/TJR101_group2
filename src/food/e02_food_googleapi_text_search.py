@@ -86,8 +86,25 @@ def main():
         info_list += info
         err_log += err_msg
         print(info)
-
-    info_data = pd.DataFrame(info_list)
+    if not info_list:
+        info_data = pd.DataFrame(columns=[
+            "id_open",
+            "name_open",
+            "region_open",
+            "town_open",
+            "add_open",
+            "place_id",
+            "s_name",
+            "rate",
+            "comm",
+            "types",
+            "address",
+            "lng",
+            "lat",
+            "business_status",
+            ])
+    else:
+        info_data = pd.DataFrame(info_list)
     info_data.to_csv(
         save_file,
         encoding="utf-8",
