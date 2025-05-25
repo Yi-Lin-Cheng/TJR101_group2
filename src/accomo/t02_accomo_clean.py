@@ -211,9 +211,6 @@ def translate_address(addr, region_zh, town_zh):
 # ---------------------
 def main():
     df = pd.read_csv(data_dir / "accomo03_extract_booking.csv")
-    if df.empty:
-        return
-
     for col in ["lat_open", "lng_open", "lat", "lng"]:
         df[col] = pd.to_numeric(df[col], errors="coerce")
 
@@ -224,7 +221,8 @@ def main():
         & (df["lat"].between(21.8, 25.4))
         & (df["lng"].between(120.0, 122.0))
     ]
-
+    if df.empty:
+        return
     for col in [
         "name_open",
         "region_open",
